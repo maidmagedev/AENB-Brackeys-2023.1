@@ -68,17 +68,15 @@ public class GlobAnimations : MonoBehaviour
         // this is where the animation states get set
         AnimationStates newState;
 
-       /* if (navMeshobj.velocity == Vector3.zero)
+        if (navMeshobj.velocity == Vector3.zero)
         {
+            print("not moving");
             if (!priority.Contains(AnimationStates.Idle)) // idling
             {
                 priority.Add(AnimationStates.Idle);
             }
         }
-        else
-        {
-            priority.Remove(AnimationStates.Idle);
-        }*/
+        
 
 
 

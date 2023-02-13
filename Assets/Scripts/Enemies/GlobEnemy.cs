@@ -23,6 +23,9 @@ public class GlobEnemy : MonoBehaviour, IKillable
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private float spriteScale = 2f;
 
+    private bool mayAttack = true;
+    private bool currentlyAttacking = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,14 +38,16 @@ public class GlobEnemy : MonoBehaviour, IKillable
     // Update is called once per frame
     void Update()
     {
+        //print(navMeshobj.remainingDistance);
+        //print(mayAttack);
         FlipSprite();
-        if (navMeshobj.remainingDistance <= 3)
+        if (navMeshobj.remainingDistance <= 3  && navMeshobj.remainingDistance > 0 && mayAttack)
         {
+            print("attacking");
             GetComponent<GlobAnimations>().SetAttackAnimationState(true);
-        }
-        else
-        {
-            GetComponent<GlobAnimations>().SetAttackAnimationState(false);
+            mayAttack = false;
+            StartCoroutine(AttackCooldown());
+            
         }
     }
 
@@ -66,6 +71,14 @@ public class GlobEnemy : MonoBehaviour, IKillable
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.TryGetComponent<DamageableComponent>(out DamageableComponent target))
+        {
+            target.TakeDamage(damagePerHit);
+        }
+    }
+
     public void Die() {
         //FindObjectOfType<UIScore>().score += 10;
         Destroy(this.gameObject);  
@@ -80,5 +93,14 @@ public class GlobEnemy : MonoBehaviour, IKillable
         damageLight.SetActive(true);
         yield return new WaitForSeconds(.5f);
         damageLight.SetActive(false);
+    }
+
+    IEnumerator AttackCooldown()
+    {
+        yield return new WaitForSeconds(2.33f);
+        GetComponent<GlobAnimations>().SetAttackAnimationState(false);
+        yield return new WaitForSeconds(1f);
+        mayAttack = true;
+        //print(mayAttack);
     }
 }
