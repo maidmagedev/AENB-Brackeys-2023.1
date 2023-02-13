@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Machine : MonoBehaviour
+public class Machine : MonoBehaviour, IODevice
 {
     List<Vector2Int> footPrint;
 
     Recipe doing;
 
-    public ItemCollection inpBuf;
+    private ItemCollection inpBuf;
 
-    public ItemCollection outBuf;
+    private ItemCollection outBuf;
 
     public MachineType type;
 
@@ -26,6 +26,16 @@ public class Machine : MonoBehaviour
 
             StartCoroutine(doing.doCraft(this));
         }
+    }
+
+    public ItemCollection getInputBuffer()
+    {
+        return inpBuf;
+    }
+
+    public ItemCollection getOutputBuffer()
+    {
+        return outBuf;
     }
 }
 
