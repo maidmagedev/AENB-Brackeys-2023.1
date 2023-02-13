@@ -19,13 +19,11 @@ public class PauseMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Ensure default UI states for game start
+        menuState = MenuState.alloff;
+        pauseParent.SetActive(false);
         pauseMain.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        pauseSettings.SetActive(false);
     }
 
     // Called by UIManager.cs to toggle various Pause Menu container gameobjects as active or inactive.
@@ -52,6 +50,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    // UI method. Called by the Settings Button in the pauseMain gameobject and the Back button in the pauseSettings obj.
     public void ToggleSettingsView() {
         if (menuState != MenuState.settings) {
             menuState = MenuState.settings;
