@@ -1,5 +1,41 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1536486207
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1536486208}
+  m_Layer: 5
+  m_Name: Pause Menu Holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1536486208
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536486207}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5103151850392158665}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5103151848321911067
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,6 +132,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5103151848321911066}
+  - {fileID: 1536486208}
   m_Father: {fileID: 5955534502619282199}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -175,6 +212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5955534502619282199}
   - component: {fileID: 4418823377607785255}
+  - component: {fileID: 8182625595784236931}
   m_Layer: 0
   m_Name: UI Elements (empty scriptholder)
   m_TagString: Untagged
@@ -212,8 +250,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseKey: 27
   inventoryKey: 105
-  playerInventoryScript: {fileID: 0}
-  pauseMenuScript: {fileID: 0}
+  playerInventoryScript: {fileID: 6675507454960151847}
+  pauseMenuScript: {fileID: 8182625595784236931}
+--- !u!114 &8182625595784236931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7600692503982669838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c131a4d20030cb4a85e0c1bf15677f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseUI: {fileID: 1536486207}
 --- !u!1001 &1820616255365280434
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -276,3 +327,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3323103680194262908, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
   m_PrefabInstance: {fileID: 1820616255365280434}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6675507454960151847 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5035035927752630165, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
+  m_PrefabInstance: {fileID: 1820616255365280434}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7654ebef4180d4349a060abd61cbda1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
