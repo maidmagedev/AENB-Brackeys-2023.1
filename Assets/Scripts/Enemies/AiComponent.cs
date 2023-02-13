@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class AiComponent : MonoBehaviour
 {
     NavMeshAgent agent;
-    GameObject player;
+    [SerializeField] GameObject target;
     //EnemyShoot enemy_shoot;
     [SerializeField] bool isRanged = true;
     [SerializeField] float keepoutDistance = 7f;
@@ -16,7 +16,6 @@ public class AiComponent : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
-        player = GameObject.Find("Player");
         //enemy_shoot = GetComponentInChildren<EnemyShoot>();
     }
 
@@ -25,9 +24,9 @@ public class AiComponent : MonoBehaviour
     {
         if (isRanged )
         {
-            if((Vector3.Distance(this.transform.position, player.transform.position) > keepoutDistance /*|| !enemy_shoot.GetLineOfSight()*/))
+            if((Vector3.Distance(this.transform.position, target.transform.position) > keepoutDistance /*|| !enemy_shoot.GetLineOfSight()*/))
             {
-                agent.destination = player.transform.position;
+                agent.destination = target.transform.position;
 
             }
             else
@@ -37,7 +36,7 @@ public class AiComponent : MonoBehaviour
         }
         else
         {
-            agent.destination = player.transform.position;
+            agent.destination = target.transform.position;
         }
 
     }

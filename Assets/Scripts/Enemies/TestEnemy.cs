@@ -4,7 +4,13 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-// make sure you have this package installed: https://github.com/h8man/NavMeshPlus.git
+// 1. Make sure you have this package installed: https://github.com/h8man/NavMeshPlus.git
+// 2. Create an empty GameObject called "NavMesh Manager" and give it the following components: NavMesh Collect Surfaces 2D and Navigation Surface
+// 3. For each tile-map in your grid, add a Navigation Modifier component and set the override to "Walkable" or "Unwalkable"
+// 4. Go back to the NavMesh Manager and set the X rotation to -90 if you haven't already.  Finally, press "bake" to generate the navmesh
+// 5. Nav Agents should follow this basic structure: Agent>>EnemyType>>DmgLight
+// 6. Agent: Requires a navmesh agent component and the "AI Component" Script. X rotation: -90
+// 7. EnemyType: Sprite Renderer and TestEnemy.cs or similar. X rotation: 90
 
 
 public class TestEnemy : MonoBehaviour, IKillable
