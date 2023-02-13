@@ -23,13 +23,10 @@ public class TestEnemy : MonoBehaviour, IKillable
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private float spriteScale = 2f;
 
-    Rigidbody2D rb;
-
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         damageableComponent = this.gameObject.AddComponent<DamageableComponent>();
         damageableComponent.SetMaxHealth(maxHealth);
 
@@ -39,6 +36,14 @@ public class TestEnemy : MonoBehaviour, IKillable
     void Update()
     {
         FlipSprite();
+        if (navMeshobj.remainingDistance <= 3)
+        {
+            GetComponent<GlobAnimations>().SetAttackAnimationState(true);
+        }
+        else
+        {
+            GetComponent<GlobAnimations>().SetAttackAnimationState(false);
+        }
     }
 
     private void FlipSprite()

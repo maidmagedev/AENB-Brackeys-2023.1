@@ -9,7 +9,7 @@ public class AiComponent : MonoBehaviour
     [SerializeField] GameObject target;
     //EnemyShoot enemy_shoot;
     [SerializeField] bool isRanged = true;
-    [SerializeField] float keepoutDistance = 7f;
+    [SerializeField] float keepoutDistance = 7f; // this only applies for ranged enemies
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class AiComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isRanged )
+        if (isRanged)
         {
             if((Vector3.Distance(this.transform.position, target.transform.position) > keepoutDistance /*|| !enemy_shoot.GetLineOfSight()*/))
             {
