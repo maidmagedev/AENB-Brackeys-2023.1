@@ -1,0 +1,74 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Recipe
+{
+
+    public double progress;
+
+    private double inProgTime = 0;
+
+    RecipeBase baseRef;
+
+    public Recipe(RecipeBase recipe) {
+        baseRef = recipe;
+    }
+
+    public IEnumerator doCraft(Machine calling)
+    {
+        calling.working = true;
+
+        while (inProgTime < baseRef.time)
+        {
+            inProgTime += Time.deltaTime;
+
+            progress = inProgTime / baseRef.time;
+
+            yield return null;
+        }
+
+        output(calling);
+
+        calling.working = false;
+
+    }
+
+
+    public void output(Machine calling) {
+        calling.outBuf.AddRange(baseRef.outputs);
+    }
+
+    public bool accept(List<ItemStack> potential) {
+        var against = baseRef.inputs;
+
+        return against.TrueForAll((stack)=> {
+            ItemStack inpStack = potential.Find((st) => st.of == stack.of);
+
+            if (inpStack == null) {
+                return false;
+            }
+
+            return (inpStack.quantity >= stack.quantity);
+
+        });
+    }
+
+    public void consume(ref List<ItemStack> incoming) {
+        var against = baseRef.inputs;
+
+        var tempIncoming = incoming;
+
+        against.ForEach((stack) =>
+        {
+            int inpStack = tempIncoming.FindIndex((st) => st.of == stack.of);
+
+            tempIncoming[inpStack].quantity -= stack.quantity;
+        });
+
+
+        incoming = tempIncoming;
+
+    }
+
+}
