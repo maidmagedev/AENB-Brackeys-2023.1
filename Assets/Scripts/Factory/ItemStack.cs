@@ -12,4 +12,9 @@ public class ItemStack
         this.of = of;
         this.quantity = quantity;
     }
+
+
+    public static ItemStack copy(ItemStack orig) {
+        return new ItemStack(orig.of, orig.quantity);
+    }
 }

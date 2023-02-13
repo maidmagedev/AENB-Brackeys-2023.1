@@ -17,7 +17,6 @@ public class Recipe
 
     public IEnumerator doCraft(Machine calling)
     {
-        calling.working = true;
 
         while (inProgTime < baseRef.time)
         {
@@ -28,6 +27,8 @@ public class Recipe
             yield return null;
         }
 
+
+        inProgTime = 0;
         output(calling);
 
         calling.working = false;
@@ -36,7 +37,20 @@ public class Recipe
 
 
     public void output(Machine calling) {
-        calling.outBuf.AddRange(baseRef.outputs);
+        baseRef.outputs.ForEach(stack =>
+        {
+            ItemStack o = calling.outBuf.Find((st) => st.of == stack.of);
+
+            if (o != null)
+            {
+                o.quantity += stack.quantity;
+            }
+            else {
+                calling.outBuf.Add(ItemStack.copy(stack));
+            }
+
+        });
+
     }
 
     public bool accept(List<ItemStack> potential) {

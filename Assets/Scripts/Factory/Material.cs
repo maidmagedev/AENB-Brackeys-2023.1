@@ -5,7 +5,9 @@ using UnityEngine;
 public enum Material
 {
     STONE,
-    IRON,
+    ORE_IRON,
     COAL,
+    ORE_GOLD,
+    IRON,
     GOLD
 }
