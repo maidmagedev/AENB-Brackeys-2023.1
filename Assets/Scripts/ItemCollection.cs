@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ItemCollection
@@ -58,7 +59,33 @@ public class ItemCollection
 
     public bool Remove(ItemStack item)
     {
-        return collection.Remove(item);
+        var exists = collection.FindAll((st) => st.of == item.of);
+
+        exists.Reverse();
+
+        int quantTotal = exists.Sum(st => st.quantity);
+
+        int target = item.quantity;
+
+        if (target > quantTotal)
+        {
+            return false;
+        }
+        else {
+            while (target > 0) {
+                var subbing = exists[0];
+                if (subbing.quantity > target)
+                {
+                    subbing.quantity -= target;
+                    target = 0;
+                }
+                else {
+                    collection.Remove(subbing);
+                    target -= subbing.quantity;
+                }
+            } 
+            return true;
+        }
     }
 
     #region collection impl

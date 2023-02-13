@@ -75,9 +75,7 @@ public class Recipe
 
         against.ForEach((stack) =>
         {
-            int inpStack = tempIncoming.FindIndex((st) => st.of == stack.of);
-
-            tempIncoming[inpStack].quantity -= stack.quantity;
+            tempIncoming.Remove(stack);
         });
 
 
