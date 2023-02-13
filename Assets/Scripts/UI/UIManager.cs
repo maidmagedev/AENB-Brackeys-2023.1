@@ -22,12 +22,12 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        getInputs();
     }
 
     void getInputs() {
         if (Input.GetKeyDown(pauseKey)) {
-            pauseMenuScript.TogglePauseMenuView();
+            pauseMenuScript.CyclePauseMenuView();
         }
         if (Input.GetKeyDown(inventoryKey)) {
             playerInventoryScript.ToggleInventoryView();
