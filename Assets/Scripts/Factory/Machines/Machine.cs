@@ -8,9 +8,9 @@ public class Machine : MonoBehaviour, IODevice
 
     Recipe doing;
 
-    private ItemCollection inpBuf;
+    public ItemCollection inpBuf;
 
-    private ItemCollection outBuf;
+    public ItemCollection outBuf;
 
     public MachineType type;
 
