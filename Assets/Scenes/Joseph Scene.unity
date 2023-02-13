@@ -202,6 +202,10 @@ PrefabInstance:
       propertyPath: invenAnimator
       value: 
       objectReference: {fileID: 2090221722}
+    - target: {fileID: 8930857626479948187, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3f65a3b5ee50c8b4cb0384cd3b736614, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
 --- !u!1 &486405683
@@ -329,6 +333,23 @@ MonoBehaviour:
   m_UseMeshPrefab: {fileID: 0}
   m_CompressBounds: 0
   m_OverrideVector: {x: 1, y: 1, z: 1}
+--- !u!1 &875080806 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4577271414115526627, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+  m_PrefabInstance: {fileID: 209224395}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &875080812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875080806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e90585f8dbef79f4e9af0ec33fff5426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &885934149 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2271283546154489492, guid: 83ca600963910354c804c1faefb6a5fa, type: 3}

@@ -10,15 +10,15 @@ public class tester : MonoBehaviour
         ItemCollection col = new(5);
 
 
-        col.Add(new ItemStack(MaterialType.STONE, 250));
+        col.Add(new ItemStack(ItemType.STONE, 250));
 
-        Debug.Log(col.Remove(new ItemStack(MaterialType.ORE_IRON, 1)));
+        Debug.Log(col.Remove(new ItemStack(ItemType.ORE_IRON, 1)));
 
-        Debug.Log(col.Remove(new ItemStack(MaterialType.STONE, 1)));
+        Debug.Log(col.Remove(new ItemStack(ItemType.STONE, 1)));
 
         Debug.Log(col.collection[0]);
 
-        Debug.Log(col.Remove(new ItemStack(MaterialType.STONE, 250)));
+        Debug.Log(col.Remove(new ItemStack(ItemType.STONE, 250)));
 
         Debug.Log(col.collection[0]);
     }

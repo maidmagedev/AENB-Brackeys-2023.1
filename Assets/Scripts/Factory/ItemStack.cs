@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class ItemStack
 {
-    public MaterialType of;
+    public ItemType of;
 
     public int quantity;
 
     public int max;
 
-    public ItemStack(MaterialType of, int quantity) {
+    public ItemStack(ItemType of, int quantity) {
         this.of = of;
         this.quantity = quantity;
-        max = Material.stackSize[of];
+        max = Item.stackSize[of];
     }
 
 

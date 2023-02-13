@@ -21,6 +21,12 @@ public class DraggableUI : MonoBehaviour, IDragHandler
             UpdateStartPosition();
             UpdateDifferencePoint();
         }
+
+        // reset position after transferring data to new slot
+        if (Input.GetMouseButtonUp(0))
+        {
+            GetComponent<InventoryItem>().reset_slot_position();
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
