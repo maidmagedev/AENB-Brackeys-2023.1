@@ -56,6 +56,11 @@ public class ItemCollection
         }
     }
 
+    public bool Remove(ItemStack item)
+    {
+        return collection.Remove(item);
+    }
+
     #region collection impl
     public int Count => collection.Count;
 
@@ -83,11 +88,6 @@ public class ItemCollection
     public IEnumerator<ItemStack> GetEnumerator()
     {
         return collection.GetEnumerator();
-    }
-
-    public bool Remove(ItemStack item)
-    {
-        return collection.Remove(item);
     }
 
 

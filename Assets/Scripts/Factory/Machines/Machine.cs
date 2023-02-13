@@ -4,23 +4,17 @@ using UnityEngine;
 
 public class Machine : MonoBehaviour
 {
-    List<Vector2Int> footPrint = new();
+    List<Vector2Int> footPrint;
 
     Recipe doing;
 
-    public ItemCollection inpBuf = new(10);
+    public ItemCollection inpBuf;
 
-    public ItemCollection outBuf = new(10);
+    public ItemCollection outBuf;
 
     public MachineType type;
 
     public bool working = false;
-
-    private void Start()
-    {
-        inpBuf.Add(new ItemStack(MaterialType.ORE_IRON, 12));
-        doing = new Recipe(Globals.allRecipes.GetValueOrDefault("ironOreToBar"));
-    }
 
     private void Update()
     {
