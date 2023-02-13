@@ -53,7 +53,7 @@ public class Recipe
 
     }
 
-    public bool accept(List<ItemStack> potential) {
+    public bool accept(ItemCollection potential) {
         var against = baseRef.inputs;
 
         return against.TrueForAll((stack)=> {
@@ -68,16 +68,14 @@ public class Recipe
         });
     }
 
-    public void consume(ref List<ItemStack> incoming) {
+    public void consume(ref ItemCollection incoming) {
         var against = baseRef.inputs;
 
         var tempIncoming = incoming;
 
         against.ForEach((stack) =>
         {
-            int inpStack = tempIncoming.FindIndex((st) => st.of == stack.of);
-
-            tempIncoming[inpStack].quantity -= stack.quantity;
+            tempIncoming.Remove(stack);
         });
 
 
