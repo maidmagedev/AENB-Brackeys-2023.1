@@ -13,7 +13,7 @@ using UnityEngine.AI;
 // 7. EnemyType: Sprite Renderer and TestEnemy.cs or similar. X rotation: 90
 
 
-public class TestEnemy : MonoBehaviour, IKillable
+public class GlobEnemy : MonoBehaviour, IKillable
 {
     DamageableComponent damageableComponent;
     BoxCollider2D boxCollider;
