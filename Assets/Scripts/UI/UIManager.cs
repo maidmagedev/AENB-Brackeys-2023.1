@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    [Header("Keybinds")]
-    [SerializeField] KeyCode pauseKey = KeyCode.Escape;
-    [SerializeField] KeyCode inventoryKey = KeyCode.I;
-
     [Header("Scripts")]
     [SerializeField] PlayerInventory playerInventoryScript;
     [SerializeField] PauseMenu pauseMenuScript;
+    [SerializeField] Settings settings;
 
 
     // Start is called before the first frame update
@@ -26,10 +23,10 @@ public class UIManager : MonoBehaviour
     }
 
     void getInputs() {
-        if (Input.GetKeyDown(pauseKey)) {
+        if (Input.GetKeyDown(settings.pauseKey)) {
             pauseMenuScript.CyclePauseMenuView();
         }
-        if (Input.GetKeyDown(inventoryKey)) {
+        if (Input.GetKeyDown(settings.inventoryKey)) {
             playerInventoryScript.ToggleInventoryView();
         }
     }
