@@ -8,9 +8,9 @@ public class Machine : MonoBehaviour
 
     Recipe doing;
 
-    public List<ItemStack> inpBuf = new();
+    public ItemCollection inpBuf = new(10);
 
-    public List<ItemStack> outBuf = new();
+    public ItemCollection outBuf = new(10);
 
     public MachineType type;
 
@@ -18,7 +18,7 @@ public class Machine : MonoBehaviour
 
     private void Start()
     {
-        inpBuf.Add(new ItemStack(Material.ORE_IRON, 12));
+        inpBuf.Add(new ItemStack(MaterialType.ORE_IRON, 12));
         doing = new Recipe(Globals.allRecipes.GetValueOrDefault("ironOreToBar"));
     }
 
