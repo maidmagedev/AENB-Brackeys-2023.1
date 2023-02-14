@@ -9,10 +9,5 @@ public class ItemSlot : InventoryElement
         initialPosition = givenPos;
         prefab_path = "InventoryItem";
     }
-
-    private ItemStack heldItem = null;
-    private Sprite heldItem_image = null;
-    
-    
     
 }

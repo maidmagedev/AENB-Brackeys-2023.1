@@ -6,17 +6,13 @@ public class BaseInventory: MonoBehaviour
 {
     public ItemCollection inventory;
 
-    public List<InventoryElement> inventory_grid;
-
-    
-    
-    
+    public Dictionary<int, InventoryElement> inventory_grid;
     
     
     // Start is called before the first frame update
     void Start()
     {
-        foreach (InventoryElement item in inventory_grid)
+        foreach (InventoryElement item in inventory_grid.Values)
         {
             print(item.prefab_path);
             GameObject prefab = Resources.Load<GameObject>(item.prefab_path);
@@ -26,11 +22,12 @@ public class BaseInventory: MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void SwapItem(int fromIndex, int toIndex){
+        ItemStack temp = inventory[fromIndex];
+        inventory[fromIndex] = inventory[toIndex];
+        inventory[toIndex] = temp;
     }
+
 }
 
 public class InventoryElement
