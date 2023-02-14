@@ -55,6 +55,8 @@ public class Draggable_Inventory_Item : DraggableUI, IEndDragHandler
         
         */
     }
+    
+    // On trigger enter:  stores currently touched inventory item
 
     
 }
