@@ -35,6 +35,12 @@ public class BaseInventory: MonoBehaviour
         refresh_inventory();
     }
 
+    public void Remove(ItemStack input)
+    {
+        inventory.Remove(input);
+        refresh_inventory();
+    }
+
     private void refresh_inventory()
     {
         items_in_inventory.ForEach(g=>Destroy(g));
