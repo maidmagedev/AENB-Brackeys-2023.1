@@ -26,9 +26,8 @@ public class BaseInventory : MonoBehaviour
     }
     
     public void Add(ItemStack input)
-    {   
-        var result = inventory.Add(input);
-        instantiate_icon(input, result.insertIndex);
+    {
+        inventory.Add(input);
     }
 
     private void instantiate_icon(ItemStack item, int index)
