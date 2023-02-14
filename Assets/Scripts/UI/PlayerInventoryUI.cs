@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerInventory : MonoBehaviour
+public class PlayerInventoryUI : MonoBehaviour
 {
     [Header("UI Elements")]
     [SerializeField] GameObject InventoryUI;
