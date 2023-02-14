@@ -6,20 +6,22 @@ using UnityEngine;
 
 public class ItemCollection
 {
-    public List<ItemStack> collection;
+    public ItemStack [] collection;
 
     public int maxSlots;
+
+    int nonNullItems = 0;
 
 
     public ItemCollection(int max, ICollection<ItemStack> items = null) {
         maxSlots = max;
+        collection = new ItemStack[max];
+
         if (items != null)
         {
-            collection = new(items);
+            items.CopyTo(collection, 0);
         }
-        else {
-            collection = new();
-        }
+
     }
 
     private ItemStack increaseStack(ItemStack inserting, ItemStack current) {
@@ -41,15 +43,16 @@ public class ItemCollection
 
     public (ItemStack more, int insertIndex) Add(ItemStack item, bool needsNewStack = false)
     {
-        var current = collection.FindIndex((st) => st.of == item.of);
+        var current = new List<ItemStack>(collection).FindIndex((st) => st != null && st.of == item.of);
         if (!needsNewStack && current != -1 && collection[current] != null)
         {
             return (increaseStack(item, collection[current]), current);
         }
-        else if (collection.Count + 1 <= maxSlots)
+        else if (nonNullItems + 1 <= maxSlots)
         {
-            collection.Add(item);
-            return (null, collection.Count-1);
+            collection[nonNullItems] = item;
+            nonNullItems++;
+            return (null, nonNullItems-1);
         }
         else
         {
@@ -59,7 +62,7 @@ public class ItemCollection
 
     public bool Remove(ItemStack item)
     {
-        var exists = collection.FindAll((st) => st.of == item.of);
+        var exists = new List<ItemStack>(collection).FindAll((st) => st!=null && st.of == item.of);
 
         exists.Reverse();
 
@@ -80,7 +83,7 @@ public class ItemCollection
                     target = 0;
                 }
                 else {
-                    collection.Remove(subbing);
+                    collection[new List<ItemStack>(collection).FindIndex(st=>st != null && st == subbing)] = null;
                     target -= subbing.quantity;
                 }
             } 
@@ -89,7 +92,7 @@ public class ItemCollection
     }
 
     #region collection impl
-    public int Count => collection.Count;
+    public int Count => maxSlots;
 
     public bool IsReadOnly => false;
 
@@ -99,7 +102,7 @@ public class ItemCollection
 
     public void Clear()
     {
-        collection.Clear();
+        collection = new ItemStack[maxSlots];
     }
 
     public bool Contains(ItemStack item)
@@ -109,12 +112,12 @@ public class ItemCollection
 
     internal ItemStack Find(Predicate<ItemStack> p)
     {
-        return collection.Find(p);
+        return new List<ItemStack>(collection).Find(p);
     }
 
     public IEnumerator<ItemStack> GetEnumerator()
     {
-        return collection.GetEnumerator();
+        return (IEnumerator<ItemStack>)collection.GetEnumerator();
     }
 
 
@@ -125,7 +128,7 @@ public class ItemCollection
 
     internal int FindIndex(Predicate<ItemStack> p)
     {
-        return collection.FindIndex(p);
+        return new List<ItemStack>(collection).FindIndex(p);
     }
     #endregion
 }

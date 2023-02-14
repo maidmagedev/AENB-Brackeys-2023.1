@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Draggable_Inventory_Item : DraggableUI
+public class Draggable_Inventory_Item : DraggableUI, IEndDragHandler
 {
     
 
@@ -17,23 +17,39 @@ public class Draggable_Inventory_Item : DraggableUI
         return this;
     }
 
-
-
-    public void SwapItem()
-    {
-        
-    }
-
     public void reset_slot_position()
     {   
         transform.localPosition = InventoryObj.inventory_grid[currentIndex].initialPosition;
     }
 
-    public void OnDragEnd(PointerEventData evt){
+    public void OnEndDrag(PointerEventData evt){
+
+        List<RaycastResult> raysastResults = new List<RaycastResult>();
+
+
+        EventSystem.current.RaycastAll(evt, raysastResults);
+
+        GameObject slot = raysastResults.Find(r=>r.gameObject.CompareTag("InvItemSlot")).gameObject;
+
+
+        if (slot != null){
+            InventoryElement [] eles = new InventoryElement[InventoryObj.inventory_grid.Count];   
+
+            InventoryObj.inventory_grid.Values.CopyTo(eles, 0);
+
+            var invSlot = new List<InventoryElement>(eles).Find(IE=>IE.data.slot_object == slot);
+
+            InventoryObj.swapItem(currentIndex, invSlot.data.indexInGrid);
+            
+        }
+        else{
+            reset_slot_position();
+        }
+
         /*
             if pointer intersects slot
                 inventoryObj.grid.Values.Find(intersected)
-                do stuuf
+                do stuff
             else
                 reset_slot_position()
         

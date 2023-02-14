@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DraggableUI : MonoBehaviour, IDragHandler, IEndDragHandler
+public class DraggableUI : MonoBehaviour, IDragHandler
 {
     private Vector2 mousePosition = new Vector2();
     private Vector2 startPosition = new Vector2();
@@ -48,11 +48,6 @@ public class DraggableUI : MonoBehaviour, IDragHandler, IEndDragHandler
     private void UpdateDifferencePoint()
     {
         differencePoint = mousePosition - startPosition;
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        //child class method
     }
 }
 
