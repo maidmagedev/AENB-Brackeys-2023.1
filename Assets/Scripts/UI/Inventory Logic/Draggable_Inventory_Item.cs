@@ -1,33 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Draggable_Inventory_Item : MonoBehaviour
+public class Draggable_Inventory_Item : DraggableUI
 {
     
-    [SerializeField] BoxCollider2D boxColl;
-
-    //private Sprite heldItem_image;
 
     private BaseInventory InventoryObj;
-    private Vector3 initialPosition;
+    private int currentIndex;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        InventoryObj = GetComponentInParent<BaseInventory>();
-        initialPosition = transform.localPosition;
-        if (boxColl == null) {
-            boxColl = GetComponent<BoxCollider2D>();
-        }
+    public Draggable_Inventory_Item Init(BaseInventory inv, int index){
+        InventoryObj = inv;
+        currentIndex = index;
 
+        return this;
     }
 
 
-    public void SetItem(ItemStack item, Sprite  image)
-    {
-        
-    }
 
     public void SwapItem()
     {
@@ -36,12 +26,19 @@ public class Draggable_Inventory_Item : MonoBehaviour
 
     public void reset_slot_position()
     {   
-        
-        //get ref to invent, then do invent.inventory_grid[positionInCollection].initialPosition
-        transform.localPosition = initialPosition;
+        transform.localPosition = InventoryObj.inventory_grid[currentIndex].initialPosition;
     }
 
-
+    public void OnDragEnd(PointerEventData evt){
+        /*
+            if pointer intersects slot
+                inventoryObj.grid.Values.Find(intersected)
+                do stuuf
+            else
+                reset_slot_position()
+        
+        */
+    }
 
     
 }

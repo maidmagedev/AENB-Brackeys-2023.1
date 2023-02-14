@@ -3,23 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TileManager : MonoBehaviour
+public static class TileManager
 {
-    public Machine[] allTiles;
-    [SerializeField] private static bool LockTilesToGrid = false;
+    public static Dictionary<Vector2Int, TileData> tileData;
+    private static bool LockTilesToGrid = false;
+
+}
 
 
-    void Start()
-    {
+public class TileData{
+    public Vector2Int pos;
 
-        allTiles = FindObjectsOfType<Machine>();
-        // locks out of place tiles onto the grid when set in the editor
-        if (LockTilesToGrid)
-        {
-            foreach (Machine tile in allTiles)
-            {
-                tile.transform.position = new Vector3((float)Math.Round(tile.transform.position.x, 0), (float)Math.Round(tile.transform.position.y, 0), 0);
-            }
-        }
-    }
+    public Machine occupiedBy;
+
+    //others as necessary: items, ore, etc
 }

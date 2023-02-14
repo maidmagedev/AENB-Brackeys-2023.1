@@ -34,26 +34,26 @@ public class ItemCollection
 
             current.quantity = current.max;
 
-            return Add(new ItemStack(inserting.of, remaining), true);
+            return Add(new ItemStack(inserting.of, remaining), true).more;
 
         }
     }
 
-    public ItemStack Add(ItemStack item, bool needsNewStack = false)
+    public (ItemStack more, int insertIndex) Add(ItemStack item, bool needsNewStack = false)
     {
-        var current = collection.Find((st) => st.of == item.of);
-        if (!needsNewStack && current != null)
+        var current = collection.FindIndex((st) => st.of == item.of);
+        if (!needsNewStack && collection[current] != null)
         {
-            return increaseStack(item, current);
+            return (increaseStack(item, collection[current]), current);
         }
         else if (collection.Count + 1 <= maxSlots)
         {
             collection.Add(item);
-            return null;
+            return (null, collection.Count-1);
         }
         else
         {
-            return item;
+            return (item, -1);
         }
     }
 

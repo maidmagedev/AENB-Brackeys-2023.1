@@ -25,22 +25,6 @@ public class PlayerInventory : BaseInventory
         
         inventory = new ItemCollection(12);
         
-        transform_to_position = new Dictionary<Vector3, int>()
-        {
-            {new Vector3(-25, 11, 0), 0},
-            {new Vector3(-8.25f, 11, 0), 1},
-            {new Vector3(8.25f, 11, 0), 2},
-            {new Vector3(25, 11, 0), 3},
-            {new Vector3(-25, -9, 0), 4},
-            {new Vector3(-8.25f, -9, 0), 5},
-            {new Vector3(8.25f, -9, 0), 6},
-            {new Vector3(25, -9, 0), 7},
-            {new Vector3(-25, -25.75f, 0), 8},
-            {new Vector3(-8.25f, -25.75f, 0), 9},
-            {new Vector3(8.25f, -25.75f, 0), 10},
-            {new Vector3(25, -25.75f, 0), 11}
-            
-        };
         
     }
     
