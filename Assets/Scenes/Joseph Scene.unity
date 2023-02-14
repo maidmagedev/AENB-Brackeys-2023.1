@@ -336,23 +336,6 @@ MonoBehaviour:
   m_UseMeshPrefab: {fileID: 0}
   m_CompressBounds: 0
   m_OverrideVector: {x: 1, y: 1, z: 1}
---- !u!1 &875080806 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4577271414115526627, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
-  m_PrefabInstance: {fileID: 209224395}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &875080812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 875080806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e90585f8dbef79f4e9af0ec33fff5426, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &885934149 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2271283546154489492, guid: 83ca600963910354c804c1faefb6a5fa, type: 3}
@@ -10062,6 +10045,10 @@ PrefabInstance:
     - target: {fileID: 6605405331208229351, guid: 173b69341142c3740936d4406f89add5, type: 3}
       propertyPath: m_Name
       value: Glob Enemy Agent
+      objectReference: {fileID: 0}
+    - target: {fileID: 6605405331208229351, guid: 173b69341142c3740936d4406f89add5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 173b69341142c3740936d4406f89add5, type: 3}

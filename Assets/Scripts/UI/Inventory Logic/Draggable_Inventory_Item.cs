@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class Draggable_Inventory_Item : MonoBehaviour
 {
-    private int positionInCollection;
+    
     [SerializeField] BoxCollider2D boxColl;
 
-    private Sprite heldItem_image;
+    //private Sprite heldItem_image;
+
+    private BaseInventory InventoryObj;
+    private Vector3 initialPosition;
 
     // Start is called before the first frame update
     void Start()
     {
+        InventoryObj = GetComponentInParent<BaseInventory>();
+        initialPosition = transform.localPosition;
         if (boxColl == null) {
             boxColl = GetComponent<BoxCollider2D>();
         }
@@ -24,13 +29,16 @@ public class Draggable_Inventory_Item : MonoBehaviour
         
     }
 
+    public void SwapItem()
+    {
+        
+    }
+
     public void reset_slot_position()
     {   
-
+        
         //get ref to invent, then do invent.inventory_grid[positionInCollection].initialPosition
-
-
-        //transform.localPosition = initialPosition;
+        transform.localPosition = initialPosition;
     }
 
 
