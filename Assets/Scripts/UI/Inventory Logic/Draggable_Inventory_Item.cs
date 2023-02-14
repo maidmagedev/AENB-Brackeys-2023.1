@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryItem : MonoBehaviour
+public class Draggable_Inventory_Item : MonoBehaviour
 {
     private Vector3 initialPosition;
     [SerializeField] BoxCollider2D boxColl;

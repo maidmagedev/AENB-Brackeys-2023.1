@@ -33,7 +33,7 @@ public class BaseInventory: MonoBehaviour
     }
 }
 
-public class InventoryElement 
+public class InventoryElement
 {
     public Vector3 initialPosition;
     public string prefab_path;
