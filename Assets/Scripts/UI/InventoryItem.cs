@@ -7,6 +7,8 @@ public class InventoryItem : MonoBehaviour
     private Vector3 initialPosition;
     [SerializeField] BoxCollider2D boxColl;
 
+    ItemStack heldItem;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,8 @@ public class InventoryItem : MonoBehaviour
     {
         transform.localPosition = initialPosition;
     }
+
+
 
     
 }
