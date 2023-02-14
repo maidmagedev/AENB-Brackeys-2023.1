@@ -1,39 +1,62 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Draggable_Inventory_Item : MonoBehaviour
+public class Draggable_Inventory_Item : DraggableUI, IEndDragHandler
 {
-    private int positionInCollection;
-    [SerializeField] BoxCollider2D boxColl;
+    
 
-    private Sprite heldItem_image;
+    private BaseInventory InventoryObj;
+    private int currentIndex;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        if (boxColl == null) {
-            boxColl = GetComponent<BoxCollider2D>();
-        }
+    public Draggable_Inventory_Item Init(BaseInventory inv, int index){
+        InventoryObj = inv;
+        currentIndex = index;
 
-    }
-
-
-    public void SetItem(ItemStack item, Sprite  image)
-    {
-        
+        return this;
     }
 
     public void reset_slot_position()
     {   
-
-        //get ref to invent, then do invent.inventory_grid[positionInCollection].initialPosition
-
-
-        //transform.localPosition = initialPosition;
+        transform.localPosition = InventoryObj.inventory_grid[currentIndex].initialPosition;
     }
 
+    public void OnEndDrag(PointerEventData evt){
 
+        List<RaycastResult> raysastResults = new List<RaycastResult>();
+
+
+        EventSystem.current.RaycastAll(evt, raysastResults);
+
+        GameObject slot = raysastResults.Find(r=>r.gameObject.CompareTag("InvItemSlot")).gameObject;
+
+
+        if (slot != null){
+            InventoryElement [] eles = new InventoryElement[InventoryObj.inventory_grid.Count];   
+
+            InventoryObj.inventory_grid.Values.CopyTo(eles, 0);
+
+            var invSlot = new List<InventoryElement>(eles).Find(IE=>IE.data.slot_object == slot);
+
+            InventoryObj.swapItem(currentIndex, invSlot.data.indexInGrid);
+            
+        }
+        else{
+            reset_slot_position();
+        }
+
+        /*
+            if pointer intersects slot
+                inventoryObj.grid.Values.Find(intersected)
+                do stuff
+            else
+                reset_slot_position()
+        
+        */
+    }
+    
+    // On trigger enter:  stores currently touched inventory item
 
     
 }

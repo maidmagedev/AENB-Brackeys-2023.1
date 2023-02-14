@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Machine : MonoBehaviour, IODevice
+public class Machine : Drag_and_Drop, IODevice
 {
     public Vector2Int footPrint;
 
@@ -15,6 +15,14 @@ public class Machine : MonoBehaviour, IODevice
     public MachineType type;
 
     public bool working = false;
+
+    void Start()
+    {
+        OnMouseUp();
+
+
+        TileManager.tileData[new Vector2Int((int)position.x, (int)position.y)].occupiedBy = this;
+    }
 
     private void Update()
     {

@@ -24,6 +24,8 @@ public class PlayerInventory : BaseInventory
         };
         
         inventory = new ItemCollection(12);
+        
+        
     }
     
     
