@@ -45,18 +45,8 @@ public class Draggable_Inventory_Item : DraggableUI, IEndDragHandler
         else{
             reset_slot_position();
         }
-
-        /*
-            if pointer intersects slot
-                inventoryObj.grid.Values.Find(intersected)
-                do stuff
-            else
-                reset_slot_position()
-        
-        */
     }
-    
-    // On trigger enter:  stores currently touched inventory item
+
 
     
 }

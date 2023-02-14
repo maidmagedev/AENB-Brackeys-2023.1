@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6696385567686550746}
   - component: {fileID: 3941382844601156800}
   - component: {fileID: 520452742056141170}
-  - component: {fileID: 5648642224870992996}
   - component: {fileID: 4729691457782034361}
   - component: {fileID: 5239282437588198118}
   m_Layer: 0
@@ -65,33 +64,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc5f024e8013574c8762527b9c9bfff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxColl: {fileID: 5648642224870992996}
---- !u!61 &5648642224870992996
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8495972993435080120}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!222 &4729691457782034361
 CanvasRenderer:
   m_ObjectHideFlags: 0
