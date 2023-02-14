@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DraggableUI : MonoBehaviour, IDragHandler
+public class DraggableUI : MonoBehaviour, IDragHandler, IEndDragHandler
 {
     private Vector2 mousePosition = new Vector2();
     private Vector2 startPosition = new Vector2();
@@ -22,11 +22,7 @@ public class DraggableUI : MonoBehaviour, IDragHandler
             UpdateDifferencePoint();
         }
 
-        // reset position after transferring data to new slot
-        if (Input.GetMouseButtonUp(0))
-        {
-            GetComponent<Draggable_Inventory_Item>().reset_slot_position();
-        }
+        
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -52,6 +48,11 @@ public class DraggableUI : MonoBehaviour, IDragHandler
     private void UpdateDifferencePoint()
     {
         differencePoint = mousePosition - startPosition;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        //child class method
     }
 }
 

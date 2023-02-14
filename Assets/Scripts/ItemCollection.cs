@@ -42,7 +42,7 @@ public class ItemCollection
     public (ItemStack more, int insertIndex) Add(ItemStack item, bool needsNewStack = false)
     {
         var current = collection.FindIndex((st) => st.of == item.of);
-        if (!needsNewStack && collection[current] != null)
+        if (!needsNewStack && current != -1 && collection[current] != null)
         {
             return (increaseStack(item, collection[current]), current);
         }

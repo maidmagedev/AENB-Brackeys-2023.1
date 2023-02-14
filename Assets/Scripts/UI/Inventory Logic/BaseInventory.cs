@@ -27,7 +27,24 @@ public class BaseInventory : MonoBehaviour
     
     public void Add(ItemStack input)
     {
-        inventory.Add(input);
+        var result = inventory.Add(input);
+        instantiate_icon(input, result.insertIndex);
+    }
+
+    public void Remove(ItemStack o){
+        inventory.Remove(o);
+    }
+
+    private void refresh_inventory()
+    {
+        foreach (InventoryElement g in inventory_grid.Values){
+            Destroy(g.data.item_object);
+        }
+
+        for (int i = 0; i < inventory.Count; i++)
+        {
+            instantiate_icon(inventory[i], i);
+        }
     }
 
     private void instantiate_icon(ItemStack item, int index)
