@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class UIManager : MonoBehaviour
 {
+    [FormerlySerializedAs("playerInventoryScript")]
     [Header("Scripts")]
-    [SerializeField] PlayerInventory playerInventoryScript;
+    [SerializeField] PlayerInventoryUI playerInventoryUIScript;
     [SerializeField] PauseMenu pauseMenuScript;
     [SerializeField] Settings settings;
 
@@ -27,7 +29,7 @@ public class UIManager : MonoBehaviour
             pauseMenuScript.CyclePauseMenuView();
         }
         if (Input.GetKeyDown(settings.inventoryKey)) {
-            playerInventoryScript.ToggleInventoryView();
+            playerInventoryUIScript.ToggleInventoryView();
         }
     }
 }

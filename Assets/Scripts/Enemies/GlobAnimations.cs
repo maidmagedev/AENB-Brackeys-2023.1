@@ -70,7 +70,6 @@ public class GlobAnimations : MonoBehaviour
 
         if (navMeshobj.velocity == Vector3.zero)
         {
-            print("not moving");
             if (!priority.Contains(AnimationStates.Idle)) // idling
             {
                 priority.Add(AnimationStates.Idle);

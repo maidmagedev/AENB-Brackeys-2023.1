@@ -8,6 +8,7 @@ public class InventoryItem : MonoBehaviour
     [SerializeField] BoxCollider2D boxColl;
 
     ItemStack heldItem;
+    private Sprite heldItem_image;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,11 @@ public class InventoryItem : MonoBehaviour
     void Update()
     {
             
+    }
+
+    public void SetItem(ItemStack item, Sprite  image)
+    {
+        
     }
 
     public void reset_slot_position()
