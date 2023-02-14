@@ -39,6 +39,8 @@ public class Draggable_Inventory_Item : DraggableUI
         
         */
     }
+    
+    // On trigger enter:  stores currently touched inventory item
 
     
 }
