@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Machine : MonoBehaviour, IODevice
 {
-    List<Vector2Int> footPrint;
+    public Vector2Int footPrint;
 
     Recipe doing;
 

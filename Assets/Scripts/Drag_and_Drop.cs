@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,22 +6,14 @@ using UnityEngine;
 public class Drag_and_Drop : MonoBehaviour
 {
 
-    Vector2 mousePos;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    }
-
-
     private void OnMouseDrag()
     {
-        transform.position = mousePos;
+        var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = new Vector3((float)Math.Round(mousePos.x, 0), (float)Math.Round(mousePos.y, 0), 0);
+    }
+
+    private void OnMouseUp()
+    {
+        transform.position = new Vector3((float)Math.Round(transform.position.x, 0), (float)Math.Round(transform.position.y, 0), 0);
     }
 }

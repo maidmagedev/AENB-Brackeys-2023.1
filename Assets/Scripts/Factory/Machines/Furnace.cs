@@ -8,5 +8,7 @@ public class Furnace : Machine
         inpBuf = new(2);
         outBuf = new(1);
         type = MachineType.FURNACE;
+
+        footPrint = new(2, 2);
     }
 }

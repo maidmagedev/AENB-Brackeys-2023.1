@@ -8,5 +8,6 @@ public class Assembler : Machine
         inpBuf = new(5);
         outBuf = new(5);
         type = MachineType.ASSEMBLER;
+        footPrint = new(3, 3);
     }
 }
