@@ -13,7 +13,7 @@ public class ItemStack
     public ItemStack(ItemType of, int quantity) {
         this.of = of;
         this.quantity = quantity;
-        max = Item.stackSize[of];
+        max = Item.item_definitions[of].maxStack;
     }
 
 
