@@ -43,7 +43,7 @@ public class GlobEnemy : MonoBehaviour, IKillable
         FlipSprite();
         if (navMeshobj.remainingDistance <= 3  && navMeshobj.remainingDistance > 0 && mayAttack)
         {
-            print("attacking");
+            //print("attacking");
             GetComponent<GlobAnimations>().SetAttackAnimationState(true);
             mayAttack = false;
             StartCoroutine(AttackCooldown());

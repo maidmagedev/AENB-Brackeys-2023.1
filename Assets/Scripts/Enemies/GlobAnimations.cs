@@ -57,7 +57,6 @@ public class GlobAnimations : MonoBehaviour
 
         myAnim = GetComponent<Animator>();
         sorter = Comparer<AnimationStates>.Create((a, b) => priorityMapping[b] - priorityMapping[a]);
-
     }
 
 
@@ -78,8 +77,6 @@ public class GlobAnimations : MonoBehaviour
         
 
 
-
-        // this is necessary stuff I don't touch
         priority.Sort(sorter);
 
         updateAnimationState(priority[0]);

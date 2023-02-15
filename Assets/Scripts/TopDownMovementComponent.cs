@@ -46,6 +46,7 @@ public class TopDownMovementComponent : MonoBehaviour
             verticalInput *= moveLimiter;
         }
         move();
+        RotateSprite();
     }
 
     private void FixedUpdate()
@@ -78,16 +79,19 @@ public class TopDownMovementComponent : MonoBehaviour
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = mousePosition - transform.position;
         angle = Vector2.SignedAngle(Vector2.right, direction);
-        transform.eulerAngles = new Vector3(0, 0, angle);
+
+        // uncomment this to rotate sprite based off mouse position
+        //transform.eulerAngles = new Vector3(0, 0, angle);
+
         if (Mathf.Abs(angle) > 150)
         {
             // facing left
-            gameObject.transform.localScale = new Vector2(gameObject.transform.localScale.x, -0.3f);
+            gameObject.transform.localScale = new Vector2(gameObject.transform.localScale.x, -1f);
         }
         else if (Mathf.Abs(angle) < 40)
         {
             // facing right
-            gameObject.transform.localScale = new Vector2(gameObject.transform.localScale.x, 0.3f);
+            gameObject.transform.localScale = new Vector2(gameObject.transform.localScale.x, 1f);
         }
 
     }
