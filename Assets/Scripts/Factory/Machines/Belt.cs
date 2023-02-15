@@ -2,21 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Belt : MonoBehaviour, IODevice
+public class Belt : Machine, IODevice
 {
     private ItemCollection IOBuf = new(6);
+
+    private Orientation orientation;
+
+    public Belt(){
+        type = MachineType.BELT;
+        footPrint = new(1,1);
+    }
 
     private void Update()
     {
         //see grabber, but belt only
     }
 
-    public ItemCollection getInputBuffer()
+    public override ItemCollection getInputBuffer()
     {
         return IOBuf;
     }
 
-    public ItemCollection getOutputBuffer()
+    public override ItemCollection getOutputBuffer()
     {
         return IOBuf;
     }

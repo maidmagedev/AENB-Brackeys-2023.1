@@ -16,12 +16,41 @@ public class Machine : Drag_and_Drop, IODevice
 
     public bool working = false;
 
+    Dictionary<Vector2Int, TileData> myPositions = new();
+
     void Start()
     {
         OnMouseUp();
 
+        var pos = new Vector2Int((int)position.x, (int)position.y);
 
-        TileManager.tileData[new Vector2Int((int)position.x, (int)position.y)].occupiedBy = this;
+
+        var minusOffset = Mathf.FloorToInt((footPrint.x - 1) /2);
+        var plusOffset = Mathf.FloorToInt(footPrint.x / 2);
+
+        //1->0 2->0 3->1 4->1 5->2 6->2
+        var left = pos.x - minusOffset;
+        //0 1 1 2 2 3
+        var right = pos.x + plusOffset;
+
+        var bottom = pos.y - minusOffset;
+        var top = pos.y + plusOffset;
+
+        for(int x = left; x <= right; x++){
+            for (int y = bottom; y<= top; y++){
+                var varPos = new Vector2Int(x,y);
+                myPositions.Add(varPos, new TileData(varPos, this));
+                TileManager.tileData.Add(varPos, new TileData(varPos, this));
+            }
+        }
+
+    }
+
+    public void Delete(){
+        foreach (Vector2Int pos in myPositions.Keys){
+            TileManager.tileData.Remove(pos);
+        }
+        Destroy(this.gameObject);
     }
 
     private void Update()
@@ -36,12 +65,12 @@ public class Machine : Drag_and_Drop, IODevice
         }
     }
 
-    public ItemCollection getInputBuffer()
+    public virtual ItemCollection getInputBuffer()
     {
         return inpBuf;
     }
 
-    public ItemCollection getOutputBuffer()
+    public virtual ItemCollection getOutputBuffer()
     {
         return outBuf;
     }
@@ -51,5 +80,7 @@ public enum MachineType
 {
     INVENTORY,
     ASSEMBLER,
-    FURNACE
+    FURNACE,
+    GRABBER,
+    BELT
 }

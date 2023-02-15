@@ -60,7 +60,7 @@ public class ItemCollection
         }
     }
 
-    public bool Remove(ItemStack item)
+    public (bool requestCompelete, ItemStack partial) Remove(ItemStack item, bool doPartial = false)
     {
         var exists = new List<ItemStack>(collection).FindAll((st) => st!=null && st.of == item.of);
 
@@ -70,9 +70,26 @@ public class ItemCollection
 
         int target = item.quantity;
 
-        if (target > quantTotal)
+        if (target > quantTotal && !doPartial)
         {
-            return false;
+            return (false, null);
+        }
+        else if (target > quantTotal){
+            target = quantTotal;
+            while (target > 0) {
+                var subbing = exists[0];
+                if (subbing.quantity > target)
+                {
+                    subbing.quantity -= target;
+                    target = 0;
+                }
+                else {
+                    collection[new List<ItemStack>(collection).FindIndex(st=>st != null && st == subbing)] = null;
+                    target -= subbing.quantity;
+                }
+            }
+
+            return (false, new ItemStack(item.of, quantTotal));
         }
         else {
             while (target > 0) {
@@ -87,10 +104,19 @@ public class ItemCollection
                     target -= subbing.quantity;
                 }
             } 
-            return true;
+            return (true, item);
         }
     }
 
+    public ItemStack Extract(int amount){
+        ItemStack retStack = new List<ItemStack>(collection).Find(st=> st != null);
+
+        ItemStack ret = new ItemStack(retStack.of, amount);
+
+        return Remove(ret, true).partial;
+    }
+
+    
     #region collection impl
     public int Count => maxSlots;
 
