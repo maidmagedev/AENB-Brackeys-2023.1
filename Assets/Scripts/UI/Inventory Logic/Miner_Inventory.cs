@@ -8,7 +8,7 @@ public class Miner_Inventory : BaseInventory
     public Miner_Inventory()
     {
 
-        inventory = new ItemCollection(10);
+        inventory = new ItemCollection(1);
 
     }
 

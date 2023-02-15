@@ -32,6 +32,13 @@ public class Mining_Machine : Machine
             GetComponent<Miner_Inventory>().inventory.Add(new ItemStack(ItemType.ORE_IRON, 1));
             outBuf.Remove(outBuf[0]);
         }
+        ItemStack inventory_items = GetComponent<Miner_Inventory>().inventory.collection[0];
+        if (inventory_items != null)
+        {
+            print("num items in miner inventory: " + inventory_items.quantity);
+            // when num items reaches 10, send one item to item_spitter
+        }
+        
     }
     public override ItemCollection getInputBuffer()
     {

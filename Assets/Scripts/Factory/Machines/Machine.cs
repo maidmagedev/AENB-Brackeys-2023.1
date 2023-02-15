@@ -88,5 +88,6 @@ public enum MachineType
     FURNACE,
     GRABBER,
     BELT,
-    MINER
+    MINER,
+    SPITTER
 }
