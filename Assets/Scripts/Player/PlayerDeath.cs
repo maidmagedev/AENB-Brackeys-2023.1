@@ -37,6 +37,8 @@ public class PlayerDeath : MonoBehaviour, IKillable
     public void Die()
     {
         PlayerDead = true;
+
+        // Death Screen Logic
         deathScreen.SetActive(true);
         deathOverlay = deathScreen.transform.GetChild(0).GetComponent<Image>(); // other children will have image components too. Make sure the panel is child 0.
         originalDeathColor = deathOverlay.color;
