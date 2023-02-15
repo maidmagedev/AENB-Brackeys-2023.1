@@ -19,7 +19,7 @@ public class ResourceDeposit : MonoBehaviour, IKillable
     {
         Instantiate(pickUp, this.transform.position, Quaternion.identity);
         print(pickUp.name);
-        Destroy(this.gameObject.GetComponent<SpriteRenderer>());
+        Destroy(this.gameObject);
     }
 
     public void NotifyDamage()
