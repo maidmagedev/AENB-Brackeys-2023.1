@@ -14,17 +14,21 @@ public class BaseInventory : MonoBehaviour
     void Start()
     {
         // instantiating the empty inventory grid
-        foreach (int itemIndex in inventory_grid.Keys)
+        if (inventory_grid != null)
         {
-            InventoryElement item = inventory_grid[itemIndex];
+            foreach (int itemIndex in inventory_grid.Keys)
+            {
+                InventoryElement item = inventory_grid[itemIndex];
 
-            GameObject prefab = Resources.Load<GameObject>(item.prefab_path);
-            GameObject clone = Instantiate(prefab, this.transform, false);
-            clone.transform.localPosition = item.initialPosition;
-            clone.transform.localScale = new Vector3(0.125f, .125f, 0);
+                GameObject prefab = Resources.Load<GameObject>(item.prefab_path);
+                GameObject clone = Instantiate(prefab, this.transform, false);
+                clone.transform.localPosition = item.initialPosition;
+                clone.transform.localScale = new Vector3(0.125f, .125f, 0);
 
-            item.data.slot_obj(clone).index(itemIndex);
+                item.data.slot_obj(clone).index(itemIndex);
+            }
         }
+        
     }
 
 
