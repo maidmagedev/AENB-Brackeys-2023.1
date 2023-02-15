@@ -38,7 +38,7 @@ public class Mining_Machine : Machine
         //print(outBuf.Count);
         if (outBuf.Count > 0)
         {
-            Instantiate(iron_ore, new Vector3Int((int)this.position.x, (int)this.position.y + 4, 0),Quaternion.identity);
+            Instantiate(iron_ore, new Vector3Int((int)this.position.x, (int)this.position.y + 2, 0),Quaternion.identity);
             outBuf.Remove(outBuf[0]);
         }
     }
