@@ -7,6 +7,7 @@ public class Settings : MonoBehaviour
     [Header("Keybinds")]
     public KeyCode pauseKey = KeyCode.Escape;
     public KeyCode inventoryKey = KeyCode.I;
+    public KeyCode interactKey = KeyCode.E;
 
     [Header("Audio")]
     public double masterVolume = 1.0; // percentage
