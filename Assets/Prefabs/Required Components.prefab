@@ -1861,7 +1861,7 @@ GameObject:
   - component: {fileID: 8204187175869379143}
   - component: {fileID: 21855247}
   m_Layer: 0
-  m_Name: Cursor
+  m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
