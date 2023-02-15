@@ -13,32 +13,22 @@ public class Mining_Machine : Machine
         outBuf = new(1);
         type = MachineType.MINER;
         footPrint = new(3, 3);
+        child_start = Mining_Start;
+        child_update = Mining_Update;
     }
 
-    private void Start()
+    private void Mining_Start()
     {
-        MachineStart();
         //iron_ore = Resources.Load<GameObject>("Items/Iron Ore");
         inpBuf = new(0);
         outBuf = new(1);
         doing = new Recipe(Globals.allRecipes["ironOreMiner"]);
     }
-    private void Update()
+    private void Mining_Update()
     {
-        print("working:" + working);
-        print("doing" + doing);
-        print("inBuf" + inpBuf.Size);
-        if (!working && doing != null && doing.accept(inpBuf))
-        {
-            working = true;
-            doing.consume(ref inpBuf);
-
-            StartCoroutine(doing.doCraft(this));
-        }
-        //print(outBuf.Count);
         if (outBuf.Count > 0)
         {
-            Instantiate(iron_ore, new Vector3Int((int)this.position.x, (int)this.position.y + 4, 0),Quaternion.identity);
+            Instantiate(iron_ore, new Vector3Int((int)this.position.x, (int)this.position.y + 2, 0),Quaternion.identity);
             outBuf.Remove(outBuf[0]);
         }
     }
