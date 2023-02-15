@@ -75,6 +75,7 @@ public class GlobEnemy : MonoBehaviour, IKillable
     {
         if (collision.gameObject.TryGetComponent<DamageableComponent>(out DamageableComponent target))
         {
+            print("dealing damage");
             target.TakeDamage(damagePerHit);
         }
     }
