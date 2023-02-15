@@ -59,7 +59,7 @@ public class BaseInventory : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < inventory.Count; i++)
+        for (int i = 0; i < inventory.Size; i++)
         {
             if (inventory[i] != null){
                 instantiate_icon(inventory[i], i);

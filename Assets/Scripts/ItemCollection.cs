@@ -120,9 +120,11 @@ public class ItemCollection
         return Remove(ret, true).partial;
     }
 
-    
+
     #region collection impl
-    public int Count => maxSlots;
+    public int Size => maxSlots;
+
+    public int Count => nonNullItems;
 
     public bool IsReadOnly => false;
 

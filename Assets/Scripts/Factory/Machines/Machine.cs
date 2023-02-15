@@ -56,7 +56,7 @@ public class Machine : Drag_and_Drop, IODevice
     private void Update()
     {
 
-        if (!working && doing != null && inpBuf.Count > 0 && doing.accept(inpBuf))
+        if (!working && doing != null && inpBuf.Size > 0 && doing.accept(inpBuf))
         {
             working = true;
             doing.consume(ref inpBuf);
