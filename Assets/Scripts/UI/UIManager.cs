@@ -5,7 +5,6 @@ using UnityEngine.Serialization;
 
 public class UIManager : MonoBehaviour
 {
-    [FormerlySerializedAs("playerInventoryScript")]
     [Header("Scripts")]
     [SerializeField] PlayerInventoryUI playerInventoryUIScript;
     [SerializeField] PauseMenu pauseMenuScript;
