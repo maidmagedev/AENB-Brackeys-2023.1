@@ -89,6 +89,8 @@ public class ItemCollection
                 }
                 else {
                     collection[new List<ItemStack>(collection).FindIndex(st=>st != null && st == subbing)] = null;
+
+                    nonNullItems --;
                     target -= subbing.quantity;
                 }
             }
@@ -105,6 +107,8 @@ public class ItemCollection
                 }
                 else {
                     collection[new List<ItemStack>(collection).FindIndex(st=>st != null && st == subbing)] = null;
+
+                    nonNullItems --;
                     target -= subbing.quantity;
                 }
             } 
