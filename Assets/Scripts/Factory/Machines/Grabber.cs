@@ -8,7 +8,7 @@ public class Grabber : Machine, IODevice
 
     private Orientation orientation; 
 
-    float delay = .6f;
+    float delay = .5f;
 
     public Grabber(){
         type = MachineType.GRABBER;
@@ -27,7 +27,7 @@ public class Grabber : Machine, IODevice
 
     private void Update()
     {
-        if(!working){
+        if(!working && IOBuf.Count == 0){
             TileData takingFrom;
 
             TileManager.tileData.TryGetValue(intendTake, out takingFrom);
@@ -39,6 +39,29 @@ public class Grabber : Machine, IODevice
 
                 if (items != null){
                     IOBuf.Add(items);
+                    working = true;
+                    StartCoroutine(doCooldown());
+                }
+            }
+        }
+        else if (!working){
+            TileData putTo;
+
+            TileManager.tileData.TryGetValue(intendPushTo, out putTo);
+
+            Machine put = putTo != null ? putTo.occupiedBy : null;
+
+            if(put != null){
+                var items = put.getInputBuffer().Add(IOBuf[0]).more;
+
+                if (items != null){
+                    int transferred = IOBuf[0].quantity - items.quantity;
+                    IOBuf.Remove(new ItemStack(items.of, transferred));
+                    working = true;
+                    StartCoroutine(doCooldown());
+                }
+                else{
+                    IOBuf.Remove(IOBuf[0]);
                     working = true;
                     StartCoroutine(doCooldown());
                 }
@@ -58,6 +81,9 @@ public class Grabber : Machine, IODevice
 
             yield return null;
         }
+
+        workingTime = 0;
+        working = false;
     }
 
 
