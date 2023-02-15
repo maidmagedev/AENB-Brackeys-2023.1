@@ -27,7 +27,7 @@ public class Grabber : Machine, IODevice
 
     private void Update()
     {
-        if(!working && IOBuf.Count == 0){
+        if(!working && IOBuf.Size == 0){
             TileData takingFrom;
 
             TileManager.tileData.TryGetValue(intendTake, out takingFrom);
