@@ -16,10 +16,18 @@ public class TileData{
 
     public Machine occupiedBy;
 
+    public ResourceDeposit Deposit;
+
 
     public TileData(Vector2Int pos, Machine occupiedBy){
         this.pos = pos;
         this.occupiedBy = occupiedBy;
+    }
+
+    public TileData(Vector2Int pos, ResourceDeposit deposit)
+    {
+        this.pos = pos;
+        this.Deposit = deposit;
     }
     //others as necessary: items, ore, etc
 }

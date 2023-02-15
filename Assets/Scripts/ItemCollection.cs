@@ -68,6 +68,10 @@ public class ItemCollection
 
         int quantTotal = exists.Sum(st => st.quantity);
 
+        if (item == null)
+        {
+            return (true, null);
+        }
         int target = item.quantity;
 
         if (target > quantTotal && !doPartial)
@@ -85,6 +89,8 @@ public class ItemCollection
                 }
                 else {
                     collection[new List<ItemStack>(collection).FindIndex(st=>st != null && st == subbing)] = null;
+
+                    nonNullItems --;
                     target -= subbing.quantity;
                 }
             }
@@ -101,6 +107,8 @@ public class ItemCollection
                 }
                 else {
                     collection[new List<ItemStack>(collection).FindIndex(st=>st != null && st == subbing)] = null;
+
+                    nonNullItems --;
                     target -= subbing.quantity;
                 }
             } 
@@ -116,9 +124,11 @@ public class ItemCollection
         return Remove(ret, true).partial;
     }
 
-    
+
     #region collection impl
-    public int Count => maxSlots;
+    public int Size => maxSlots;
+
+    public int Count => nonNullItems;
 
     public bool IsReadOnly => false;
 

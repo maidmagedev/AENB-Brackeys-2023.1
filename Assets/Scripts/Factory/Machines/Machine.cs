@@ -6,7 +6,7 @@ public class Machine : Drag_and_Drop, IODevice
 {
     public Vector2Int footPrint;
 
-    Recipe doing;
+    public Recipe doing;
 
     public ItemCollection inpBuf;
 
@@ -18,8 +18,9 @@ public class Machine : Drag_and_Drop, IODevice
 
     Dictionary<Vector2Int, TileData> myPositions = new();
 
-    void Start()
+    public void MachineStart()
     {
+        print("start in machine");
         OnMouseUp();
 
         var pos = new Vector2Int((int)position.x, (int)position.y);
@@ -53,10 +54,9 @@ public class Machine : Drag_and_Drop, IODevice
         Destroy(this.gameObject);
     }
 
-    private void Update()
+    public void MachineUpdate()
     {
-
-        if (!working && doing != null && inpBuf.Count > 0 && doing.accept(inpBuf))
+        if (!working && doing != null && inpBuf.Size > 0 && doing.accept(inpBuf))
         {
             working = true;
             doing.consume(ref inpBuf);
@@ -82,5 +82,6 @@ public enum MachineType
     ASSEMBLER,
     FURNACE,
     GRABBER,
-    BELT
+    BELT,
+    MINER
 }
