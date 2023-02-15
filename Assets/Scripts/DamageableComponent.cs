@@ -28,6 +28,7 @@ public class DamageableComponent : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        print("taking damage");
         this.currentHealth -= damage;
         if(currentHealth <= 0 && !dead)
         {

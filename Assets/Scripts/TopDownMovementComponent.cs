@@ -86,7 +86,7 @@ public class TopDownMovementComponent : MonoBehaviour
         if (Mathf.Abs(angle) > 150)
         {
             // facing left
-            gameObject.transform.localScale = new Vector2(gameObject.transform.localScale.x, -1f);
+            gameObject.transform.localScale = new Vector2((-1)*gameObject.transform.localScale.x, 1f);
         }
         else if (Mathf.Abs(angle) < 40)
         {
