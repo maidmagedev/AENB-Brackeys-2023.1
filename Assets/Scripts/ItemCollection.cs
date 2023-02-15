@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ItemCollection
 {
-    public ItemStack [] collection;
+    private ItemStack [] collection;
 
     public int maxSlots;
 
@@ -46,13 +46,20 @@ public class ItemCollection
         var current = new List<ItemStack>(collection).FindIndex((st) => st != null && st.of == item.of);
         if (!needsNewStack && current != -1 && collection[current] != null)
         {
-            return (increaseStack(item, collection[current]), current);
+            var ret = (increaseStack(item, collection[current]), current);
+
+            NotifyListeners(new ItemColChangeEvent(ChangeType.ADD, new List<int>(){current}));
+            return ret;
         }
         else if (nonNullItems + 1 <= maxSlots)
         {
-            collection[nonNullItems] = item;
             nonNullItems++;
-            return (null, nonNullItems-1);
+
+            var insertInd = Array.FindIndex(collection, st=>st == null);
+            collection[insertInd] = item;
+
+            NotifyListeners(new ItemColChangeEvent(ChangeType.ADD, new List<int>(){insertInd}));
+            return (null, insertInd);
         }
         else
         {
@@ -78,41 +85,38 @@ public class ItemCollection
         {
             return (false, null);
         }
-        else if (target > quantTotal){
-            target = quantTotal;
+        else {
+            bool type = false;
+            if (target > quantTotal){
+                target = quantTotal;
+                type = true;
+            }
+
+            List<int> affected = new();
             while (target > 0) {
                 var subbing = exists[0];
+                var affectedInd = new List<ItemStack>(collection).FindIndex(st=>st != null && st == subbing);
+                affected.Add(affectedInd);
                 if (subbing.quantity > target)
                 {
                     subbing.quantity -= target;
                     target = 0;
                 }
                 else {
-                    collection[new List<ItemStack>(collection).FindIndex(st=>st != null && st == subbing)] = null;
-
                     nonNullItems --;
+                    collection[affectedInd] = null;
                     target -= subbing.quantity;
                 }
             }
 
-            return (false, new ItemStack(item.of, quantTotal));
-        }
-        else {
-            while (target > 0) {
-                var subbing = exists[0];
-                if (subbing.quantity > target)
-                {
-                    subbing.quantity -= target;
-                    target = 0;
-                }
-                else {
-                    collection[new List<ItemStack>(collection).FindIndex(st=>st != null && st == subbing)] = null;
+            NotifyListeners(new ItemColChangeEvent(ChangeType.REMOVE, affected));
 
-                    nonNullItems --;
-                    target -= subbing.quantity;
-                }
-            } 
-            return (true, item);
+            if (type){
+                return (false, new ItemStack(item.of, quantTotal));
+            }
+            else{
+                return (true, item);
+            }
         }
     }
 
@@ -159,7 +163,10 @@ public class ItemCollection
 
     public ItemStack this[int i] {
         get { return collection[i]; }
-        set { collection[i] = value; }
+        set {
+            collection[i] = value;
+            NotifyListeners(new ItemColChangeEvent(ChangeType.SET, new List<int>(){i}));
+            }
     }
 
     internal int FindIndex(Predicate<ItemStack> p)
@@ -167,4 +174,41 @@ public class ItemCollection
         return new List<ItemStack>(collection).FindIndex(p);
     }
     #endregion
+
+    private List<Action<ItemColChangeEvent>> listeners = new();
+
+    public void AddListener(Action<ItemColChangeEvent> listener){
+        listeners.Add(listener);
+    }
+
+    public void RemoveListener(Action<ItemColChangeEvent> listener){
+        listeners.Remove(listener);
+    }
+
+    private void NotifyListeners(ItemColChangeEvent evt){
+        listeners.ForEach(listen=>listen.Invoke(evt));
+    }
+}
+
+public class ItemColChangeEvent {
+
+    private ChangeType _changeType;
+
+    public ChangeType changeType {get {return _changeType;} }
+    private List<int> _affectedindices;
+
+    public List<int> affectedindices {get {return _affectedindices;} }
+
+    public ItemColChangeEvent(ChangeType type, List<int> affects){
+        _changeType = type;
+        _affectedindices = affects;
+    }
+    
+}
+
+public enum ChangeType{
+    SWAP,
+    ADD,
+    REMOVE,
+    SET
 }

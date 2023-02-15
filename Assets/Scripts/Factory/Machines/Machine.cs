@@ -22,9 +22,11 @@ public class Machine : Drag_and_Drop, IODevice
     public Action child_start;
     public Action child_update;
 
-    public void Start()
+    public virtual void Start()
     {
-        child_start.Invoke();
+        if (child_start != null){
+            child_start.Invoke();
+        }
         OnMouseUp();
 
         var pos = new Vector2Int((int)position.x, (int)position.y);
@@ -58,9 +60,13 @@ public class Machine : Drag_and_Drop, IODevice
         Destroy(this.gameObject);
     }
 
-    public void Update()
+    public virtual void Update()
     {
-        child_update.Invoke();
+        if (child_update != null){
+            child_update.Invoke();
+        }
+
+
         if (!working && doing != null && doing.accept(inpBuf))
         {
             working = true;
