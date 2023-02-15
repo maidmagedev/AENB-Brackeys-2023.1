@@ -14,18 +14,20 @@ public class Grabber : Machine, IODevice
         type = MachineType.GRABBER;
 
         footPrint = new(1,1);
+
+        child_start = GrabberStart;
     }
 
     Vector2Int intendTake, intendPushTo;
 
-    void Start()
+    void GrabberStart()
     {
         intendTake = new Vector2Int((int)position.x, (int)position.y) + OrientationHelper.takeFromBind[orientation];
         intendPushTo = new Vector2Int((int)position.x, (int)position.y) + OrientationHelper.pushToBind[orientation];
     }
 
 
-    private void Update()
+    public override void Update()
     {
         if(!working && IOBuf.Size == 0){
             TileData takingFrom;

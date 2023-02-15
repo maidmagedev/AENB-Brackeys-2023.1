@@ -25,8 +25,29 @@ public class BaseInventory : MonoBehaviour
 
             item.data.slot_obj(clone).index(itemIndex);
         }
+
+        inventory.AddListener(handleInvUpdate);
     }
 
+
+    private void handleInvUpdate(ItemColChangeEvent evt){
+        print(evt.affectedindices[0]);
+        switch(evt.changeType){
+            case ChangeType.SET:
+                evt.affectedindices.ForEach(i=>updateIcon(i));
+            break;
+            case ChangeType.REMOVE:
+                evt.affectedindices.ForEach(i=>updateIcon(i));
+            break;
+            case ChangeType.ADD:
+                evt.affectedindices.ForEach(i=>updateIcon(i));
+            break;
+            case ChangeType.SWAP:
+                throw new System.Exception("SWAP detected, should not exist!");
+            default:
+                throw new System.NotImplementedException("Update baseINvetory with new ChangeTypes!");
+        }
+    }
 
     public void swapItem(int from, int to){
         var temp = inventory[from];
@@ -34,53 +55,42 @@ public class BaseInventory : MonoBehaviour
         inventory[from] = inventory[to];
 
         inventory[to] = temp;
-
-        refresh_inventory();
     }
     
     public void Add(ItemStack input)
     {
         var result = inventory.Add(input);
-        instantiate_icon(input, result.insertIndex);
     }
 
     public void Remove(ItemStack o){
         inventory.Remove(o);
     }
 
-    private void refresh_inventory()
-    {
-        foreach (InventoryElement g in inventory_grid.Values){
-
-            if (g.data.item_object != null)
-            {
-                Destroy(g.data.item_object.gameObject);
-                g.data.item_object = null;
-            }
-        }
-
-        for (int i = 0; i < inventory.Size; i++)
-        {
-            if (inventory[i] != null){
-                instantiate_icon(inventory[i], i);
-            }
-        }
-    }
-
     int counter = 0;
 
-    private void instantiate_icon(ItemStack item, int index)
+    private void instantiate_icon(int index)
     {
         Draggable_Inventory_Item prefab = Resources.Load<Draggable_Inventory_Item>("InventoryItem");
         Draggable_Inventory_Item clone = Instantiate(prefab, this.transform, false);
         clone.Init(this, index);
         clone.transform.localPosition = inventory_grid[index].initialPosition;
         clone.transform.localScale = new Vector3(0.125f, 0.125f, 0);
-        clone.GetComponent<Image>().sprite = Item.item_definitions[item.of].sprite;
+        clone.GetComponent<Image>().sprite = Item.item_definitions[inventory[index].of].sprite;
 
         clone.gameObject.name = counter.ToString();
         counter++;
         inventory_grid[index].data.item_obj(clone);
+    }
+
+    private void updateIcon(int index){
+        if (inventory_grid[index].data.item_object != null){
+            Destroy(inventory_grid[index].data.item_object.gameObject);
+        }
+
+        
+        if (inventory[index] != null){
+            instantiate_icon(index);
+        }
     }
 
 }
