@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,9 +19,12 @@ public class Machine : Drag_and_Drop, IODevice
 
     Dictionary<Vector2Int, TileData> myPositions = new();
 
-    public void MachineStart()
+    public Action child_start;
+    public Action child_update;
+
+    public void Start()
     {
-        print("start in machine");
+        child_start.Invoke();
         OnMouseUp();
 
         var pos = new Vector2Int((int)position.x, (int)position.y);
@@ -54,9 +58,10 @@ public class Machine : Drag_and_Drop, IODevice
         Destroy(this.gameObject);
     }
 
-    public void MachineUpdate()
+    public void Update()
     {
-        if (!working && doing != null && inpBuf.Size > 0 && doing.accept(inpBuf))
+        child_update.Invoke();
+        if (!working && doing != null && doing.accept(inpBuf))
         {
             working = true;
             doing.consume(ref inpBuf);
