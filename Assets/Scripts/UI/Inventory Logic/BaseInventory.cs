@@ -30,13 +30,13 @@ public class BaseInventory : MonoBehaviour
     
         
         }
-        
+
         inventory.AddListener(handleInvUpdate);
     }
 
 
     private void handleInvUpdate(ItemColChangeEvent evt){
-        print(evt.affectedindices[0]);
+        //print(evt.affectedindices[0]);
         switch(evt.changeType){
             case ChangeType.SET:
                 evt.affectedindices.ForEach(i=>updateIcon(i));
@@ -88,13 +88,16 @@ public class BaseInventory : MonoBehaviour
     }
 
     private void updateIcon(int index){
-        if (inventory_grid[index].data.item_object != null){
-            Destroy(inventory_grid[index].data.item_object.gameObject);
-        }
+        if (inventory_grid != null){
+            if (inventory_grid[index].data.item_object != null){
+                Destroy(inventory_grid[index].data.item_object.gameObject);
+            }
 
         
-        if (inventory[index] != null){
-            instantiate_icon(index);
+            if (inventory[index] != null){
+                instantiate_icon(index);
+            }
+        
         }
     }
 

@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8095758123771347781}
   - component: {fileID: 8095758123771347783}
-  - component: {fileID: 8095758123771347778}
+  - component: {fileID: 4469780787324825500}
+  - component: {fileID: 790656915588058717}
   m_Layer: 0
   m_Name: Miner
   m_TagString: Untagged
@@ -85,7 +86,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8095758123771347778
+--- !u!114 &4469780787324825500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8095758123771347782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d8b4beeb8ae204e8dd8bd2fdb57218, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &790656915588058717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,4 +113,4 @@ MonoBehaviour:
   footPrint: {x: 3, y: 3}
   type: 5
   working: 0
-  iron_ore: {fileID: 6340144248585639726, guid: b1a4c983ed556774da05aaa6fce25c49, type: 3}
+  iron_ore: {fileID: 0}

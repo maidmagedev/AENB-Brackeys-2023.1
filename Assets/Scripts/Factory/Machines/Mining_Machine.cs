@@ -4,6 +4,7 @@ using System.Runtime.Versioning;
 using UnityEditor;
 using UnityEngine;
 
+[RequireComponent(typeof(Miner_Inventory))]
 public class Mining_Machine : Machine
 {
     public GameObject iron_ore;
@@ -15,24 +16,19 @@ public class Mining_Machine : Machine
         footPrint = new(3, 3);
         child_start = Mining_Start;
         child_update = Mining_Update;
+        //GetComponent<Miner_Inventory>().inventory = outBuf; 
     }
 
     private void Mining_Start()
     {
-        //iron_ore = Resources.Load<GameObject>("Items/Iron Ore");
-        inpBuf = new(0);
-        outBuf = new(1);
+        GetComponent<Miner_Inventory>().inventory = outBuf;
         doing = new Recipe(Globals.allRecipes["ironOreMiner"]);
     }
+
     private void Mining_Update()
     {
-        if (outBuf.Count > 0)
-        {
-            //Instantiate(iron_ore, new Vector3Int((int)this.position.x, (int)this.position.y + 1, 0),Quaternion.identity);
-            GetComponent<Miner_Inventory>().inventory.Add(new ItemStack(ItemType.ORE_IRON, 1));
-            outBuf.Remove(outBuf[0]);
-        }
-        ItemStack inventory_items = GetComponent<Miner_Inventory>().inventory.collection[0];
+
+        ItemStack inventory_items = GetComponent<Miner_Inventory>().inventory[0];
         if (inventory_items != null)
         {
             print("num items in miner inventory: " + inventory_items.quantity);
