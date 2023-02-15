@@ -68,6 +68,10 @@ public class ItemCollection
 
         int quantTotal = exists.Sum(st => st.quantity);
 
+        if (item == null)
+        {
+            return (true, null);
+        }
         int target = item.quantity;
 
         if (target > quantTotal && !doPartial)

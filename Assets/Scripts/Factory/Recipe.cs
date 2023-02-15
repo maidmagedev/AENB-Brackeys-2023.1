@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class Recipe
@@ -27,7 +28,7 @@ public class Recipe
             yield return null;
         }
 
-
+        Debug.Log("craft completed");
         inProgTime = 0;
         output(calling);
 
@@ -55,7 +56,10 @@ public class Recipe
 
     public bool accept(ItemCollection potential) {
         var against = baseRef.inputs;
-
+        if (against == null)
+        {
+            return true;
+        }
         return against.TrueForAll((stack)=> {
             ItemStack inpStack = potential.Find((st) => st.of == stack.of);
 
@@ -69,8 +73,12 @@ public class Recipe
     }
 
     public void consume(ref ItemCollection incoming) {
+        
         var against = baseRef.inputs;
-
+        if (against == null)
+        {
+            return;
+        }
         var tempIncoming = incoming;
 
         against.ForEach((stack) =>

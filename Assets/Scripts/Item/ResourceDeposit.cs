@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class ResourceDeposit : MonoBehaviour, IKillable
+public class ResourceDeposit : Drag_and_Drop, IKillable
 {
     [SerializeField] private GameObject pickUp;
     private Light2D dmgLight;
@@ -11,6 +11,17 @@ public class ResourceDeposit : MonoBehaviour, IKillable
     // Start is called before the first frame update
     void Start()
     {
+        TileData reference;
+        TileManager.tileData.TryGetValue(new Vector2Int((int)this.position.x, (int)this.position.y), out reference);
+        if (reference != null)
+        {
+            reference.Deposit = this;
+        }
+        else
+        {
+            reference = new TileData(new Vector2Int((int)this.position.x, (int)this.position.y), this);
+            TileManager.tileData.Add(new Vector2Int((int)this.position.x, (int)this.position.y), reference);
+        }
         dmgLight = GetComponent<Light2D>();
         dmgLight.enabled = false;
     }

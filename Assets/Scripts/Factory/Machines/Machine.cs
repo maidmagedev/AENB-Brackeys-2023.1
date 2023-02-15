@@ -6,7 +6,7 @@ public class Machine : Drag_and_Drop, IODevice
 {
     public Vector2Int footPrint;
 
-    Recipe doing;
+    public Recipe doing;
 
     public ItemCollection inpBuf;
 
@@ -82,5 +82,6 @@ public enum MachineType
     ASSEMBLER,
     FURNACE,
     GRABBER,
-    BELT
+    BELT,
+    MINER
 }
