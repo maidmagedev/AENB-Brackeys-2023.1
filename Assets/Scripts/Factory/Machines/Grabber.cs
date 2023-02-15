@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,9 +7,9 @@ public class Grabber : Machine, IODevice
 {
     private ItemCollection IOBuf = new(1);
 
-    private Orientation orientation; 
+    public Orientation orientation; 
 
-    float delay = .5f;
+    float delay = 1f;
 
     public Grabber(){
         type = MachineType.GRABBER;
@@ -29,7 +30,7 @@ public class Grabber : Machine, IODevice
 
     public override void Update()
     {
-        if(!working && IOBuf.Size == 0){
+        if(!working && IOBuf.Count == 0){
             TileData takingFrom;
 
             TileManager.tileData.TryGetValue(intendTake, out takingFrom);
@@ -40,9 +41,10 @@ public class Grabber : Machine, IODevice
                 var items = take.getOutputBuffer().Extract(1);
 
                 if (items != null){
-                    IOBuf.Add(items);
+                    
                     working = true;
-                    StartCoroutine(doCooldown());
+                    //print("work start");
+                    StartCoroutine(doCooldown(()=>IOBuf.Add(items)));
                 }
             }
         }
@@ -57,15 +59,19 @@ public class Grabber : Machine, IODevice
                 var items = put.getInputBuffer().Add(IOBuf[0]).more;
 
                 if (items != null){
-                    int transferred = IOBuf[0].quantity - items.quantity;
-                    IOBuf.Remove(new ItemStack(items.of, transferred));
+                    
                     working = true;
-                    StartCoroutine(doCooldown());
+                    //print("work start");
+                    StartCoroutine(doCooldown(()=>{
+                        int transferred = IOBuf[0].quantity - items.quantity;
+                        IOBuf.Remove(new ItemStack(items.of, transferred));
+                        }));
                 }
                 else{
-                    IOBuf.Remove(IOBuf[0]);
+                    
                     working = true;
-                    StartCoroutine(doCooldown());
+                    //print("work start");
+                    StartCoroutine(doCooldown(()=>IOBuf.Remove(IOBuf[0])));
                 }
             }
         }
@@ -76,16 +82,18 @@ public class Grabber : Machine, IODevice
 
     private float workingTime = 0;
 
-    public IEnumerator doCooldown(){
+    public IEnumerator doCooldown(Action onFinish){
         while (workingTime < delay)
         {
             workingTime += Time.deltaTime;
-
+            //print("frame");
             yield return null;
         }
 
+        onFinish.Invoke();
         workingTime = 0;
         working = false;
+        //print("workFin");
     }
 
 

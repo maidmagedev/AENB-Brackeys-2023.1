@@ -13,7 +13,7 @@ public class Mining_Machine : Machine
         inpBuf = null;
         outBuf = new(1);
         type = MachineType.MINER;
-        footPrint = new(3, 3);
+        footPrint = new(2, 2);
         child_start = Mining_Start;
         child_update = Mining_Update;
         //GetComponent<Miner_Inventory>().inventory = outBuf; 

@@ -123,6 +123,10 @@ public class ItemCollection
     public ItemStack Extract(int amount){
         ItemStack retStack = new List<ItemStack>(collection).Find(st=> st != null);
 
+        if (retStack == null){
+            return null;
+        }
+
         ItemStack ret = new ItemStack(retStack.of, amount);
 
         return Remove(ret, true).partial;
