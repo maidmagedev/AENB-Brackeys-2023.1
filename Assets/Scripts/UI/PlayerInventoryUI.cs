@@ -5,10 +5,14 @@ using UnityEngine.UI;
 
 public class PlayerInventoryUI : MonoBehaviour
 {
-    [Header("UI Elements")]
-    [SerializeField] GameObject InventoryUI;
+    [Header("External Components")]
     [SerializeField] Animator invenAnimator;
     [SerializeField] Settings settings;
+
+    [Header("UI Elements")]
+    [SerializeField] GameObject InventoryUI;
+    public GameObject[] hotbarItems; // must be of size 4.
+
     private bool inventoryActive = false;
     //private bool midTransition = false;
     private bool craftingActive = false;
@@ -60,6 +64,13 @@ public class PlayerInventoryUI : MonoBehaviour
         craftingActive = !craftingActive;
         yield return new WaitForSeconds(0.550f);
         //midTransition = false;
+    }
+
+    // Enables the UI visual for the selected item slot.
+    // Expected input, 0, 1, 2, 3.
+    public void EnableHotbarSlot(int newActive, int oldActive) {
+        hotbarItems[oldActive].SetActive(false);
+        hotbarItems[newActive].SetActive(true);
     }
 }
 

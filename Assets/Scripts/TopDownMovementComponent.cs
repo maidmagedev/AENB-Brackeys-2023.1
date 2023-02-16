@@ -88,13 +88,13 @@ public class TopDownMovementComponent : MonoBehaviour
         {
             // facing left
             gameObject.transform.localScale = new Vector2(-1f, gameObject.transform.localScale.y);
-            print("facing left");
+            //print("facing left");
         }
         else if (Mathf.Abs(angle) < 40)
         {
             // facing right
             gameObject.transform.localScale = new Vector2(1f, gameObject.transform.localScale.y);
-            print("facing right");
+            //print("facing right");
         }
 
     }
