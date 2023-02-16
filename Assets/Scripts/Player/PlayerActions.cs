@@ -14,11 +14,14 @@ public class PlayerActions : MonoBehaviour
     }
 
     private void Update() {
-        GrabInput();
+        HotbarSelect();
+        if (Input.GetKeyDown(KeyCode.Mouse1)) {
+            
+        }
     }
 
-    private void GrabInput() {
-        // i wish this was a switch statement
+    private void HotbarSelect() {
+        // Item Selection
         int oldSlot = selectedItemSlot;
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
             selectedItemSlot = 0;
@@ -36,6 +39,9 @@ public class PlayerActions : MonoBehaviour
         if (oldSlot != selectedItemSlot) {
             invenUI.EnableHotbarSlot(selectedItemSlot, oldSlot);
         }
+    }
+
+    private void UseItem() {
     }
 
 }
