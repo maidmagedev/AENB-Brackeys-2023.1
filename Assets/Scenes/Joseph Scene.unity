@@ -10224,6 +10224,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Miner
       objectReference: {fileID: 0}
+    - target: {fileID: 8095758123771347782, guid: d7886b70f3582344e853c6f081120e78, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8095758123771347778, guid: d7886b70f3582344e853c6f081120e78, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d7886b70f3582344e853c6f081120e78, type: 3}
