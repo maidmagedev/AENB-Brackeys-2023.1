@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Crosshair : MonoBehaviour
+public class Crosshair_Canvas : MonoBehaviour
 {
-
-    // should rename this class to Canvas_Crosshair
-
+    
     private bool enableCrosshair = true;
 
     // Update is called once per frame
