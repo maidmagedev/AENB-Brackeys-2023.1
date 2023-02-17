@@ -11,12 +11,17 @@ public class EnemySpawner : MonoBehaviour
     public IEnumerator spawnEnemies()
     {
         // spawn a random set of enemies from the list of enemy types
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
             GameObject randomEnemy = Enemies_1[Random.Range(0, Enemies_1.Count - 1)];
             Instantiate(randomEnemy, new Vector3(0, 15, 0), Quaternion.identity);
         }
+        print("spawned 2 enemies");
         yield return new WaitForSeconds(waveTime);
-        StartCoroutine(spawnEnemies());
+        if (!FindObjectOfType<DayNightCycle>().getIsDay())
+        {
+            StartCoroutine(spawnEnemies());
+        }
+        //StartCoroutine(spawnEnemies());
     }
 }
