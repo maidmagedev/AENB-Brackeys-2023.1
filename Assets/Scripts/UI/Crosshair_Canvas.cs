@@ -8,7 +8,9 @@ public class Crosshair_Canvas : MonoBehaviour
     
     private bool enableCrosshair = true;
 
-    private Image image;
+    [SerializeField] Image image;
+
+
     // Update is called once per frame
     void Update()
     {

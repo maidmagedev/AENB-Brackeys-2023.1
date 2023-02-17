@@ -8,6 +8,7 @@ public class PlayerInventoryUI : MonoBehaviour
     [Header("External Components")]
     [SerializeField] Animator invenAnimator;
     [SerializeField] Settings settings;
+    [SerializeField] Crosshair_Canvas crosshairCanv;
 
     [Header("UI Elements")]
     [SerializeField] GameObject InventoryUI;
@@ -43,10 +44,14 @@ public class PlayerInventoryUI : MonoBehaviour
 
     // Called by UIManager.cs to toggle the Pause Menu container gameobject as active or inactive.
     public IEnumerator ToggleInventoryView() {
+        
+
         //midTransition = true;
         if (inventoryActive) {
             invenAnimator.SetTrigger("InventoryToHotbar");
+            crosshairCanv.SetCrosshairVisibility(true);
         } else {
+            crosshairCanv.SetCrosshairVisibility(false);
             invenAnimator.SetTrigger("HotbarToInventory");
         }
         inventoryActive = !inventoryActive;
