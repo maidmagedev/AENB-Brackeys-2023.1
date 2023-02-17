@@ -12,6 +12,9 @@ public class FireProjectile : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip fireSound;
     [SerializeField] private float volume = 10f;
+
+    [SerializeField] float fireCooldown = 0;
+    [SerializeField] float fireRate = 1f;
     
     private bool mayshoot = true;
     // Start is called before the first frame update
@@ -48,7 +51,7 @@ public class FireProjectile : MonoBehaviour
 
     IEnumerator FireRepeatTimer()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(fireCooldown);
         mayshoot = true;
     }
     
@@ -76,7 +79,7 @@ public class FireProjectile : MonoBehaviour
     }
     IEnumerator FireRateTimer()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(fireRate);
         mayshoot = true;
     }
 }

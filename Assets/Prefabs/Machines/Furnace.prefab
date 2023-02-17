@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5875165169682124800}
   m_Layer: 0
   m_Name: Furnace
-  m_TagString: Untagged
+  m_TagString: Machine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

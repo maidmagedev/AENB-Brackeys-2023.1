@@ -5,9 +5,15 @@ using UnityEngine;
 
 public class Basic_Projectile : MonoBehaviour
 {
+    [Header("Customizable Stats")]
     [SerializeField] int damagePerHit = 25;
-    private float moveSpeed = 0.4f;
+    [SerializeField] float lifeTime = 3f;
+    [SerializeField] float moveSpeed = 0.4f;
     
+    private void Start() {
+        StartCoroutine(lifetimer());
+    }
+
     private void FixedUpdate()
     {
         move();

@@ -31,7 +31,7 @@ public class Mining_Machine : Machine
         ItemStack inventory_items = GetComponent<Miner_Inventory>().inventory[0];
         if (inventory_items != null)
         {
-            print("num items in miner inventory: " + inventory_items.quantity);
+            //print("num items in miner inventory: " + inventory_items.quantity);
             // when num items reaches 10, send one item to item_spitter
         }
         

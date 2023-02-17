@@ -15,7 +15,10 @@ public static class Item
         { ItemType.COAL,        (250, null)},
         { ItemType.ORE_GOLD,    (250, Resources.Load<Sprite>("Items/item_gold_ore")) },
         { ItemType.IRON,        (250, Resources.Load<Sprite>("Items/item_iron_bar")) },
-        { ItemType.GOLD,        (250, Resources.Load<Sprite>("Items/item_gold_bar")) }
+        { ItemType.GOLD,        (250, Resources.Load<Sprite>("Items/item_gold_bar")) },
+        { ItemType.FAMAS,       (1, Resources.Load<Sprite>("Items/item_famas")) },
+        { ItemType.SHOTGUN,     (1, Resources.Load<Sprite>("Items/item_shotgun")) }
+
     };
     
     
@@ -31,5 +34,7 @@ public enum ItemType
     COAL,
     ORE_GOLD,
     IRON,
-    GOLD
+    GOLD,
+    FAMAS,
+    SHOTGUN
 }

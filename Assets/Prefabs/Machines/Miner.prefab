@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8095758123771347783}
   - component: {fileID: 4469780787324825500}
   - component: {fileID: 219513546384845528}
+  - component: {fileID: 1203397826}
   m_Layer: 0
   m_Name: Miner
-  m_TagString: Untagged
+  m_TagString: Machine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,3 +115,19 @@ MonoBehaviour:
   type: 5
   working: 0
   iron_ore: {fileID: 0}
+--- !u!114 &1203397826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8095758123771347782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa0352a4d56abd42ad2fc69deb72448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 2.7567039, y: 1.9846416, z: 4}
+  m_Center: {x: 0.6216481, y: 0.49232078, z: 0}
+  m_Area: 1
+  m_AffectedAgents: ffffffff

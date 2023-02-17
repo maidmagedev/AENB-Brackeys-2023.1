@@ -36,7 +36,7 @@ public class BaseInventory : MonoBehaviour
 
 
     private void handleInvUpdate(ItemColChangeEvent evt){
-        //print(evt.affectedindices[0]);
+        print(gameObject.name + " " + evt.changeType + " " + evt.affectedindices[0]);
         switch(evt.changeType){
             case ChangeType.SET:
                 evt.affectedindices.ForEach(i=>updateIcon(i));
@@ -62,10 +62,11 @@ public class BaseInventory : MonoBehaviour
         inventory[to] = temp;
     }
     
-    public void Add(ItemStack input)
+    public void Add(ItemStack input, bool needsNew = false)
     {
-        var result = inventory.Add(input);
+        var result = inventory.Add(input, needsNew);
     }
+    
 
     public void Remove(ItemStack o){
         inventory.Remove(o);
@@ -90,6 +91,7 @@ public class BaseInventory : MonoBehaviour
     private void updateIcon(int index){
         if (inventory_grid != null){
             if (inventory_grid[index].data.item_object != null){
+                print("destroying " + inventory_grid[index].data.item_object.gameObject.name);
                 Destroy(inventory_grid[index].data.item_object.gameObject);
             }
 

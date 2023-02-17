@@ -31,15 +31,25 @@ public class Draggable_Inventory_Item : DraggableUI, IEndDragHandler
 
         GameObject slot = raysastResults.Find(r=>r.gameObject.CompareTag("InvItemSlot")).gameObject;
 
-
         if (slot != null){
-            InventoryElement [] eles = new InventoryElement[InventoryObj.inventory_grid.Count];   
+            BaseInventory targetInventory = slot.GetComponentInParent<BaseInventory>();
+            InventoryElement [] eles = new InventoryElement[targetInventory.inventory_grid.Count];   
 
-            InventoryObj.inventory_grid.Values.CopyTo(eles, 0);
+            targetInventory.inventory_grid.Values.CopyTo(eles, 0);
 
             var invSlot = new List<InventoryElement>(eles).Find(IE=>IE.data.slot_object == slot);
 
-            InventoryObj.swapItem(currentIndex, invSlot.data.indexInGrid);
+            if (targetInventory == InventoryObj)
+            {
+                targetInventory.swapItem(currentIndex, invSlot.data.indexInGrid);
+            }
+            else
+            {
+                ItemStack movedItem = InventoryObj.inventory[currentIndex];
+                InventoryObj.Remove(movedItem);
+                targetInventory.inventory[invSlot.data.indexInGrid] = movedItem;
+            }
+            
             
         }
         else{

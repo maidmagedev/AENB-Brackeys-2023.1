@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Crosshair : MonoBehaviour
+public class Crosshair_Canvas : MonoBehaviour
 {
-
-    // should rename this class to Canvas_Crosshair
-
+    
     private bool enableCrosshair = true;
+
+    [SerializeField] Image image;
+
 
     // Update is called once per frame
     void Update()
@@ -27,6 +29,7 @@ public class Crosshair : MonoBehaviour
     {
         enableCrosshair = enabled;
         Cursor.visible = !enabled;
+        image.enabled = enabled;
     }
 
 }
