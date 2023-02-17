@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: mainCam
       value: 
       objectReference: {fileID: 971984400}
+    - target: {fileID: 1902224353, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+      propertyPath: globalLight
+      value: 
+      objectReference: {fileID: 943717211}
     - target: {fileID: 5103151849301299784, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
       propertyPath: m_Name
       value: Required Components
