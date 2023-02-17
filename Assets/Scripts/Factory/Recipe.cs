@@ -28,7 +28,7 @@ public class Recipe
             yield return null;
         }
 
-        Debug.Log("craft completed");
+        //Debug.Log("craft completed");
         inProgTime = 0;
         output(calling);
 
