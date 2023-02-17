@@ -34,12 +34,15 @@ public class DayNightCycle : MonoBehaviour
         {
             workingTime = dayTime;
             globalLight.intensity = 1.0f;
+            print("stop spawning enemies");
         }
         else
         {
             workingTime = nightTime;
             globalLight.intensity = 0.5f;
+            print("begin spawning enemies");
             StartCoroutine(FindObjectOfType<EnemySpawner>().spawnEnemies());
+            
         }
         StartCoroutine(dayNightTimer(()=>isDay = !isDay));
     }
@@ -48,6 +51,11 @@ public class DayNightCycle : MonoBehaviour
     public (float minutes, float seconds, bool isDay) getTime()
     {
         return (Mathf.FloorToInt(workingTime / 60), Mathf.FloorToInt(workingTime % 60), isDay);
+    }
+
+    public bool getIsDay()
+    {
+        return isDay;
     }
     
 }
