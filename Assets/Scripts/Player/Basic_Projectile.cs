@@ -9,6 +9,7 @@ public class Basic_Projectile : MonoBehaviour
     [SerializeField] int damagePerHit = 25;
     [SerializeField] float lifeTime = 3f;
     [SerializeField] float moveSpeed = 0.4f;
+    [SerializeField] bool destroyOnHit = true;
     
     private void Start() {
         StartCoroutine(lifetimer());
@@ -26,7 +27,7 @@ public class Basic_Projectile : MonoBehaviour
     
     IEnumerator lifetimer()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(lifeTime);
         Destroy(gameObject);
     }
 
@@ -39,7 +40,7 @@ public class Basic_Projectile : MonoBehaviour
         }
         
         // if touching anything other than the player
-        if (!collision.CompareTag("Player"))
+        if (!collision.CompareTag("Player") && destroyOnHit)
         {
             Destroy(this.gameObject);
         }

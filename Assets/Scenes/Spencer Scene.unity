@@ -1845,6 +1845,38 @@ PrefabInstance:
       propertyPath: mainCam
       value: 
       objectReference: {fileID: 1285638163}
+    - target: {fileID: 423527571570851453, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232392519498690789, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232392519498690789, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232392519498690789, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232392519498690789, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232392519498690789, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3027775229634155873, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4700486464651376846, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1053866540, guid: 06b8124c6ef8c5442b2492173b668e1a, type: 3}
     - target: {fileID: 5103151849301299784, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
       propertyPath: m_Name
       value: Required Components

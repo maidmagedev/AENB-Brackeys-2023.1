@@ -100,8 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damagePerHit: 8
-  lifeTime: 0.1
-  moveSpeed: 1.1
+  lifeTime: 0.6
+  moveSpeed: 1
+  destroyOnHit: 0
 --- !u!61 &7563673191918959591
 BoxCollider2D:
   m_ObjectHideFlags: 0
