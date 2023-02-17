@@ -12,7 +12,7 @@ public static class Item
     {
         { ItemType.STONE,       (250, Resources.Load<Sprite>("Items/item_stone")) },
         { ItemType.ORE_IRON,    (250, Resources.Load<Sprite>("Items/item_iron_ore")) },
-        { ItemType.COAL,        (250, null)},
+        { ItemType.COAL,        (250, Resources.Load<Sprite>("Items/item_coal"))},
         { ItemType.ORE_GOLD,    (250, Resources.Load<Sprite>("Items/item_gold_ore")) },
         { ItemType.IRON,        (250, Resources.Load<Sprite>("Items/item_iron_bar")) },
         { ItemType.GOLD,        (250, Resources.Load<Sprite>("Items/item_gold_bar")) },
