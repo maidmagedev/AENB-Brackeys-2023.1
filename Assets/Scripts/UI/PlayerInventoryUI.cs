@@ -12,12 +12,22 @@ public class PlayerInventoryUI : MonoBehaviour
 
     [Header("UI Elements")]
     [SerializeField] GameObject InventoryUI;
+    [SerializeField] GameObject FurnaceUI;
+    [SerializeField] GameObject AssemblerUI;
+    [SerializeField] GameObject CraftingUI;
+
     public GameObject[] hotbarItems; // must be of size 4.
 
     private bool inventoryActive = false;
     //private bool midTransition = false;
-    private bool craftingActive = false;
+    private bool secondaryActive = false; // if the secondary menu is active, this could be a furnace, assembler, or crafting menu.
+    public SecondaryMenu secondaryMenu = SecondaryMenu.Furnace;
 
+    public enum SecondaryMenu {
+        Furnace,
+        Assembler,
+        Crafting
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -29,18 +39,35 @@ public class PlayerInventoryUI : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(settings.inventoryKey)) {
-            if (craftingActive) {
-                StartCoroutine(ToggleFurnaceView());
+            if (secondaryActive) {
+                // guaranteed to disable secondaries due to logic chain
+                ToggleSecondaries();
             }
             StartCoroutine(ToggleInventoryView());
         } else if (Input.GetKeyDown(settings.interactKey)) {
             if (!inventoryActive) {
                 StartCoroutine(ToggleInventoryView());
             }
-            StartCoroutine(ToggleFurnaceView());
+            ToggleSecondaries();
         }
         
     }
+
+    private void ToggleSecondaries() {
+        //Secondary Menu Details---------------
+        switch(secondaryMenu) {
+            case SecondaryMenu.Furnace:
+                StartCoroutine(ToggleFurnaceView());
+                break;
+            case SecondaryMenu.Assembler:
+                StartCoroutine(ToggleAssemblerView());
+                break;
+            case SecondaryMenu.Crafting:
+                StartCoroutine(ToggleCraftingView());
+                break;
+        }
+    }
+
 
     // Called by UIManager.cs to toggle the Pause Menu container gameobject as active or inactive.
     public IEnumerator ToggleInventoryView() {
@@ -61,14 +88,36 @@ public class PlayerInventoryUI : MonoBehaviour
 
     public IEnumerator ToggleFurnaceView() {
         //midTransition = true;
-        if (craftingActive) {
+        if (secondaryActive) {
             invenAnimator.SetTrigger("CloseFurnace");
         } else {
             invenAnimator.SetTrigger("OpenFurnace");
         }
-        craftingActive = !craftingActive;
+        secondaryActive = !secondaryActive;
         yield return new WaitForSeconds(0.550f);
         //midTransition = false;
+    }
+
+    public IEnumerator ToggleAssemblerView() {
+        //midTransition = true;
+        if (secondaryActive) {
+            invenAnimator.SetTrigger("CloseAssembler");
+        } else {
+            invenAnimator.SetTrigger("OpenAssembler");
+        }
+        secondaryActive = !secondaryActive;
+        yield return new WaitForSeconds(0.550f);
+    }
+
+    public IEnumerator ToggleCraftingView() {
+        //midTransition = true;
+        if (secondaryActive) {
+            //invenAnimator.SetTrigger("CloseCrafting");
+        } else {
+            //invenAnimator.SetTrigger("OpenCrafting");
+        }
+        secondaryActive = !secondaryActive;
+        yield return new WaitForSeconds(0.550f);
     }
 
     // Enables the UI visual for the selected item slot.
