@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Crosshair_Canvas : MonoBehaviour
 {
     
     private bool enableCrosshair = true;
 
+    private Image image;
     // Update is called once per frame
     void Update()
     {
@@ -25,6 +27,7 @@ public class Crosshair_Canvas : MonoBehaviour
     {
         enableCrosshair = enabled;
         Cursor.visible = !enabled;
+        image.enabled = enabled;
     }
 
 }
