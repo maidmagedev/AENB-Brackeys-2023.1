@@ -7,7 +7,12 @@ public class Grabber : Machine, IODevice
 {
     private ItemCollection IOBuf = new(1);
 
-    public Orientation orientation; 
+    public Orientation orientation;
+
+    [SerializeField] private GameObject arm;
+    [SerializeField] private SpriteRenderer item; 
+
+    private float initialArmAngle;
 
     float delay = 1f;
 
@@ -25,6 +30,30 @@ public class Grabber : Machine, IODevice
     {
         intendTake = new Vector2Int((int)position.x, (int)position.y) + OrientationHelper.takeFromBind[orientation];
         intendPushTo = new Vector2Int((int)position.x, (int)position.y) + OrientationHelper.pushToBind[orientation];
+
+        IOBuf.AddListener((evt=>{
+            if (evt.changeType == ChangeType.ADD){
+                item.sprite = Item.item_definitions[IOBuf[0].of].sprite;
+            }
+            else if (evt.changeType == ChangeType.REMOVE){
+                item.sprite = null;
+            }
+        }));
+
+        switch (orientation){
+            case Orientation.LR:
+                arm.transform.eulerAngles = new Vector3(0, 0, 180);
+                break;
+            case Orientation.UD:
+                arm.transform.eulerAngles = new Vector3(0, 0, 90);
+                break;
+            case Orientation.DU:
+                arm.transform.eulerAngles = new Vector3(0, 0, 270);
+                break;
+        }
+
+        //initialArmAngle = arm.transform.eulerAngles.z;
+        //currentAngle = initialArmAngle;
     }
 
 
@@ -44,7 +73,9 @@ public class Grabber : Machine, IODevice
                     
                     working = true;
                     //print("work start");
-                    StartCoroutine(doCooldown(()=>IOBuf.Add(items)));
+                    IOBuf.Add(items);
+                    GetComponent<Animator>().SetTrigger("receiveItem");
+                    StartCoroutine(doCooldown(()=>{}));
                 }
             }
         }
@@ -62,16 +93,18 @@ public class Grabber : Machine, IODevice
                     
                     working = true;
                     //print("work start");
-                    StartCoroutine(doCooldown(()=>{
-                        int transferred = IOBuf[0].quantity - items.quantity;
-                        IOBuf.Remove(new ItemStack(items.of, transferred));
-                        }));
+                    int transferred = IOBuf[0].quantity - items.quantity;
+                    IOBuf.Remove(new ItemStack(items.of, transferred));
+
+                    
+                    StartCoroutine(doCooldown(()=>{}));
                 }
                 else{
                     
                     working = true;
                     //print("work start");
-                    StartCoroutine(doCooldown(()=>IOBuf.Remove(IOBuf[0])));
+                    IOBuf.Remove(IOBuf[0]);
+                    StartCoroutine(doCooldown(()=>{}));
                 }
             }
         }
