@@ -168,14 +168,35 @@ public class ItemCollection
     public ItemStack this[int i] {
         get { return collection[i]; }
         set {
+            ItemStack itemPrev = collection[i];
             collection[i] = value;
-            NotifyListeners(new ItemColChangeEvent(ChangeType.SET, new List<int>(){i}));
+            if (value == null){
+                nonNullItems--;
+                NotifyListeners(new ItemColChangeEvent(ChangeType.REMOVE, new List<int>(){i}));
             }
+            else if (itemPrev == null){
+                nonNullItems++;
+                NotifyListeners(new ItemColChangeEvent(ChangeType.ADD, new List<int>(){i}));
+            }
+            else{
+                Debug.Log("potential fail");
+                NotifyListeners(new ItemColChangeEvent(ChangeType.OTHER, new List<int>(){i}));
+            }
+        }
     }
 
     internal int FindIndex(Predicate<ItemStack> p)
     {
         return new List<ItemStack>(collection).FindIndex(p);
+    }
+
+
+    public List<ItemStack> Reverse(){
+        List<ItemStack> ret = new(collection);
+
+        ret.Reverse();
+
+        return ret;
     }
     #endregion
 
@@ -214,5 +235,5 @@ public enum ChangeType{
     SWAP,
     ADD,
     REMOVE,
-    SET
+    OTHER
 }

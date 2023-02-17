@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Belt : Machine, IODevice
 {
-    private ItemCollection IOBuf = new(6);
+    private ItemCollection IOBuf = new(4);
 
     public Orientation orientation;
 
@@ -16,26 +16,45 @@ public class Belt : Machine, IODevice
         footPrint = new(1,1);
         child_start = BeltStart;
 
+         IOBuf.AddListener(evt=>{
+            if (evt.changeType == ChangeType.ADD){
+                itemSlots[evt.affectedindices[0]].sprite = Item.item_definitions[IOBuf[evt.affectedindices[0]].of].sprite;
+            }
+            else if (evt.changeType == ChangeType.REMOVE){
+                foreach(int ind in evt.affectedindices){
+                    itemSlots[ind].sprite = null;
+                }
+            }
+        });
     }
     
     Vector2Int intendPushTo;
 
     public Sprite def;
 
+    [SerializeField]private List<SpriteRenderer> itemSlots;
+
     void BeltStart()
     {
         intendPushTo = new Vector2Int((int)position.x, (int)position.y) + OrientationHelper.pushToBind[orientation];
+
+        switch (orientation){
+            case Orientation.LR:
+                transform.eulerAngles = new Vector3(0, 0, 270);
+                break;
+            case Orientation.UD:
+                transform.eulerAngles = new Vector3(0, 0, 180);
+                break;
+            case Orientation.RL:
+                transform.eulerAngles = new Vector3(0, 0, 90);
+                break;
+        }
     }
 
+    public int c = 0;
     public override void Update()
     {
-        if(IOBuf[0] != null){
-            GetComponent<SpriteRenderer>().sprite = Item.item_definitions[IOBuf[0].of].sprite;
-        }
-        else{
-            GetComponent<SpriteRenderer>().sprite = def;
-        }
-
+        c = IOBuf.Count;
         if (!working){
             TileData putTo;
 
@@ -44,39 +63,38 @@ public class Belt : Machine, IODevice
             Machine put = putTo != null && putTo.occupiedBy.type == MachineType.BELT ? putTo.occupiedBy : null;
 
             if(put != null){
-                
-                ItemStack items = null;
-
+                working = true;
 
                 if (IOBuf[0] != null){
-                    working = true;
-                    StartCoroutine(doCooldown(()=>{
-                        items = put.getInputBuffer().Add(IOBuf[0]).more;
-                        
-                        if (items != null){
-                            int transferred = IOBuf[0].quantity - items.quantity;
-                            IOBuf.Remove(new ItemStack(items.of, transferred));
-                        }
-                        else if (IOBuf[0] != null){
                     
-                            IOBuf.Remove(IOBuf[0]); 
-                            advanceBelt();
+                    StartCoroutine(doCooldown(()=>{
+                        //int ind = put.getInputBuffer().Reverse().FindIndex(st=>st!=null);
+                        if (put.getInputBuffer()[3] == null){
+                            put.getInputBuffer()[3] = IOBuf[0];
+                            IOBuf[0] = null;
                         }
+                        
                     }));
                     
+                }
+                else{
+                    StartCoroutine(doCooldown(()=>advanceBelt()));
                 }
 
                 
 
                 
             }
+            else{
+                working = true;
+                StartCoroutine(doCooldown(()=>advanceBelt()));
+            }
         }
     }
 
 
-    private float workingTime = 0;
-
     public IEnumerator doCooldown(Action onFinish){
+        float workingTime = 0;
         while (workingTime < delay)
         {
             workingTime += Time.deltaTime;
@@ -85,23 +103,19 @@ public class Belt : Machine, IODevice
         }
 
         onFinish.Invoke();
-        workingTime = 0;
         working = false;
         //print("workFin");
     }
 
 
     public void advanceBelt(){
-        if(IOBuf[0] != null){
-            throw new Exception("push failed?");
-        }
-        else{
-            for (int i = 0; i < IOBuf.Size - 2; i++){
+        for (int i = 0; i < IOBuf.Size - 1; i++){
+            if (IOBuf[i] == null && IOBuf[i+1] != null){
                 IOBuf[i] = IOBuf[i+1];
+                IOBuf[i+1] = null;
             }
-
-            IOBuf[IOBuf.Size -1] = null;
         }
+
     }
     
     public override ItemCollection getInputBuffer()

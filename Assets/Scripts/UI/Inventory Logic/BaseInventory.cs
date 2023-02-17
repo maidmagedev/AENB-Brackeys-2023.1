@@ -38,9 +38,6 @@ public class BaseInventory : MonoBehaviour
     private void handleInvUpdate(ItemColChangeEvent evt){
         print(gameObject.name + " " + evt.changeType + " " + evt.affectedindices[0]);
         switch(evt.changeType){
-            case ChangeType.SET:
-                evt.affectedindices.ForEach(i=>updateIcon(i));
-            break;
             case ChangeType.REMOVE:
                 evt.affectedindices.ForEach(i=>updateIcon(i));
             break;
