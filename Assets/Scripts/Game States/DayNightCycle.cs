@@ -30,8 +30,17 @@ public class DayNightCycle : MonoBehaviour
         }
         
         onFinish.Invoke();
-        workingTime = (isDay ? dayTime : nightTime);
-        globalLight.intensity = (isDay ? 1f : 0.5f);
+        if (isDay)
+        {
+            workingTime = dayTime;
+            globalLight.intensity = 1.0f;
+        }
+        else
+        {
+            workingTime = nightTime;
+            globalLight.intensity = 0.5f;
+            StartCoroutine(FindObjectOfType<EnemySpawner>().spawnEnemies());
+        }
         StartCoroutine(dayNightTimer(()=>isDay = !isDay));
     }
 
