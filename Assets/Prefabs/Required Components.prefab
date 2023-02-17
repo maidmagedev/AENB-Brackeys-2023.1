@@ -666,7 +666,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1232392519498690789}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &455198952
 SpriteRenderer:
@@ -1882,7 +1882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b71f393bff8264d43ad62e84d53306e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globalLight: {fileID: 0}
+  globalLight: {fileID: 428501836931251008}
   nightTime: 5
   dayTime: 5
 --- !u!1 &2051950554
@@ -3776,9 +3776,21 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3016945788771518143, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
+    - target: {fileID: 2063929300759416015, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
+      propertyPath: m_Name
+      value: warning_supressor
+      objectReference: {fileID: 0}
+    - target: {fileID: 2063929300759416015, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3016945788771518143, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
+      propertyPath: m_Name
+      value: astro_hand_L
+      objectReference: {fileID: 0}
+    - target: {fileID: 3016945788771518143, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3134369400360589012, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
       propertyPath: m_LocalScale.x
@@ -3890,7 +3902,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4352148885411301819, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4352148885411301819, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3997,19 +4009,33 @@ PrefabInstance:
       value: -0.083
       objectReference: {fileID: 0}
     - target: {fileID: 8225704294620535684, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
+      propertyPath: m_Name
+      value: astro_hand_R
+      objectReference: {fileID: 0}
+    - target: {fileID: 8225704294620535684, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9025217908837723504, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3323103680194262909, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
+--- !u!1 &423527571570851453 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2063929300759416015, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
+  m_PrefabInstance: {fileID: 1820616255365280434}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1232392519498690789 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 603049834408575575, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
+  m_PrefabInstance: {fileID: 1820616255365280434}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3502244577846178829 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3016945788771518143, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
   m_PrefabInstance: {fileID: 1820616255365280434}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &3988546489362990530 stripped
@@ -4058,6 +4084,7 @@ MonoBehaviour:
   volume: 10
   projectile_prefab: {fileID: 2478853019749418462, guid: 300015f481af30049b4c8f77e7390498, type: 3}
   bulletOrigin: {fileID: 7566316119384708402}
+  famasObj: {fileID: 8942322904909133989}
   famasAnim: {fileID: 998789367}
 --- !u!114 &742947878262746068
 MonoBehaviour:
@@ -4192,7 +4219,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab13d986488cdbc4bb07a4d528ac86b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInv: {fileID: 545467116127020217}
   invenUI: {fileID: 3762604349708848928}
+  famas: {fileID: 513778823}
+  famasObj: {fileID: 423527571570851453}
+  hands:
+  - {fileID: 3502244577846178829}
+  - {fileID: 7738225053620922678}
 --- !u!114 &8261446213611798930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4232,6 +4265,11 @@ MonoBehaviour:
 --- !u!4 &7566316119384708402 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8089824729204369280, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
+  m_PrefabInstance: {fileID: 1820616255365280434}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7738225053620922678 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8225704294620535684, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
   m_PrefabInstance: {fileID: 1820616255365280434}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &8942322904909133989 stripped

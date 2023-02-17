@@ -23,6 +23,7 @@ public class Famas : MonoBehaviour
     [Header("Components, References")]
     [SerializeField] private GameObject projectile_prefab; // could make this a Resources.Load() call
     [SerializeField] Transform bulletOrigin;
+    public GameObject famasObj;
 
     [Header("Animations")]
     [SerializeField] Animator famasAnim;
@@ -66,19 +67,25 @@ public class Famas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && mayshoot) {
-            StartCoroutine(FireGun());       // press and release for firing
-            //FireGunHeld(); // hold for firing
-            StartCoroutine(AnimatorFire());
-
-        }
+        //GetInput(); // called externally.
 
         // Animation Sort
         priority.Sort(sorter);
         updateAnimationState(priority[0]);
         
     }
+
+    public void GetInput() {
+        if (Input.GetMouseButtonDown(0) && mayshoot) {
+            StartCoroutine(FireGun());       // press and release for firing
+            //FireGunHeld(); // hold for firing
+            StartCoroutine(AnimatorFire());
+
+        }
+    } 
     
+    
+
     // Press and Release for Fire
     /*********************************************************************/
     private IEnumerator FireGun()

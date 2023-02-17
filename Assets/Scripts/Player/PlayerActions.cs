@@ -6,7 +6,13 @@ using UnityEngine;
 public class PlayerActions : MonoBehaviour
 {
     private int selectedItemSlot; // valid num: 0, 1, 2, 3,
+    private ItemType selectedItem;
+
+    [SerializeField] PlayerInventory playerInv;
     [SerializeField] PlayerInventoryUI invenUI;
+    [SerializeField] Famas famas;
+    [SerializeField] GameObject famasObj;
+    [SerializeField] GameObject[] hands;
 
     private void Start() {
         selectedItemSlot = 0;
@@ -15,8 +21,14 @@ public class PlayerActions : MonoBehaviour
 
     private void Update() {
         HotbarSelect();
-        if (Input.GetKeyDown(KeyCode.Mouse1)) {
-            
+        
+        // Action Handling based on Selected Item
+        if (ItemInSlotExists(selectedItemSlot) && Input.GetKeyDown(KeyCode.Mouse0)) {
+            switch(selectedItem) {
+                case ItemType.FAMAS:  
+                    famas.GetInput();
+                    break;
+            }
         }
     }
 
@@ -38,7 +50,47 @@ public class PlayerActions : MonoBehaviour
         }
         if (oldSlot != selectedItemSlot) {
             invenUI.EnableHotbarSlot(selectedItemSlot, oldSlot);
+            UpdateSelectedItem();
         }
+    }
+
+    // Disables all hotbar item objects. Hides the famas, and other active items.
+    private void DisableItemObjects() {
+        famasObj.SetActive(false);
+    }
+
+    private void EnableHands(bool on) {
+        hands[0].SetActive(on);
+        hands[1].SetActive(on);
+    }
+
+    private ItemType GetItemTypeFromSlotNum(int slotNum) {
+
+        return playerInv.inventory[slotNum].of;
+    }
+
+    private bool ItemInSlotExists(int slotNum) {
+        return playerInv.inventory[selectedItemSlot] != null;
+    }
+
+    public void UpdateSelectedItem() {
+        DisableItemObjects();
+        if (ItemInSlotExists(selectedItemSlot)) {
+            EnableHands(false);
+            selectedItem = GetItemTypeFromSlotNum(selectedItemSlot);
+            switch(selectedItem) {
+                case ItemType.FAMAS:  
+                    famasObj.SetActive(true);               
+                    break;
+                default:
+                    EnableHands(true);
+                    break;
+            }
+        } else {
+            EnableHands(true);
+        }
+        
+        
     }
 
     private void UseItem() {
