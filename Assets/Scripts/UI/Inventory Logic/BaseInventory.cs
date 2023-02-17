@@ -9,7 +9,6 @@ using TMPro;
 public class BaseInventory : MonoBehaviour
 {
     public ItemCollection inventory;
-
     public Dictionary<int, InventoryElement> inventory_grid;
 
     // Start is called before the first frame update
@@ -21,7 +20,6 @@ public class BaseInventory : MonoBehaviour
             foreach (int itemIndex in inventory_grid.Keys)
             {
                 InventoryElement item = inventory_grid[itemIndex];
-
                 GameObject prefab = Resources.Load<GameObject>(item.prefab_path);
                 GameObject clone = Instantiate(prefab, this.transform, false);
                 clone.transform.localPosition = item.initialPosition;

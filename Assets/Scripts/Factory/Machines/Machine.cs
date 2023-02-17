@@ -21,6 +21,7 @@ public class Machine : Drag_and_Drop, IODevice
 
     public Action child_start;
     public Action child_update;
+    
 
     public virtual void Start()
     {
@@ -65,7 +66,6 @@ public class Machine : Drag_and_Drop, IODevice
         if (child_update != null){
             child_update.Invoke();
         }
-
 
         if (!working && doing != null && doing.accept(inpBuf))
         {
