@@ -180,7 +180,7 @@ public class ItemCollection
             }
             else{
                 Debug.Log("potential fail");
-                NotifyListeners(new ItemColChangeEvent(ChangeType.OTHER, new List<int>(){i}));
+                NotifyListeners(new ItemColChangeEvent(ChangeType.SWAP, new List<int>(){i}));
             }
         }
     }
