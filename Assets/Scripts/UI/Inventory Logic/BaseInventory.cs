@@ -47,9 +47,10 @@ public class BaseInventory : MonoBehaviour
                 evt.affectedindices.ForEach(i=>updateIcon(i));
             break;
             case ChangeType.SWAP:
-                throw new System.Exception("SWAP detected, should not exist!");
+                evt.affectedindices.ForEach(i=>updateIcon(i));
+            break;
             default:
-                throw new System.NotImplementedException("Update baseINvetory with new ChangeTypes!");
+                throw new System.NotImplementedException("Update baseInventory with new ChangeTypes!");
         }
     }
 
