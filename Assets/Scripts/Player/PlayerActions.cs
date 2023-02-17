@@ -10,9 +10,13 @@ public class PlayerActions : MonoBehaviour
 
     [SerializeField] PlayerInventory playerInv;
     [SerializeField] PlayerInventoryUI invenUI;
+    [SerializeField] GameObject[] hands;
+
+    [Header("Weapons")]
     [SerializeField] Famas famas;
     [SerializeField] GameObject famasObj;
-    [SerializeField] GameObject[] hands;
+    [SerializeField] Shotgun shotgun;
+    [SerializeField] GameObject shotgunObj;
 
     private void Start() {
         selectedItemSlot = 0;
@@ -27,6 +31,9 @@ public class PlayerActions : MonoBehaviour
             switch(selectedItem) {
                 case ItemType.FAMAS:  
                     famas.GetInput();
+                    break;
+                case ItemType.SHOTGUN:
+                    shotgun.GetInput();
                     break;
             }
         }
@@ -57,6 +64,7 @@ public class PlayerActions : MonoBehaviour
     // Disables all hotbar item objects. Hides the famas, and other active items.
     private void DisableItemObjects() {
         famasObj.SetActive(false);
+        shotgunObj.SetActive(false);
     }
 
     private void EnableHands(bool on) {
@@ -81,6 +89,9 @@ public class PlayerActions : MonoBehaviour
             switch(selectedItem) {
                 case ItemType.FAMAS:  
                     famasObj.SetActive(true);               
+                    break;
+                case ItemType.SHOTGUN:
+                    shotgunObj.SetActive(true);
                     break;
                 default:
                     EnableHands(true);
