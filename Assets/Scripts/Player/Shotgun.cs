@@ -11,7 +11,6 @@ public class Shotgun : MonoBehaviour
     [Header("Stats")]
     [SerializeField] float fireCooldown = 0;
     [SerializeField] float fireRate = 1f;
-    [SerializeField] int pelletCount = 5;
     public int clip = 2;
     private bool reloading = false;
     private bool mayshoot = true;
