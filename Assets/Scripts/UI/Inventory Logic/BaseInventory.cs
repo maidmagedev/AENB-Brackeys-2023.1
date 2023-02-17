@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class BaseInventory : MonoBehaviour
 {
@@ -71,7 +73,8 @@ public class BaseInventory : MonoBehaviour
 
     int counter = 0;
 
-    private void instantiate_icon(int index)
+    // I made this return the GameObject so I could use it in updateIcon
+    private GameObject instantiate_icon(int index)
     {
         Draggable_Inventory_Item prefab = Resources.Load<Draggable_Inventory_Item>("InventoryItem");
         Draggable_Inventory_Item clone = Instantiate(prefab, this.transform, false);
@@ -83,18 +86,32 @@ public class BaseInventory : MonoBehaviour
         clone.gameObject.name = counter.ToString();
         counter++;
         inventory_grid[index].data.item_obj(clone);
+        return clone.gameObject;
     }
 
-    private void updateIcon(int index){
+    private void updateIcon(int index)
+    {
+        GameObject destroyedObj = null;
+        // if there is an item already here, destroy icon on the grid
         if (inventory_grid != null){
             if (inventory_grid[index].data.item_object != null){
                 print("destroying " + inventory_grid[index].data.item_object.gameObject.name);
+                destroyedObj = inventory_grid[index].data.item_object.gameObject;
                 Destroy(inventory_grid[index].data.item_object.gameObject);
             }
 
         
+            // if the icon has been destroyed, instantiate a new icon
             if (inventory[index] != null){
-                instantiate_icon(index);
+                GameObject icon_object = instantiate_icon(index);
+                // incrementing stack count UI
+                TextMeshProUGUI stack_count = icon_object.GetComponentInChildren<TextMeshProUGUI>();
+                int count = 1;
+                if (destroyedObj != null)
+                {
+                    count += Int32.Parse(destroyedObj.GetComponentInChildren<TextMeshProUGUI>().text);
+                }
+                stack_count.text = count.ToString();
             }
         
         }
