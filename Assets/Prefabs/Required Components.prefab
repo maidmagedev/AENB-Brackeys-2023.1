@@ -303,7 +303,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &111197354
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2086,8 +2086,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalLight: {fileID: 428501836931251008}
-  nightTime: 5
-  dayTime: 5
+  nightTime: 15
+  dayTime: 15
 --- !u!1 &2051950554
 GameObject:
   m_ObjectHideFlags: 0
@@ -2429,7 +2429,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1600612120241178704}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.192511, y: 1.163656, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2603,7 +2603,7 @@ GameObject:
   - component: {fileID: 2997703283526797303}
   - component: {fileID: 431247654881289874}
   m_Layer: 0
-  m_Name: Recipe Preview 1
+  m_Name: preview_recipe
   m_TagString: InvItemSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3395,7 +3395,7 @@ GameObject:
   - component: {fileID: 629546211859474425}
   - component: {fileID: 416661743863241598}
   m_Layer: 0
-  m_Name: preview_input1
+  m_Name: preview_fuel
   m_TagString: InvItemSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3561,7 +3561,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -3579,7 +3579,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8155538230932055638}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1427953486}
+        m_TargetAssemblyTypeName: Furnace_Preview_UI, Assembly-CSharp
+        m_MethodName: CycleRecipe
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: -1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6225286891151645580
 GameObject:
   m_ObjectHideFlags: 0
@@ -4116,6 +4128,7 @@ GameObject:
   - component: {fileID: 8892998023051544834}
   - component: {fileID: 9186105120154974879}
   - component: {fileID: 3690131950536728713}
+  - component: {fileID: 1427953486}
   m_Layer: 0
   m_Name: Image - Furnace
   m_TagString: Untagged
@@ -4200,6 +4213,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b915837680b9f4fabeb5e0daf68335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1427953486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7321227320775517230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 990090e00a7cbd64db2ace7b4093addf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slots:
+  - {fileID: 431247654881289874}
+  - {fileID: 575183305572779863}
+  - {fileID: 416661743863241598}
+  - {fileID: 9118823447110428897}
 --- !u!1 &7600692503982669838
 GameObject:
   m_ObjectHideFlags: 0
@@ -4353,7 +4383,7 @@ GameObject:
   - component: {fileID: 6073240132707058781}
   - component: {fileID: 575183305572779863}
   m_Layer: 0
-  m_Name: preview_input2
+  m_Name: preview_input
   m_TagString: InvItemSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4723,7 +4753,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -4741,7 +4771,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5133656615132253773}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1427953486}
+        m_TargetAssemblyTypeName: Furnace_Preview_UI, Assembly-CSharp
+        m_MethodName: CycleRecipe
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8941654120921654490
 GameObject:
   m_ObjectHideFlags: 0
