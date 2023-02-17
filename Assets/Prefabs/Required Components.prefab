@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7617880
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2057,7 +2057,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1902224352
 Transform:
   m_ObjectHideFlags: 0
@@ -4124,6 +4124,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2082606767621260214, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2344915395967180612, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.6
@@ -4367,6 +4371,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 3323103680194262909, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
+--- !u!1 &406105739560136964 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2082606767621260214, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
+  m_PrefabInstance: {fileID: 1820616255365280434}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &423527571570851453 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2063929300759416015, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
@@ -4435,6 +4444,33 @@ MonoBehaviour:
   bulletOrigin: {fileID: 7566316119384708402}
   famasObj: {fileID: 8942322904909133989}
   famasAnim: {fileID: 998789367}
+--- !u!114 &1369866931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3988546489362990530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da5ff8a6352bab4ba94e6b5ce0db7a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireCooldown: 0
+  fireRate: 1
+  pelletCount: 5
+  clip: 2
+  audioSource: {fileID: 0}
+  fireSound: {fileID: 0}
+  volume: 10
+  projectile_prefab: {fileID: 2478853019749418462, guid: 3f899e150d67149449648ba840f6bf17, type: 3}
+  bulletOrigins:
+  - {fileID: 4268104487893367029}
+  - {fileID: 4165531646355746294}
+  - {fileID: 7765504623034381248}
+  - {fileID: 5901291332658712544}
+  - {fileID: 6184542751057255252}
+  shotgunAnim: {fileID: 1118078247138510645}
 --- !u!114 &742947878262746068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4570,11 +4606,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInv: {fileID: 545467116127020217}
   invenUI: {fileID: 3762604349708848928}
-  famas: {fileID: 0}
-  famasObj: {fileID: 423527571570851453}
   hands:
   - {fileID: 3502244577846178829}
   - {fileID: 7738225053620922678}
+  famas: {fileID: 513778823}
+  famasObj: {fileID: 423527571570851453}
+  shotgun: {fileID: 1369866931}
+  shotgunObj: {fileID: 406105739560136964}
 --- !u!114 &8261446213611798930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4588,33 +4626,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathScreen: {fileID: 1351167350258762551}
---- !u!114 &1369866931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3988546489362990530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3da5ff8a6352bab4ba94e6b5ce0db7a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireCooldown: 0
-  fireRate: 1
-  pelletCount: 5
-  clip: 2
-  audioSource: {fileID: 0}
-  fireSound: {fileID: 0}
-  volume: 10
-  projectile_prefab: {fileID: 2478853019749418462, guid: 3f899e150d67149449648ba840f6bf17, type: 3}
-  bulletOrigins:
-  - {fileID: 4268104487893367029}
-  - {fileID: 4165531646355746294}
-  - {fileID: 7765504623034381248}
-  - {fileID: 5901291332658712544}
-  - {fileID: 6184542751057255252}
-  shotgunAnim: {fileID: 1118078247138510645}
 --- !u!4 &3988546489362990542 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3323103680194262908, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
