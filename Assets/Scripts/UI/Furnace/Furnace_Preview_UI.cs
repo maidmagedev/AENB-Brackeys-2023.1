@@ -26,6 +26,7 @@ public class Furnace_Preview_UI : MonoBehaviour
         slots[1].sprite = Resources.Load<Sprite>(recipe.input);
         slots[2].sprite = Resources.Load<Sprite>(recipe.fuel);
         slots[3].sprite = Resources.Load<Sprite>(recipe.output);
+        reduceOpacity();
     }
 
     // Update is called once per frame
@@ -50,13 +51,16 @@ public class Furnace_Preview_UI : MonoBehaviour
         slots[1].sprite = Resources.Load<Sprite>(recipe.input);
         slots[2].sprite = Resources.Load<Sprite>(recipe.fuel);
         slots[3].sprite = Resources.Load<Sprite>(recipe.output);
+        reduceOpacity();
     }
 
     private void reduceOpacity()
     {
         foreach (Image image in slots)
         {
-            
+            Color temp = image.color;
+            temp.a = 0.2f;
+            image.color = temp;
         }
     }
 }
