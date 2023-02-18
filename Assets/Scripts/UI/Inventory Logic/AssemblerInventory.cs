@@ -14,7 +14,7 @@ public class AssemblerInventory : BaseInventory
             {(1,0), new ItemSlot(new Vector3(10.5f, 5.8f, 0))},    // Output Buffer - Output Item
         };
         
-        inventory[0] = new ItemCollection(3);
-        inventory[1] = new ItemCollection(1);
+        inventory.Add(new ItemCollection(3));
+        inventory.Add(new ItemCollection(1));
     }
 }
