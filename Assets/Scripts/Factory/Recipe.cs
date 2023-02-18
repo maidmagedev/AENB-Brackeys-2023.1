@@ -48,14 +48,7 @@ public class Recipe
     public void output(Machine calling) {
         baseRef.outputs.ForEach(stack =>
         {
-            ItemStack o = calling.getOutputBuffer().Find((st) => st != null && st.of == stack.of);
-            if (o != null)
-            {
-                o.quantity += stack.quantity;
-            }
-            else {
-                calling.getOutputBuffer().Add(ItemStack.copy(stack));
-            }
+            calling.getOutputBuffer().Add(stack);
 
         });
 

@@ -12,7 +12,7 @@ public class AssemblerInventory : BaseInventory
             {(0,1), new ItemSlot(new Vector3(10.35f, -25.78f, 0))}, // Input  Buffer - 2
             {(0,2), new ItemSlot(new Vector3(26.96f, -25.75f, 0))},    // Input  Buffer - 3
             {(1,0), new OutputSlot(new Vector3(10.4f, 5.72f, 0))},    // Output Buffer - Output Item
-            {(-1, 0), new AssemMeter(new Vector3(0,0,0))}
+            {(-1, 0), new AssemMeter(new Vector3(10.4f,-10.51f,0))}
         };
         
         inventory.Add(new ItemCollection(3));

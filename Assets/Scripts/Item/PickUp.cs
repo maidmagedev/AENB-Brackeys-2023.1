@@ -25,6 +25,7 @@ public class PickUp : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
+            //print(item.quantity);
             _inventory.Add(0, item);
             col.gameObject.GetComponent<PlayerActions>().UpdateSelectedItem();
             Destroy(gameObject);

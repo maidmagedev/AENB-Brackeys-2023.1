@@ -46,8 +46,9 @@ public class ItemCollection : IEnumerable<ItemStack>
         var current = new List<ItemStack>(collection).FindIndex((st) => st != null && st.of == item.of);
         if (!needsNewStack && current != -1 && collection[current] != null)
         {
+            //Debug.Log(item.quantity);
             var ret = (increaseStack(item, collection[current]), current);
-
+            //Debug.Log("aft: " + item.quantity);
             NotifyListeners(new ItemColChangeEvent(ChangeType.ADD, new List<int>(){current}));
             return ret;
         }
@@ -56,7 +57,7 @@ public class ItemCollection : IEnumerable<ItemStack>
             nonNullItems++;
 
             var insertInd = Array.FindIndex(collection, st=>st == null);
-            collection[insertInd] = item;
+            collection[insertInd] = ItemStack.copy(item);
 
             NotifyListeners(new ItemColChangeEvent(ChangeType.ADD, new List<int>(){insertInd}));
             return (null, insertInd);

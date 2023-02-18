@@ -39,6 +39,10 @@ public class Furnace : Machine
         //inpBuf.Add(new ItemStack(ItemType.ORE_IRON, 100));
     }
     
+    public override void Set_Recipe(Recipe recipe)
+    {
+        doing = recipe;
+    }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
