@@ -13,10 +13,9 @@ public class Item_Data
     public Sprite sprite;
 
     public GameObject g;
+    public Action<PlayerInventory, ItemStack> useBehavior;
 
-    public Action useBehavior;
-
-    public Item_Data(int maxStack, Sprite sprite, GameObject g, UseBehavior useBehavior){
+    public Item_Data(ItemType type, int maxStack, Sprite sprite, GameObject g, UseBehavior useBehavior){
         this.maxStack = maxStack;
         this.sprite = sprite;
         this.g = g;
@@ -48,15 +47,28 @@ public class Item_Data
     }
 
 
-    public void Place(){
+    public void Place(PlayerInventory host, ItemStack stack){
 
     }
 
-    public void Drop(){
+    public void Drop(PlayerInventory host, ItemStack stack){
+        host.Remove(0, stack);
+
+        var n = GameObject.Instantiate(g, GameObject.FindWithTag("Player").transform.position + new Vector3(0,2,0), Quaternion.identity);
+        n.GetComponent<PickUp>().num = stack.quantity;
     }
 
-    public void Shoot(){
-
+    public void Shoot(PlayerInventory ignored, ItemStack stack){
+        switch (stack.of){
+            case ItemType.FAMAS:
+                GameObject.FindObjectOfType<Famas>().GetComponent<Famas>().GetInput();
+            break;
+            case ItemType.SHOTGUN:
+                GameObject.FindObjectOfType<Shotgun>().GetComponent<Shotgun>().GetInput();
+            break;
+            default:
+                throw new NotImplementedException("New gun type detected. see Item.cs for firing behavior.");
+        }
     }
 
 }

@@ -28,14 +28,7 @@ public class PlayerActions : MonoBehaviour
         
         // Action Handling based on Selected Item
         if (ItemInSlotExists(selectedItemSlot) && Input.GetKeyDown(KeyCode.Mouse0)) {
-            switch(selectedItem) {
-                case ItemType.FAMAS:  
-                    famas.GetInput();
-                    break;
-                case ItemType.SHOTGUN:
-                    shotgun.GetInput();
-                    break;
-            }
+            Globals.item_definitions[selectedItem].useBehavior(playerInv, playerInv[0][selectedItemSlot]);
         }
     }
 

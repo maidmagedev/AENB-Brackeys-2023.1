@@ -9,7 +9,7 @@ public class PickUp : MonoBehaviour
 
     [SerializeField] private ItemType item_type;
 
-    [SerializeField] private int num;
+    [SerializeField] public int num;
 
     private PlayerInventory _inventory;
     

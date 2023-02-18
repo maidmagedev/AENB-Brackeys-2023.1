@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Machine : Drag_and_Drop, IODevice
+public class Machine : LockedToGrid, IODevice
 {
     public Vector2Int footPrint;
 
@@ -30,7 +30,7 @@ public class Machine : Drag_and_Drop, IODevice
         if (child_start != null){
             child_start.Invoke();
         }
-        OnMouseUp();
+        position = transform.position;
 
         var pos = new Vector2Int((int)position.x, (int)position.y);
 
