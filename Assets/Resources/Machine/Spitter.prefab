@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1336820548604476198}
   - component: {fileID: 1336820548604476201}
   - component: {fileID: 1336820548604476200}
+  - component: {fileID: 102787568234422721}
   m_Layer: 0
   m_Name: Spitter
   m_TagString: Machine
@@ -100,4 +101,19 @@ MonoBehaviour:
   footPrint: {x: 3, y: 3}
   type: 6
   working: 0
-  iron_ore: {fileID: 0}
+--- !u!114 &102787568234422721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336820548604476203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa0352a4d56abd42ad2fc69deb72448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 1.9083309, y: 1.9541651, z: 4}
+  m_Center: {x: -0.029459953, y: -0.3919918, z: 0}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
