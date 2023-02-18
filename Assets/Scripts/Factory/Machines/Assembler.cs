@@ -9,6 +9,16 @@ public class Assembler : Machine
         outBuf = new(5);
         type = MachineType.ASSEMBLER;
         footPrint = new(3, 3);
+        child_start = AssemblerStart;
+    }
+
+    private void AssemblerStart()
+    {
+        doing = new Recipe(Globals.allRecipes["Miner_Machine"]);
+
+        // not sure about this...
+        GetComponentInChildren<AssemblerInventory>()[0] = inpBuf;
+        GetComponentInChildren<AssemblerInventory>()[3] = outBuf;
     }
     
     private void OnTriggerEnter2D(Collider2D col)
@@ -16,6 +26,7 @@ public class Assembler : Machine
         if (col.CompareTag("Player"))
         {
             GetComponentInChildren<Canvas>().enabled = true;
+            FindObjectOfType<Crosshair_Canvas>().SetCrosshairVisibility(false);
         }
     }
 
@@ -24,6 +35,7 @@ public class Assembler : Machine
         if (other.CompareTag("Player"))
         {
             GetComponentInChildren<Canvas>().enabled = false;
+            FindObjectOfType<Crosshair_Canvas>().SetCrosshairVisibility(true);
         }
     }
 }

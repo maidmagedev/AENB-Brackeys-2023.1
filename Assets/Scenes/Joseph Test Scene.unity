@@ -977,27 +977,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathScreen: {fileID: 0}
---- !u!114 &1136631742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3323103680470959655}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab13d986488cdbc4bb07a4d528ac86b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerInv: {fileID: 0}
-  invenUI: {fileID: 0}
-  hands:
-  - {fileID: 3016945788494297064}
-  - {fileID: 8225704294947842771}
-  famas: {fileID: 1136631748}
-  famasObj: {fileID: 2063929301053439384}
-  shotgun: {fileID: 1136631747}
-  shotgunObj: {fileID: 2082606767864656609}
 --- !u!114 &1136631743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1840,29 +1819,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7971119329357373448, guid: 83ca600963910354c804c1faefb6a5fa, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83ca600963910354c804c1faefb6a5fa, type: 3}
---- !u!1 &1552671465 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5544853663202065794, guid: 83ca600963910354c804c1faefb6a5fa, type: 3}
-  m_PrefabInstance: {fileID: 1552671464}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1552671466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1552671465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30b2eb511776e354188d410a1296685b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1613038544
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1992,21 +1950,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 407857445, guid: 05981d9809e4fac4095339751df39125, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1142298348, guid: 05981d9809e4fac4095339751df39125, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4663527942861532066, guid: 05981d9809e4fac4095339751df39125, type: 3}
       propertyPath: m_Name
       value: Furnace
-      objectReference: {fileID: 0}
-    - target: {fileID: 5875165169682124800, guid: 05981d9809e4fac4095339751df39125, type: 3}
-      propertyPath: type
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6060859113291962629, guid: 05981d9809e4fac4095339751df39125, type: 3}
       propertyPath: m_RootOrder
@@ -2052,8 +1998,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1447341818, guid: 05981d9809e4fac4095339751df39125, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05981d9809e4fac4095339751df39125, type: 3}
 --- !u!114 &1830761879
 MonoBehaviour:
@@ -2814,7 +2759,6 @@ GameObject:
   - component: {fileID: 5838881649237656517}
   - component: {fileID: 1136631749}
   - component: {fileID: 1136631741}
-  - component: {fileID: 1136631742}
   - component: {fileID: 1136631743}
   - component: {fileID: 1136631744}
   - component: {fileID: 1136631745}

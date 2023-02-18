@@ -4,6 +4,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Assembler_Preview_UI : MonoBehaviour
 {
@@ -30,26 +31,28 @@ public class Assembler_Preview_UI : MonoBehaviour
         {
             assemblerRecipes.Add(i, keys[i]);
         }
-        
+
         // set default recipe here
+        recipe = Item.toSprites(Recipe.getAllInvolvedItems(assemblerRecipes[0]));
         for (int i = 0; i < recipe.Count; i++)
         {
             if (i == recipe.Count - 1)
             {
                 slots[3].sprite = recipe.Last();
                 slots[4].sprite = recipe.Last();
+                slots[3].GetComponentInChildren<TextMeshProUGUI>().text =
+                    Recipe.getAllInvolvedItems(assemblerRecipes[0]).Last().quantity.ToString();
+                slots[4].GetComponentInChildren<TextMeshProUGUI>().text =
+                    Recipe.getAllInvolvedItems(assemblerRecipes[0]).Last().quantity.ToString();
             }
             else
             {
                 slots[i].sprite = recipe[i];
+                slots[i].GetComponentInChildren<TextMeshProUGUI>().text =
+                    Recipe.getAllInvolvedItems(assemblerRecipes[0])[i].quantity.ToString();
             }
         }
         
-        // 5 total slots
-        slots[0].sprite = Resources.Load<Sprite>(recipe.output);
-        slots[1].sprite = Resources.Load<Sprite>(recipe.input);
-        slots[2].sprite = Resources.Load<Sprite>(recipe.fuel);
-        slots[3].sprite = Resources.Load<Sprite>(recipe.output);
         reduceOpacity();
     }
 
@@ -62,29 +65,36 @@ public class Assembler_Preview_UI : MonoBehaviour
     public void CycleRecipe(int direction)
     {
         recipeIndex += direction;
-        if (recipeIndex >= furnaceRecipes.Count)
+        if (recipeIndex >= assemblerRecipes.Count)
         {
             recipeIndex = 0;
         }
         else if (recipeIndex < 0)
         {
-            recipeIndex = furnaceRecipes.Count - 1;
+            recipeIndex = assemblerRecipes.Count - 1;
         }
-        recipe = furnaceRecipes[recipeIndex];
-        slots[0].sprite = Resources.Load<Sprite>(recipe.output);
-        slots[1].sprite = Resources.Load<Sprite>(recipe.input);
-        slots[2].sprite = Resources.Load<Sprite>(recipe.fuel);
-        slots[3].sprite = Resources.Load<Sprite>(recipe.output);
-        reduceOpacity();
-        switch (recipeIndex)
+        recipe = Item.toSprites(Recipe.getAllInvolvedItems(assemblerRecipes[recipeIndex]));
+        for (int i = 0; i < recipe.Count; i++)
         {
-            case 0:
-                GetComponentInParent<Furnace>().Set_Recipe(new Recipe(Globals.allRecipes["ironOreToBar"]));
-                break;
-            case 1:
-                GetComponentInParent<Furnace>().Set_Recipe(new Recipe(Globals.allRecipes["goldOreToBar"]));
-                break;
+            if (i == recipe.Count - 1)
+            {
+                slots[3].sprite = recipe.Last();
+                slots[4].sprite = recipe.Last();
+                slots[3].GetComponentInChildren<TextMeshProUGUI>().text =
+                    Recipe.getAllInvolvedItems(assemblerRecipes[recipeIndex]).Last().quantity.ToString();
+                slots[4].GetComponentInChildren<TextMeshProUGUI>().text =
+                    Recipe.getAllInvolvedItems(assemblerRecipes[recipeIndex]).Last().quantity.ToString();
+            }
+            else
+            {
+                slots[i].sprite = recipe[i];
+                slots[i].GetComponentInChildren<TextMeshProUGUI>().text =
+                    Recipe.getAllInvolvedItems(assemblerRecipes[recipeIndex])[i].quantity.ToString();
+            }
         }
+        reduceOpacity();
+        GetComponentInParent<Assembler>().Set_Recipe(new Recipe(Globals.allRecipes[assemblerRecipes[recipeIndex]]));
+
     }
 
     private void reduceOpacity()

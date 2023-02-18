@@ -22,7 +22,7 @@ public class Furnace : Machine
     {
         // automatically searches for the items needed to complete the given recipe and consumes them and goes into the output buffer
         doing = new Recipe(Globals.allRecipes["ironOreToBar"]);
-
+        
         GetComponentInChildren<FurnaceInventory>()[0] = inpBuf;
         GetComponentInChildren<FurnaceInventory>()[1] = outBuf;
 
@@ -31,16 +31,12 @@ public class Furnace : Machine
     }
     
 
-    public void Set_Recipe(Recipe recipe)
-    {
-        doing = recipe;
-    }
-
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
         {
             GetComponentInChildren<Canvas>().enabled = true;
+            FindObjectOfType<Crosshair_Canvas>().SetCrosshairVisibility(false);
         }
     }
 
@@ -49,6 +45,7 @@ public class Furnace : Machine
         if (other.CompareTag("Player"))
         {
             GetComponentInChildren<Canvas>().enabled = false;
+            FindObjectOfType<Crosshair_Canvas>().SetCrosshairVisibility(true);
         }
     }
 }

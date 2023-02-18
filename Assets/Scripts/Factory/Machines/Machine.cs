@@ -61,6 +61,10 @@ public class Machine : Drag_and_Drop, IODevice
         Destroy(this.gameObject);
     }
 
+    public void Set_Recipe(Recipe recipe)
+    {
+        doing = recipe;
+    }
     public virtual void Update()
     {
         if (child_update != null){
