@@ -22,7 +22,13 @@ public static class Item
     };
     
     
+    public static List<Sprite> toSprites(List<ItemStack> items){
+        List<Sprite> sprites =new();
 
+        items.ForEach(item=>sprites.Add(Item.item_definitions[item.of].sprite));
+
+        return sprites;
+    }
 
 
 }
