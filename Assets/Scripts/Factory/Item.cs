@@ -17,12 +17,18 @@ public static class Item
         { ItemType.IRON,        (250, Resources.Load<Sprite>("Items/item_iron_bar"), Resources.Load<GameObject>("Items/Iron Bar")) },
         { ItemType.GOLD,        (250, Resources.Load<Sprite>("Items/item_gold_bar"), Resources.Load<GameObject>("Items/Gold Bar")) },
         { ItemType.FAMAS,       (1, Resources.Load<Sprite>("Items/item_famas"), Resources.Load<GameObject>("Items/Famas")) },
-        { ItemType.SHOTGUN,     (1, Resources.Load<Sprite>("Items/item_shotgun"), Resources.Load<GameObject>("Items/Shotgun")) }
-
+        { ItemType.SHOTGUN,     (1, Resources.Load<Sprite>("Items/item_shotgun"), Resources.Load<GameObject>("Items/Shotgun")) },
+        {ItemType.MINER, (5, Resources.Load<Sprite>("Machine/mining_unit"), Resources.Load<GameObject>("Machine/Miner"))}
     };
     
     
+    public static List<Sprite> toSprites(List<ItemStack> items){
+        List<Sprite> sprites =new();
 
+        items.ForEach(item=>sprites.Add(Item.item_definitions[item.of].sprite));
+
+        return sprites;
+    }
 
 
 }
@@ -36,5 +42,6 @@ public enum ItemType
     IRON,
     GOLD,
     FAMAS,
-    SHOTGUN
+    SHOTGUN,
+    MINER
 }

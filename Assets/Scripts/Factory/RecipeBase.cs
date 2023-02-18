@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RecipeBase {
 
-    private List<MachineType> acceptedCrafters = new();
+    public List<MachineType> acceptedCrafters = new();
 
     public List<ItemStack> inputs;
 
