@@ -74,11 +74,11 @@ public class PlayerActions : MonoBehaviour
 
     private ItemType GetItemTypeFromSlotNum(int slotNum) {
 
-        return playerInv.inventory[slotNum].of;
+        return playerInv.inventory[0][slotNum].of;
     }
 
     private bool ItemInSlotExists(int slotNum) {
-        return playerInv.inventory[selectedItemSlot] != null;
+        return playerInv.inventory[0][selectedItemSlot] != null;
     }
 
     public void UpdateSelectedItem() {

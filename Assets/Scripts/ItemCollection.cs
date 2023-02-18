@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ItemCollection
+public class ItemCollection : IEnumerable<ItemStack>
 {
     private ItemStack [] collection;
 
@@ -212,6 +212,11 @@ public class ItemCollection
 
     private void NotifyListeners(ItemColChangeEvent evt){
         listeners.ForEach(listen=>listen.Invoke(evt));
+    }
+
+    IEnumerator<ItemStack> IEnumerable<ItemStack>.GetEnumerator()
+    {
+        return ((IEnumerable<ItemStack>)collection).GetEnumerator();
     }
 }
 

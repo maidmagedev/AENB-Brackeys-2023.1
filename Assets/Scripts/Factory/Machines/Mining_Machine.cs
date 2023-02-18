@@ -15,28 +15,16 @@ public class Mining_Machine : Machine
         type = MachineType.MINER;
         footPrint = new(2, 2);
         child_start = Mining_Start;
-        child_update = Mining_Update;
         //GetComponent<Miner_Inventory>().inventory = outBuf; 
     }
 
     private void Mining_Start()
     {
-        GetComponent<Miner_Inventory>().inventory = outBuf;
+        //GetComponent<Miner_Inventory>().inventory[0] = outBuf;
         // change this to decide what ore to mine
         doing = new Recipe(Globals.allRecipes["ironOreMiner"]);
     }
 
-    private void Mining_Update()
-    {
-
-        ItemStack inventory_items = GetComponent<Miner_Inventory>().inventory[0];
-        if (inventory_items != null)
-        {
-            //print("num items in miner inventory: " + inventory_items.quantity);
-            // when num items reaches 10, send one item to item_spitter
-        }
-        
-    }
     public override ItemCollection getInputBuffer()
     {
         return inpBuf;

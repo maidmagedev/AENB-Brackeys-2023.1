@@ -23,7 +23,11 @@ public class Furnace : Machine
         // automatically searches for the items needed to complete the given recipe and consumes them and goes into the output buffer
         doing = new Recipe(Globals.allRecipes["ironOreToBar"]);
 
-        GetComponentInChildren<FurnaceInventory>().inventory = inpBuf;
+        GetComponentInChildren<FurnaceInventory>()[0] = inpBuf;
+        GetComponentInChildren<FurnaceInventory>()[1] = outBuf;
+
+
+        //inpBuf.Add(new ItemStack(ItemType.ORE_IRON, 100));
     }
     
 

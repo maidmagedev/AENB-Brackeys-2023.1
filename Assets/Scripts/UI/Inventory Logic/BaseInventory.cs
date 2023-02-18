@@ -8,8 +8,8 @@ using TMPro;
 
 public class BaseInventory : MonoBehaviour
 {
-    public ItemCollection inventory;
-    public Dictionary<int, InventoryElement> inventory_grid;
+    public List<ItemCollection> inventory = new();
+    public Dictionary<(int invInd, int indInInv), InventoryElement> inventory_grid;
 
     // Start is called before the first frame update
     void Start()
@@ -17,12 +17,12 @@ public class BaseInventory : MonoBehaviour
         // instantiating the empty inventory grid
         if (inventory_grid != null)
         {
-            foreach (int itemIndex in inventory_grid.Keys)
+            foreach (var itemIndex in inventory_grid.Keys)
             {
                 InventoryElement item = inventory_grid[itemIndex];
                 GameObject prefab = Resources.Load<GameObject>(item.prefab_path);
                 GameObject clone = Instantiate(prefab, this.transform, false);
-                print(clone.name);
+//                print(clone.name);
                 clone.transform.localPosition = item.initialPosition;
                 clone.transform.localScale = new Vector3(0.125f, .125f, 0);
 
@@ -31,79 +31,91 @@ public class BaseInventory : MonoBehaviour
     
         
         }
+        
+    }
 
-        inventory.AddListener(handleInvUpdate);
+    public ItemCollection this[int i]{
+        get { return inventory[i];}
+        set {
+            //print("here");
+            inventory[i] = value;
+            inventory[i].AddListener(evt=>handleInvUpdate(i, evt));
+        }
     }
 
 
-    private void handleInvUpdate(ItemColChangeEvent evt){
-        print(gameObject.name + " " + evt.changeType + " " + evt.affectedindices[0]);
+    public void setInventoryListener(int invInd){
+        inventory[invInd].AddListener(evt=>handleInvUpdate(invInd, evt));
+    }
+
+    private void handleInvUpdate(int invIndex, ItemColChangeEvent evt){
+        //print(gameObject.name + " " + evt.changeType + " " + invIndex + " " + evt.affectedindices[0]);
         switch(evt.changeType){
             case ChangeType.REMOVE:
-                evt.affectedindices.ForEach(i=>updateIcon(i));
+                evt.affectedindices.ForEach(i=>updateIcon((invIndex,i)));
             break;
             case ChangeType.ADD:
-                evt.affectedindices.ForEach(i=>updateIcon(i));
+                evt.affectedindices.ForEach(i=>updateIcon((invIndex,i)));
             break;
             case ChangeType.SWAP:
-                evt.affectedindices.ForEach(i=>updateIcon(i));
+                evt.affectedindices.ForEach(i=>updateIcon((invIndex,i)));
             break;
             default:
                 throw new System.NotImplementedException("Update baseInventory with new ChangeTypes!");
         }
     }
 
-    public void swapItem(int from, int to){
-        var temp = inventory[from];
+    public void swapItem((int, int) from, (int, int) to){
+        var temp = inventory[from.Item1][from.Item2];
 
-        inventory[from] = inventory[to];
+        inventory[from.Item1][from.Item2] = inventory[to.Item1][to.Item2];
 
-        inventory[to] = temp;
+        inventory[to.Item1][to.Item2] = temp;
     }
     
-    public void Add(ItemStack input, bool needsNew = false)
+    public void Add(int invInd, ItemStack input, bool needsNew = false)
     {
-        var result = inventory.Add(input, needsNew);
+        var result = inventory[invInd].Add(input, needsNew);
     }
     
 
-    public void Remove(ItemStack o){
-        inventory.Remove(o);
+    public void Remove(int invInd, ItemStack o){
+        inventory[invInd].Remove(o);
     }
 
     int counter = 0;
 
     // I made this return the GameObject so I could use it in updateIcon
-    private GameObject instantiate_icon(int index)
+    private GameObject instantiate_icon((int,int) indexData)
     {
         Draggable_Inventory_Item prefab = Resources.Load<Draggable_Inventory_Item>("InventoryItem");
         Draggable_Inventory_Item clone = Instantiate(prefab, this.transform, false);
-        clone.Init(this, index);
-        clone.transform.localPosition = inventory_grid[index].initialPosition;
+        clone.Init(this, indexData);
+        clone.transform.localPosition = inventory_grid[indexData].initialPosition;
         clone.transform.localScale = new Vector3(0.125f, 0.125f, 0);
-        clone.GetComponent<Image>().sprite = Item.item_definitions[inventory[index].of].sprite;
+        clone.GetComponent<Image>().sprite = Item.item_definitions[inventory[indexData.Item1][indexData.Item2].of].sprite;
 
         clone.gameObject.name = counter.ToString();
         counter++;
-        inventory_grid[index].data.item_obj(clone);
+        inventory_grid[indexData].data.item_obj(clone);
         return clone.gameObject;
     }
 
-    private void updateIcon(int index)
+    private void updateIcon((int, int) indexData)
     {
         GameObject destroyedObj = null;
         // if there is an item already here, destroy icon on the grid
         if (inventory_grid != null){
-            if (inventory_grid[index].data.item_object != null){
-                print("destroying " + inventory_grid[index].data.item_object.gameObject.name);
-                destroyedObj = inventory_grid[index].data.item_object.gameObject;
-                Destroy(inventory_grid[index].data.item_object.gameObject);
+            if (inventory_grid[indexData].data.item_object != null){
+                //print("destroying " + inventory_grid[indexData].data.item_object.gameObject.name);
+                destroyedObj = inventory_grid[indexData].data.item_object.gameObject;
+                Destroy(inventory_grid[indexData].data.item_object.gameObject);
             }
 
         
             // if the icon has been destroyed, instantiate a new icon
-            if (inventory[index] != null){
-                GameObject icon_object = instantiate_icon(index);
+            if (inventory[indexData.Item1][indexData.Item2] != null){
+                GameObject icon_object = instantiate_icon(indexData);
                 // incrementing stack count UI
                 TextMeshProUGUI stack_count = icon_object.GetComponentInChildren<TextMeshProUGUI>();
                 int count = 1;
@@ -132,7 +144,7 @@ public class InventorySlotData {
     public Draggable_Inventory_Item item_object;
     public GameObject slot_object;
 
-    public int indexInGrid;
+    public (int, int) indexInGrid;
 
     private InventorySlotData(){
     }
@@ -151,7 +163,7 @@ public class InventorySlotData {
         return this;
     }
 
-    public InventorySlotData index(int ind){
+    public InventorySlotData index((int, int) ind){
         this.indexInGrid = ind;
         return this;
     }

@@ -8,18 +8,18 @@ public class Draggable_Inventory_Item : DraggableUI, IEndDragHandler
     
 
     private BaseInventory InventoryObj;
-    private int currentIndex;
+    private (int invInd, int indInInv) currentIndexData;
 
-    public Draggable_Inventory_Item Init(BaseInventory inv, int index){
+    public Draggable_Inventory_Item Init(BaseInventory inv, (int, int) indexData){
         InventoryObj = inv;
-        currentIndex = index;
+        currentIndexData = indexData;
 
         return this;
     }
 
     public void reset_slot_position()
     {   
-        transform.localPosition = InventoryObj.inventory_grid[currentIndex].initialPosition;
+        transform.localPosition = InventoryObj.inventory_grid[currentIndexData].initialPosition;
     }
 
     public void OnEndDrag(PointerEventData evt){
@@ -41,13 +41,13 @@ public class Draggable_Inventory_Item : DraggableUI, IEndDragHandler
 
             if (targetInventory == InventoryObj)
             {
-                targetInventory.swapItem(currentIndex, invSlot.data.indexInGrid);
+                targetInventory.swapItem(currentIndexData, invSlot.data.indexInGrid);
             }
             else
             {
-                ItemStack movedItem = InventoryObj.inventory[currentIndex];
-                InventoryObj.Remove(movedItem);
-                targetInventory.inventory[invSlot.data.indexInGrid] = movedItem;
+                ItemStack movedItem = InventoryObj.inventory[currentIndexData.invInd][currentIndexData.indInInv];
+                InventoryObj.inventory[currentIndexData.invInd].Remove(movedItem);
+                targetInventory.inventory[invSlot.data.indexInGrid.Item1][invSlot.data.indexInGrid.Item2] = movedItem;
             }
             
             
