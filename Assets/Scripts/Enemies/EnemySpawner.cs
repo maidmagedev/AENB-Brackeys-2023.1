@@ -8,6 +8,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private List<GameObject> Enemies_1;
     [SerializeField] private List<GameObject> Enemies_2;
     
+    
     public IEnumerator spawnEnemies()
     {
         // spawn a random set of enemies from the list of enemy types
