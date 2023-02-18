@@ -18,6 +18,8 @@ public class Assembler : Machine
 
         // not sure about this...
         GetComponentInChildren<AssemblerInventory>()[0] = inpBuf;
+        GetComponentInChildren<AssemblerInventory>()[1] = inpBuf;
+        GetComponentInChildren<AssemblerInventory>()[2] = inpBuf;
         GetComponentInChildren<AssemblerInventory>()[3] = outBuf;
     }
     
