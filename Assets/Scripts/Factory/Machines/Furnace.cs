@@ -4,11 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Furnace : Machine
 {
-
-    [SerializeField] private GameObject FurnaceUI;
-    [SerializeField] private BaseInventory furnace_inventory;
-
-
     
     public Furnace() {
         inpBuf = new(2);
