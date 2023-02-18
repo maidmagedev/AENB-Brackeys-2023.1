@@ -16,7 +16,5 @@ public class AssemblerInventory : BaseInventory
         
         inventory.Add(new ItemCollection(3));
         inventory.Add(new ItemCollection(1));
-        setInventoryListener(0);
-        setInventoryListener(1);
     }
 }
