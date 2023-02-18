@@ -298,6 +298,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8141402e610d43c4ca09d73c95972669, type: 3}
+--- !u!4 &360006070 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7566316119384708402, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+  m_PrefabInstance: {fileID: 5103151848380686669}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &554647943
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,6 +747,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8141402e610d43c4ca09d73c95972669, type: 3}
+--- !u!95 &1206275073 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 998789367, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+  m_PrefabInstance: {fileID: 5103151848380686669}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1270668777 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 742947878262746068, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
@@ -953,6 +963,11 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!95 &1495299986 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1118078247138510645, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+  m_PrefabInstance: {fileID: 5103151848380686669}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1551418606
 GameObject:
   m_ObjectHideFlags: 0
@@ -2204,6 +2219,22 @@ PrefabInstance:
       propertyPath: mainCam
       value: 
       objectReference: {fileID: 1285638163}
+    - target: {fileID: 513778823, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1206275073}
+    - target: {fileID: 513778823, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+      propertyPath: bulletOrigins.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 513778823, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+      propertyPath: bulletOrigins.Array.data[0]
+      value: 
+      objectReference: {fileID: 360006070}
+    - target: {fileID: 1369866931, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1495299986}
     - target: {fileID: 5103151849301299784, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
       propertyPath: m_Name
       value: Required Components
