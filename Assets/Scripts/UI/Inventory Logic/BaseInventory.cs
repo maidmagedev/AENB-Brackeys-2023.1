@@ -118,11 +118,7 @@ public class BaseInventory : MonoBehaviour
                 GameObject icon_object = instantiate_icon(indexData);
                 // incrementing stack count UI
                 TextMeshProUGUI stack_count = icon_object.GetComponentInChildren<TextMeshProUGUI>();
-                int count = 1;
-                if (destroyedObj != null)
-                {
-                    count += Int32.Parse(destroyedObj.GetComponentInChildren<TextMeshProUGUI>().text);
-                }
+                int count = inventory[indexData.Item1][indexData.Item2].quantity;
                 stack_count.text = count.ToString();
             }
         

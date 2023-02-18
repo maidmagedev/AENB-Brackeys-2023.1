@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Item_Spitter : Machine
 {
-
-    public GameObject iron_ore;
+    
     public Item_Spitter()
     {
         inpBuf = new(1);
@@ -16,8 +15,10 @@ public class Item_Spitter : Machine
         child_start = Spitter_Start;
     }
 
-    public void Spitter_Start(){
-        iron_ore = Resources.Load<GameObject>("Items/Iron Ore");
+    public void Spitter_Start()
+    {
+        
+        
     }
 
     public override void Update()
@@ -25,11 +26,8 @@ public class Item_Spitter : Machine
         //print("spitCount: " + inpBuf[0]);
         if(inpBuf.Count > 0){
             ItemStack contents = inpBuf[0];
-
+            Instantiate(Item.item_definitions[contents.of].g, new Vector3Int((int)this.position.x, (int)this.position.y + 2, 0),Quaternion.identity);
             inpBuf.Remove(contents);
-
-            Instantiate(iron_ore, new Vector3Int((int)this.position.x, (int)this.position.y + 2, 0),Quaternion.identity);
-
             print("spitting");
         }
     }
