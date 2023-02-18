@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerDeath : MonoBehaviour, IKillable
 {
@@ -15,6 +17,8 @@ public class PlayerDeath : MonoBehaviour, IKillable
     [SerializeField] GameObject deathScreen; // Should be located at "UI ELEMENTS..."/"PRIMARY UI CANVAS"/"Death Screen Holder"
     Image deathOverlay;
     Color originalDeathColor;
+
+    private float deathTimer = 6f;
 
 
     // Start is called before the first frame update
@@ -33,12 +37,31 @@ public class PlayerDeath : MonoBehaviour, IKillable
         if (Input.GetKeyDown(KeyCode.O)) {
             Die();
         }
+
+        if (PlayerDead)
+        {
+            if (deathTimer > 1)
+            {
+                deathTimer -= Time.deltaTime;
+                deathScreen.GetComponentInChildren<TextMeshProUGUI>().text = ("You are dead\n" + (int)deathTimer);
+            }
+            else
+            {
+                PlayerDead = false;
+                deathTimer = 6;
+                deathScreen.SetActive(false);
+                Respawn();
+                GetComponent<TopDownMovementComponent>().enabled = true;
+                GetComponent<DamageableComponent>().SetMaxHealth(100);
+                GetComponent<DamageableComponent>().SetDeathBool(false);
+            }
+        }
     }
 
     public void Die()
     {
         PlayerDead = true;
-
+        GetComponent<TopDownMovementComponent>().enabled = false;
         // Death Screen Logic
         deathScreen.SetActive(true);
         deathOverlay = deathScreen.transform.GetChild(0).GetComponent<Image>(); // other children will have image components too. Make sure the panel is child 0.
@@ -67,5 +90,16 @@ public class PlayerDeath : MonoBehaviour, IKillable
             t = t + Time.deltaTime / 2f;
             yield return new WaitForEndOfFrame();
         }
+    }
+    
+    // On death: Display countdown timer for 5 seconds and respawn player at 0, 0, 0
+    private void Respawn()
+    {
+        transform.localPosition = new Vector3(0f, 0f, 0f);
+    }
+
+    public bool getPlayerDeath()
+    {
+        return PlayerDead;
     }
 }

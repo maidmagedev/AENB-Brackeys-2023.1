@@ -13,13 +13,17 @@ public class DamageableComponent : MonoBehaviour
     private int maxHealth = 100;
     private int currentHealth = 100;
     IKillable parent;
-    bool dead = false;
+    private bool dead = false;
 
     private void Start()
     {
         parent = GetComponentInParent<IKillable>();
     }
 
+    public void SetDeathBool(bool dead)
+    {
+        this.dead = dead;
+    }
     public void SetMaxHealth(int maxHealth)
     {
         this.currentHealth = maxHealth;
