@@ -26,7 +26,7 @@ public class Item_Spitter : Machine
         //print("spitCount: " + inpBuf[0]);
         if(inpBuf.Count > 0){
             ItemStack contents = inpBuf[0];
-            Instantiate(Item.item_definitions[contents.of].g, new Vector3Int((int)this.position.x, (int)this.position.y + 2, 0),Quaternion.identity);
+            Instantiate(Globals.item_definitions[contents.of].g, new Vector3Int((int)this.position.x, (int)this.position.y + 2, 0),Quaternion.identity);
             inpBuf.Remove(contents);
             //print("spitting");
         }

@@ -12,4 +12,18 @@ public static class Globals
         {"Miner_Machine", new RecipeBase(new ItemStack[]{new (ItemType.IRON, 3), new(ItemType.COAL, 3), new (ItemType.GOLD, 1)}, new ItemStack[] {new(ItemType.MINER, 1)}, new MachineType[]{MachineType.ASSEMBLER, MachineType.INVENTORY},5)},
         {"Furnace_Machine", new RecipeBase(new ItemStack[]{ new(ItemType.STONE, 3) }, new ItemStack[] {new(ItemType.FURNACE, 1)}, new MachineType[]{MachineType.ASSEMBLER, MachineType.INVENTORY},5)}
     };
+
+    public static Dictionary<ItemType, Item_Data> item_definitions = new()
+    {
+        { ItemType.STONE,       new Item_Data(250, Resources.Load<Sprite>("Items/item_stone"), Resources.Load<GameObject>("Items/Stone"), UseBehavior.DROP)},
+        { ItemType.ORE_IRON,    new Item_Data(250, Resources.Load<Sprite>("Items/item_iron_ore"), Resources.Load<GameObject>("Items/Iron Ore"), UseBehavior.DROP) },
+        { ItemType.COAL,        new Item_Data(250, Resources.Load<Sprite>("Items/item_coal"), Resources.Load<GameObject>("Items/Coal"), UseBehavior.DROP)},
+        { ItemType.ORE_GOLD,    new Item_Data(250, Resources.Load<Sprite>("Items/item_gold_ore"), Resources.Load<GameObject>("Items/Gold Ore"), UseBehavior.DROP) },
+        { ItemType.IRON,        new Item_Data(250, Resources.Load<Sprite>("Items/item_iron_bar"), Resources.Load<GameObject>("Items/Iron Bar"), UseBehavior.DROP) },
+        { ItemType.GOLD,        new Item_Data(250, Resources.Load<Sprite>("Items/item_gold_bar"), Resources.Load<GameObject>("Items/Gold Bar"), UseBehavior.DROP) },
+        { ItemType.FAMAS,       new Item_Data(1, Resources.Load<Sprite>("Items/item_famas"), Resources.Load<GameObject>("Items/Famas"), UseBehavior.SHOOT) },
+        { ItemType.SHOTGUN,     new Item_Data(1, Resources.Load<Sprite>("Items/item_shotgun"), Resources.Load<GameObject>("Items/Shotgun"), UseBehavior.SHOOT) },
+        {ItemType.MINER,        new Item_Data(5, Resources.Load<Sprite>("Machine/mining_unit"), Resources.Load<GameObject>("Machine/Miner"), UseBehavior.PLACE)},
+        {ItemType.FURNACE,      new Item_Data(5, Resources.Load<Sprite>("Machine/furnace"), Resources.Load<GameObject>("Machine/Furnace"), UseBehavior.PLACE)},
+    };
 }

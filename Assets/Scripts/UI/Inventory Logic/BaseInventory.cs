@@ -93,7 +93,7 @@ public class BaseInventory : MonoBehaviour
         clone.Init(this, indexData);
         clone.transform.localPosition = inventory_grid[indexData].initialPosition;
         clone.transform.localScale = new Vector3(0.125f, 0.125f, 0);
-        clone.GetComponent<Image>().sprite = Item.item_definitions[inventory[indexData.Item1][indexData.Item2].of].sprite;
+        clone.GetComponent<Image>().sprite = Globals.item_definitions[inventory[indexData.Item1][indexData.Item2].of].sprite;
 
         clone.gameObject.name = counter.ToString();
         counter++;

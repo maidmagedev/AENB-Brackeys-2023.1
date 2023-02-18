@@ -18,7 +18,7 @@ public class Belt : Machine, IODevice
 
          IOBuf.AddListener(evt=>{
             if (evt.changeType == ChangeType.ADD){
-                itemSlots[evt.affectedindices[0]].sprite = Item.item_definitions[IOBuf[evt.affectedindices[0]].of].sprite;
+                itemSlots[evt.affectedindices[0]].sprite = Globals.item_definitions[IOBuf[evt.affectedindices[0]].of].sprite;
             }
             else if (evt.changeType == ChangeType.REMOVE){
                 foreach(int ind in evt.affectedindices){

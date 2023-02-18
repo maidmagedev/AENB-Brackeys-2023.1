@@ -14,7 +14,7 @@ public class ItemStack
     public ItemStack(ItemType of, int quantity) {
         this.of = of;
         this.quantity = quantity;
-        max = Item.item_definitions[of].maxStack;
+        max = Globals.item_definitions[of].maxStack;
     }
 
 

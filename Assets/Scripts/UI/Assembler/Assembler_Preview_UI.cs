@@ -32,7 +32,7 @@ public class Assembler_Preview_UI : MonoBehaviour
         }
 
         // set default recipe here
-        recipe = Item.toSprites(Recipe.getAllInvolvedItems(assemblerRecipes[0]));
+        recipe = Item_Data.toSprites(Recipe.getAllInvolvedItems(assemblerRecipes[0]));
         for (int i = 0; i < recipe.Count; i++)
         {
             if (i == recipe.Count - 1)
@@ -73,7 +73,7 @@ public class Assembler_Preview_UI : MonoBehaviour
             recipeIndex = assemblerRecipes.Count - 1;
         }
 
-        recipe = Item.toSprites(Recipe.getAllInvolvedItems(assemblerRecipes[recipeIndex]));
+        recipe = Item_Data.toSprites(Recipe.getAllInvolvedItems(assemblerRecipes[recipeIndex]));
 
         slots.ForEach(image=>{image.sprite = defaultSprite; image.GetComponentInChildren<TextMeshProUGUI>().enabled = false;});
         

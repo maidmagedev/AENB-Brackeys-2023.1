@@ -33,7 +33,7 @@ public class Grabber : Machine, IODevice
 
         IOBuf.AddListener((evt=>{
             if (evt.changeType == ChangeType.ADD){
-                item.sprite = Item.item_definitions[IOBuf[0].of].sprite;
+                item.sprite = Globals.item_definitions[IOBuf[0].of].sprite;
             }
             else if (evt.changeType == ChangeType.REMOVE){
                 item.sprite = null;
