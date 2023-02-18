@@ -5504,13 +5504,17 @@ MonoBehaviour:
   fireRate: 1
   burstCount: 3
   burstGap: 0.08
+  clip: 2
+  reloading: 0
   audioSource: {fileID: 0}
   fireSound: {fileID: 0}
   volume: 10
   projectile_prefab: {fileID: 2478853019749418462, guid: 300015f481af30049b4c8f77e7390498, type: 3}
-  bulletOrigin: {fileID: 7566316119384708402}
-  famasObj: {fileID: 8942322904909133989}
-  famasAnim: {fileID: 998789367}
+  bulletOrigins:
+  - {fileID: 7566316119384708402}
+  animator: {fileID: 998789367}
+  firingLayer: 0
+  priority: 00000000
 --- !u!114 &1369866931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5525,7 +5529,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireCooldown: 0
   fireRate: 1
+  burstCount: 3
+  burstGap: 0.08
   clip: 2
+  reloading: 0
   audioSource: {fileID: 0}
   fireSound: {fileID: 0}
   volume: 10
@@ -5536,7 +5543,9 @@ MonoBehaviour:
   - {fileID: 7765504623034381248}
   - {fileID: 5901291332658712544}
   - {fileID: 6184542751057255252}
-  shotgunAnim: {fileID: 1118078247138510645}
+  animator: {fileID: 1118078247138510645}
+  firingLayer: 0
+  priority: 00000000
 --- !u!114 &742947878262746068
 MonoBehaviour:
   m_ObjectHideFlags: 0

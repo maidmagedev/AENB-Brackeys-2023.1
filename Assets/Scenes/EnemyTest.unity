@@ -203,6 +203,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4106343038760553346, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4106343038760553346, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4106343038760553346, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5103151849301299784, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
       propertyPath: m_Name
       value: Required Components
@@ -255,6 +267,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7894015969769167962, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+      propertyPath: lerpDur
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7894015969769167962, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+      propertyPath: playerDamageComp
+      value: 
+      objectReference: {fileID: 1385991220}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
 --- !u!1001 &324985716
@@ -15670,17 +15690,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 586955d9612738f4fa37dde80f5b1fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveTime: 10
-  Enemies_1:
-  - {fileID: 3641972800047052817, guid: cd93169c400d1a04f92acee377704659, type: 3}
-  - {fileID: 3641972800047052817, guid: cd93169c400d1a04f92acee377704659, type: 3}
+  EnemyTypes:
   - {fileID: 3641972800047052817, guid: cd93169c400d1a04f92acee377704659, type: 3}
   - {fileID: 5910624753749706619, guid: f00888619990ce843878f0bfaa4159f1, type: 3}
-  Enemies_2:
+  EnemyTypeLimits: 550000000f000000
+  waveTime: 10
+  numEnemiesPerWave: 100
+  Enemies_Planet1:
   - {fileID: 3641972800047052817, guid: cd93169c400d1a04f92acee377704659, type: 3}
-  - {fileID: 3641972800047052817, guid: cd93169c400d1a04f92acee377704659, type: 3}
-  - {fileID: 3641972800047052817, guid: cd93169c400d1a04f92acee377704659, type: 3}
-  - {fileID: 3641972800047052817, guid: cd93169c400d1a04f92acee377704659, type: 3}
+  - {fileID: 5910624753749706619, guid: f00888619990ce843878f0bfaa4159f1, type: 3}
+  Enemies_Planet2: []
 --- !u!4 &1254509267
 Transform:
   m_ObjectHideFlags: 0
@@ -15696,6 +15715,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1385991220 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 742947878262746068, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+  m_PrefabInstance: {fileID: 209224395}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dba3c105fad4594fbf061bfd1047fdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1596315301
 PrefabInstance:
   m_ObjectHideFlags: 0
