@@ -392,7 +392,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &177529793
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3210,7 +3210,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: 0}
+  m_AnchoredPosition: {x: -260, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3881653334365681721
@@ -4486,7 +4486,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5778934624727043984
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5951,9 +5951,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthbar: {fileID: 4106343038760553346}
   player: {fileID: 3988546489362990530}
-  playerDamageComp: {fileID: 0}
-  lerpDur: 0
-  lastStoredHealthPercent: 0
 --- !u!224 &2135087392217124129 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5419280741266296004, guid: ff36f6fe46b74524a911fdcda32467ed, type: 3}

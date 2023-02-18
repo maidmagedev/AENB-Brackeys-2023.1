@@ -347,6 +347,7 @@ GameObject:
   - component: {fileID: 8737575078340236286}
   - component: {fileID: 294236403954654009}
   - component: {fileID: 4057445023784226132}
+  - component: {fileID: 523997954}
   m_Layer: 0
   m_Name: Belt
   m_TagString: Machine
@@ -395,6 +396,7 @@ MonoBehaviour:
   - {fileID: 8408007590671652701}
   - {fileID: 181541773980741153}
   - {fileID: 4640703862323639896}
+  c: 0
 --- !u!212 &4057445023784226132
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -436,7 +438,7 @@ SpriteRenderer:
   m_SortingLayerID: -1956452239
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dfc7d9dbb68f43445aac55d444e51f6c, type: 3}
+  m_Sprite: {fileID: 853029053, guid: 060bd6bb9404638428c17615e9672aff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -447,3 +449,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &523997954
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5959408819145515361}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c1b4b8fb3c279504a8cc5a4eb293dea9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

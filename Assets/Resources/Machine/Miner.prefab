@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4469780787324825500}
   - component: {fileID: 219513546384845528}
   - component: {fileID: 1203397826}
+  - component: {fileID: 2733151040833705230}
   m_Layer: 0
   m_Name: Miner
   m_TagString: Machine
@@ -127,7 +128,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fa0352a4d56abd42ad2fc69deb72448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Size: {x: 2.7567039, y: 1.9846416, z: 4}
-  m_Center: {x: 0.6216481, y: 0.49232078, z: 0}
+  m_Size: {x: 1.3867731, y: 1.6344273, z: 4}
+  m_Center: {x: 0.5396209, y: 0.5110823, z: 0}
   m_Area: 1
   m_AffectedAgents: ffffffff
+--- !u!61 &2733151040833705230
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8095758123771347782}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.5, y: 0.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.25, y: 0.25}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2}
+  m_EdgeRadius: 0
