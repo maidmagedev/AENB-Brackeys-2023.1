@@ -23,7 +23,11 @@ public class EnemySpawner : MonoBehaviour
     
     private void Start()
     {
-        reset_EnemyTypeCounts();
+        EnemyTypeCounts = new();
+        foreach (GameObject g in EnemyTypes)
+        {
+            EnemyTypeCounts.Add(g.name, 0);
+        }
     }
 
     public IEnumerator spawnEnemies()
@@ -58,7 +62,7 @@ public class EnemySpawner : MonoBehaviour
     {
         foreach (GameObject g in EnemyTypes)
         {
-            EnemyTypeCounts.Add(g.name, 0);
+            EnemyTypeCounts[g.name] = 0;
         }
     }
 }
