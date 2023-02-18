@@ -584,7 +584,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1142298341}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3b915837680b9f4fabeb5e0daf68335, type: 3}
   m_Name: 
@@ -931,6 +931,7 @@ GameObject:
   - component: {fileID: 3864095434388558565}
   - component: {fileID: 5875165169682124800}
   - component: {fileID: 1718571500}
+  - component: {fileID: 1447341818}
   m_Layer: 0
   m_Name: Furnace
   m_TagString: Machine
@@ -1049,3 +1050,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.057459, y: 3.5746312}
   m_EdgeRadius: 0
+--- !u!114 &1447341818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4663527942861532066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3b915837680b9f4fabeb5e0daf68335, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
