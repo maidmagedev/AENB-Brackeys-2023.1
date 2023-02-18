@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4016985497068556770}
   - component: {fileID: 4016985497068556771}
+  - component: {fileID: 1101794561}
   m_Layer: 0
   m_Name: Animator
   m_TagString: Untagged
@@ -53,6 +54,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1101794561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4016985497068556769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212c0d3227184844c93e05f21ce945c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nmAgent: {fileID: 5910624753749706617}
 --- !u!1 &4016985497077861368
 GameObject:
   m_ObjectHideFlags: 0
@@ -63,6 +77,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4016985497077861369}
   - component: {fileID: 4016985497077861370}
+  - component: {fileID: 936859470}
   m_Layer: 0
   m_Name: DamageCollider
   m_TagString: Untagged
@@ -111,6 +126,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &936859470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4016985497077861368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35745b46bfcc1af4fbe33e67c2acb2bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCol: {fileID: 4016985497077861370}
+  damagePerHit: 10
 --- !u!1 &5910624752918903763
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +253,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 1.9834027}
+  m_Size: {x: 3, y: 1.5}
   m_EdgeRadius: 0
 --- !u!114 &5910624752918903757
 MonoBehaviour:
@@ -252,10 +281,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cbe73034d7690c418de4b86e0135009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePerHit: 15
+  damagePerHit: 5
+  maxHealth: 400
+  attackCooldown: 5
   navMeshobj: {fileID: 5910624753749706617}
   damageLight: {fileID: 5910624754091677638}
-  maxHealth: 400
   spriteScale: 1
 --- !u!1 &5910624753749706619
 GameObject:
@@ -301,7 +331,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.2
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -351,8 +381,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5910624754091677638}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.005572144, w: 0.9999845}
+  m_LocalPosition: {x: 0.43, y: 0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -427,7 +457,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 1
+  m_PointLightOuterRadius: 1.3687348
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1

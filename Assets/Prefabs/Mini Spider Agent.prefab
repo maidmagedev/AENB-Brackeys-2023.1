@@ -329,7 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damagePerHit: 2
   navMeshobj: {fileID: 3641972800047052819}
-  damageLight: {fileID: 0}
+  damageLight: {fileID: 3641972799701149868}
   maxHealth: 30
   spriteScale: 1
   anim: {fileID: 3641972800875201726}
