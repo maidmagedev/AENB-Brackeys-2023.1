@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(Miner_Inventory))]
-public class Mining_Machine : Machine
+public class Mining_Machine : Machine, IKillable
 {
     public GameObject iron_ore;
     public Mining_Machine()
@@ -33,5 +33,15 @@ public class Mining_Machine : Machine
     public override ItemCollection getOutputBuffer()
     {
         return outBuf;
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
+
+    public void NotifyDamage()
+    {
+        throw new System.NotImplementedException();
     }
 }

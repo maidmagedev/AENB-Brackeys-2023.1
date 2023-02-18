@@ -34,7 +34,7 @@ public class Basic_Projectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // if touching something damageable other than the player, deal damage
-        if ((collision.gameObject.TryGetComponent<DamageableComponent>(out DamageableComponent target)) && (!collision.CompareTag("Player")) )
+        if ((collision.gameObject.TryGetComponent<DamageableComponent>(out DamageableComponent target)) && (!collision.CompareTag("Player") && (!collision.CompareTag("Machine"))) )
         {
             target.TakeDamage(damagePerHit);
         }

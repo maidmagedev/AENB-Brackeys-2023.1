@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Assembler : Machine
+public class Assembler : Machine, IKillable
 {
 
     private AssemblerInventory myInventory;
@@ -54,5 +54,15 @@ public class Assembler : Machine
             GetComponentInChildren<Canvas>().enabled = false;
             FindObjectOfType<Crosshair_Canvas>().SetCrosshairVisibility(true);
         }
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
+
+    public void NotifyDamage()
+    {
+        throw new System.NotImplementedException();
     }
 }

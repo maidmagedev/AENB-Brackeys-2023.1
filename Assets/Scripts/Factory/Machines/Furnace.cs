@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class Furnace : Machine
+public class Furnace : Machine, IKillable
 {
 
     private FurnaceInventory myInventory;
@@ -60,5 +60,15 @@ public class Furnace : Machine
             GetComponentInChildren<Canvas>().enabled = false;
             FindObjectOfType<Crosshair_Canvas>().SetCrosshairVisibility(true);
         }
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
+
+    public void NotifyDamage()
+    {
+        throw new NotImplementedException();
     }
 }
