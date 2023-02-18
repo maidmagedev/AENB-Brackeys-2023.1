@@ -159,9 +159,9 @@ public class ItemCollection
         return new List<ItemStack>(collection).Find(p);
     }
 
-    public IEnumerator<ItemStack> GetEnumerator()
+    public IEnumerator GetEnumerator()
     {
-        return (IEnumerator<ItemStack>)collection.GetEnumerator();
+        return collection.GetEnumerator();
     }
 
 

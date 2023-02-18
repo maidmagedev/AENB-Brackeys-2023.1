@@ -14,7 +14,7 @@ public class Furnace : Machine
         type = MachineType.FURNACE;
         footPrint = new(2, 2);
         child_start = Furnace_Start;
-        child_start = Furnace_Update;
+        child_update = Furnace_Update;
     }
 
     private void Furnace_Start()

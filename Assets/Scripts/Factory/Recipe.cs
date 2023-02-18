@@ -60,7 +60,7 @@ public class Recipe
             return true;
         }
         return against.TrueForAll((stack)=> {
-            ItemStack inpStack = potential.Find((st) => st.of == stack.of);
+            ItemStack inpStack = potential.Find((st) => st != null && st.of == stack.of);
 
             if (inpStack == null) {
                 return false;
