@@ -22,6 +22,7 @@ public class Mining_Machine : Machine
     private void Mining_Start()
     {
         GetComponent<Miner_Inventory>().inventory = outBuf;
+        // change this to decide what ore to mine
         doing = new Recipe(Globals.allRecipes["ironOreMiner"]);
     }
 
