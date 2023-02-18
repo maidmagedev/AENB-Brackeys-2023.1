@@ -8,11 +8,6 @@ using TMPro;
 
 public class Assembler_Preview_UI : MonoBehaviour
 {
-   /* private List<(string input1, string input2, string input3, string output)> assemblerRecipes = new()
-    {
-         ("Items/item_iron_ore", "Items/item_iron_bar", "Items/item_coal"),
-         ("Items/item_gold_ore", "Items/item_gold_bar", "Items/item_coal")
-    };*/
 
    private Dictionary<int, string> assemblerRecipes = new();
    
@@ -20,10 +15,14 @@ public class Assembler_Preview_UI : MonoBehaviour
     [SerializeField] private List<Image> slots = new();
 
     private List<Sprite> recipe = new();
+
+    Sprite defaultSprite;
     private int recipeIndex = 0;
     // Start is called before the first frame update
     void Start()
     {
+
+        defaultSprite = Resources.Load<Sprite>("Items/item_empty");
         List<string> keys = (from key in Globals.allRecipes.Keys
             where Globals.allRecipes[key].acceptedCrafters.Contains(MachineType.ASSEMBLER)
             select key).ToList();
@@ -73,22 +72,31 @@ public class Assembler_Preview_UI : MonoBehaviour
         {
             recipeIndex = assemblerRecipes.Count - 1;
         }
+
         recipe = Item.toSprites(Recipe.getAllInvolvedItems(assemblerRecipes[recipeIndex]));
+
+        slots.ForEach(image=>{image.sprite = defaultSprite; image.GetComponentInChildren<TextMeshProUGUI>().enabled = false;});
+        
         for (int i = 0; i < recipe.Count; i++)
         {
             if (i == recipe.Count - 1)
             {
                 slots[3].sprite = recipe.Last();
                 slots[4].sprite = recipe.Last();
-                slots[3].GetComponentInChildren<TextMeshProUGUI>().text =
-                    Recipe.getAllInvolvedItems(assemblerRecipes[recipeIndex]).Last().quantity.ToString();
-                slots[4].GetComponentInChildren<TextMeshProUGUI>().text =
+                TextMeshProUGUI text = slots[3].GetComponentInChildren<TextMeshProUGUI>();
+                text.text = Recipe.getAllInvolvedItems(assemblerRecipes[recipeIndex]).Last().quantity.ToString();
+                text.enabled = true;
+                text = slots[4].GetComponentInChildren<TextMeshProUGUI>();
+                text.enabled = true;
+                text.text =
                     Recipe.getAllInvolvedItems(assemblerRecipes[recipeIndex]).Last().quantity.ToString();
             }
             else
             {
                 slots[i].sprite = recipe[i];
-                slots[i].GetComponentInChildren<TextMeshProUGUI>().text =
+                TextMeshProUGUI text = slots[i].GetComponentInChildren<TextMeshProUGUI>();
+                text.enabled = true;
+                text.text =
                     Recipe.getAllInvolvedItems(assemblerRecipes[recipeIndex])[i].quantity.ToString();
             }
         }

@@ -18,10 +18,8 @@ public static class Item
         { ItemType.GOLD,        (250, Resources.Load<Sprite>("Items/item_gold_bar"), Resources.Load<GameObject>("Items/Gold Bar")) },
         { ItemType.FAMAS,       (1, Resources.Load<Sprite>("Items/item_famas"), Resources.Load<GameObject>("Items/Famas")) },
         { ItemType.SHOTGUN,     (1, Resources.Load<Sprite>("Items/item_shotgun"), Resources.Load<GameObject>("Items/Shotgun")) },
-        {ItemType.MINER, (5, Resources.Load<Sprite>("Machine/mining_unit"), Resources.Load<GameObject>("Machine/Miner"))},
-        {ItemType.FURNACE, (5, Resources.Load<Sprite>("Machine/furnace"), Resources.Load<GameObject>("Machine/Furnace"))},
-        // the gameObject field here is irrelevant so it is furnace for now
-        {ItemType.EMPTY, (250, Resources.Load<Sprite>("Items/item_empty"), Resources.Load<GameObject>("Machine/Furnace"))}
+        {ItemType.MINER,        (5, Resources.Load<Sprite>("Machine/mining_unit"), Resources.Load<GameObject>("Machine/Miner"))},
+        {ItemType.FURNACE,      (5, Resources.Load<Sprite>("Machine/furnace"), Resources.Load<GameObject>("Machine/Furnace"))},
     };
     
     
