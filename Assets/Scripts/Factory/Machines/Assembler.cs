@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class Assembler : Machine
 {
+
+    private AssemblerInventory myInventory;
+
+    public new Recipe doing{
+        get {return base.doing;} 
+        set{
+            base.doing = value;
+            doing.onComplete = ()=>{myInventory.updateProgressBar(0);};
+            doing.onProgress = (d)=>{myInventory.updateProgressBar((float)d);};
+        }
+    }
+
     public Assembler() {
         inpBuf = new(3);
         outBuf = new(1);
@@ -16,8 +28,10 @@ public class Assembler : Machine
     {
         doing = new Recipe(Globals.allRecipes["Miner_Machine"]);
 
-        GetComponentInChildren<AssemblerInventory>()[0] = inpBuf;
-        GetComponentInChildren<AssemblerInventory>()[1] = outBuf;
+        myInventory = GetComponentInChildren<AssemblerInventory>();
+
+        myInventory[0] = inpBuf;
+        myInventory[1] = outBuf;
     }
     
     private void OnTriggerEnter2D(Collider2D col)

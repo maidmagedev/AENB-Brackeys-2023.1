@@ -7,7 +7,9 @@ public class Machine : Drag_and_Drop, IODevice
 {
     public Vector2Int footPrint;
 
-    public Recipe doing;
+    private Recipe _doing;
+
+    public Recipe doing{get {return _doing;} set{_doing = value;}}
 
     public ItemCollection inpBuf;
 
@@ -63,7 +65,7 @@ public class Machine : Drag_and_Drop, IODevice
 
     public void Set_Recipe(Recipe recipe)
     {
-        doing = recipe;
+        _doing = recipe;
     }
     public virtual void Update()
     {
@@ -71,12 +73,15 @@ public class Machine : Drag_and_Drop, IODevice
             child_update.Invoke();
         }
 
-        if (!working && doing != null && doing.accept(inpBuf))
+        if (!working && _doing != null && _doing.accept(inpBuf))
         {
             working = true;
-            doing.consume(ref inpBuf);
+            _doing.consume(ref inpBuf);
 
-            StartCoroutine(doing.doCraft(this));
+            StartCoroutine(_doing.doCraft(this));
+        }
+        else if (working){
+            
         }
     }
 

@@ -24,7 +24,7 @@ public class BaseInventory : MonoBehaviour
                 GameObject clone = Instantiate(prefab, this.transform, false);
 //                print(clone.name);
                 clone.transform.localPosition = item.initialPosition;
-                clone.transform.localScale = new Vector3(0.125f, .125f, 0);
+                clone.transform.localScale = item.initialScale;
 
                 item.data.slot_obj(clone).index(itemIndex);
             }
@@ -125,12 +125,19 @@ public class BaseInventory : MonoBehaviour
         }
     }
 
+
+
+    public void updateProgressBar(float percent){
+        inventory_grid[(-1, 0)].data.slot_object.GetComponent<Image>().fillAmount = percent;
+    }
 }
 
 public class InventoryElement
 {
     public Vector3 initialPosition;
     public string prefab_path;
+
+    public Vector3 initialScale =new Vector3(0.125f, .125f, 0);
 
     public InventorySlotData data = InventorySlotData.Builder();
 
