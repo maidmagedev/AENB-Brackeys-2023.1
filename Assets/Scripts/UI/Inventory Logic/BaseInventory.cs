@@ -22,6 +22,7 @@ public class BaseInventory : MonoBehaviour
                 InventoryElement item = inventory_grid[itemIndex];
                 GameObject prefab = Resources.Load<GameObject>(item.prefab_path);
                 GameObject clone = Instantiate(prefab, this.transform, false);
+                print(clone.name);
                 clone.transform.localPosition = item.initialPosition;
                 clone.transform.localScale = new Vector3(0.125f, .125f, 0);
 

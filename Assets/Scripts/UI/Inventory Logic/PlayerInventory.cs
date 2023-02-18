@@ -21,6 +21,7 @@ public class PlayerInventory : BaseInventory
             {10, new ItemSlot(new Vector3(8.25f, -25.75f, 0))},
             {11, new ItemSlot(new Vector3(25, -25.75f, 0))}
             
+            
         };
         
         inventory = new ItemCollection(12);

@@ -8,8 +8,8 @@ public class Furnace_Preview_UI : MonoBehaviour
     
     private List<(string input, string output, string fuel)> furnaceRecipes = new()
     {
-         ("Items/item_iron_ore", "Items/item_iron_bar", "Items/coal"),
-         ("Items/item_gold_ore", "Items/item_gold_bar", "Items/coal")
+         ("Items/item_iron_ore", "Items/item_iron_bar", "Items/item_coal"),
+         ("Items/item_gold_ore", "Items/item_gold_bar", "Items/item_coal")
     };
 
     // need a list of images so we can set the image on the slots
@@ -52,6 +52,15 @@ public class Furnace_Preview_UI : MonoBehaviour
         slots[2].sprite = Resources.Load<Sprite>(recipe.fuel);
         slots[3].sprite = Resources.Load<Sprite>(recipe.output);
         reduceOpacity();
+        switch (recipeIndex)
+        {
+            case 0:
+                GetComponentInParent<Furnace>().Set_Recipe(new Recipe(Globals.allRecipes["ironOreToBar"]));
+                break;
+            case 1:
+                GetComponentInParent<Furnace>().Set_Recipe(new Recipe(Globals.allRecipes["goldOreToBar"]));
+                break;
+        }
     }
 
     private void reduceOpacity()
