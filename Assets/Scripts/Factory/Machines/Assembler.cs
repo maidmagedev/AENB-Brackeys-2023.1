@@ -10,4 +10,20 @@ public class Assembler : Machine
         type = MachineType.ASSEMBLER;
         footPrint = new(3, 3);
     }
+    
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Player"))
+        {
+            GetComponentInChildren<Canvas>().enabled = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GetComponentInChildren<Canvas>().enabled = false;
+        }
+    }
 }
