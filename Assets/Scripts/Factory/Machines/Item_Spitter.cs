@@ -23,7 +23,6 @@ public class Item_Spitter : Machine
 
     public override void Update()
     {
-        //print("spitCount: " + inpBuf[0]);
         if(inpBuf.Count > 0){
             ItemStack contents = inpBuf[0];
             Instantiate(Globals.item_definitions[contents.of].g, new Vector3Int((int)this.position.x, (int)this.position.y + 2, 0),Quaternion.identity);

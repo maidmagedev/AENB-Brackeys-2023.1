@@ -53,7 +53,6 @@ public class Item_Data
     }
 
     public void Drop(){
-        
     }
 
     public void Shoot(){
@@ -79,6 +78,5 @@ public enum ItemType
     FAMAS,
     SHOTGUN,
     MINER,
-    FURNACE,
-    EMPTY
+    FURNACE
 }
