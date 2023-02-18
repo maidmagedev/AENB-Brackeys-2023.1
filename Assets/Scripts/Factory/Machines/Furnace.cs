@@ -4,6 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Furnace : Machine
 {
+
+    private FurnaceInventory myInventory;
+
+    public new Recipe doing{
+        get {return base.doing;} 
+        set{
+            base.doing = value;
+            doing.onComplete = ()=>{myInventory.updateProgressBar(0);};
+            doing.onProgress = (d)=>{myInventory.updateProgressBar((float)d);};
+        }
+    }
+
     
     public Furnace() {
         inpBuf = new(2);
@@ -18,8 +30,10 @@ public class Furnace : Machine
         // automatically searches for the items needed to complete the given recipe and consumes them and goes into the output buffer
         doing = new Recipe(Globals.allRecipes["ironOreToBar"]);
         
-        GetComponentInChildren<FurnaceInventory>()[0] = inpBuf;
-        GetComponentInChildren<FurnaceInventory>()[1] = outBuf;
+        myInventory = GetComponentInChildren<FurnaceInventory>();
+
+        myInventory[0] = inpBuf;
+        myInventory[1] = outBuf;
 
 
         //inpBuf.Add(new ItemStack(ItemType.ORE_IRON, 100));

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
@@ -12,6 +13,10 @@ public class Recipe
 
     RecipeBase baseRef;
 
+    public Action<double> onProgress = (i)=>{};
+
+    public Action onComplete = ()=>{};
+
     public Recipe(RecipeBase recipe) {
         baseRef = recipe;
     }
@@ -24,16 +29,19 @@ public class Recipe
             inProgTime += Time.deltaTime;
 
             progress = inProgTime / baseRef.time;
+            
+            onProgress(progress);
 
             yield return null;
         }
 
         //Debug.Log("craft completed");
         inProgTime = 0;
+        progress = 0;
         output(calling);
 
         calling.working = false;
-
+        onComplete();
     }
 
 
