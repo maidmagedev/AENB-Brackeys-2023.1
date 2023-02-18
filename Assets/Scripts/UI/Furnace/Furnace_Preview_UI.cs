@@ -29,11 +29,6 @@ public class Furnace_Preview_UI : MonoBehaviour
         reduceOpacity();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void CycleRecipe(int direction)
     {

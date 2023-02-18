@@ -9,6 +9,6 @@ public class FurnaceMeter : InventoryElement
         initialPosition = givenPos;
         prefab_path = "FurnaceMeter";
 
-        initialScale = new(1,1,0);
+        initialScale = new(.125f,.084f,0);
     }
 }

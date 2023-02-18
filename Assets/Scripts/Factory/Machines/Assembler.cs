@@ -33,6 +33,10 @@ public class Assembler : Machine
         myInventory[0] = inpBuf;
         myInventory[1] = outBuf;
     }
+    public override void Set_Recipe(Recipe recipe)
+    {
+        doing = recipe;
+    }
     
     private void OnTriggerEnter2D(Collider2D col)
     {

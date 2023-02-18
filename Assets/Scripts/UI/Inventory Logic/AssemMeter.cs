@@ -10,7 +10,7 @@ public class AssemMeter : InventoryElement
         initialPosition = givenPos;
         prefab_path = "AssemMeter";
 
-        initialScale = new(1,1,0);
+        initialScale = new(.355f,.137f,0);
     }
 
 

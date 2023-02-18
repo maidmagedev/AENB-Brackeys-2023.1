@@ -63,9 +63,9 @@ public class Machine : Drag_and_Drop, IODevice
         Destroy(this.gameObject);
     }
 
-    public void Set_Recipe(Recipe recipe)
+    public virtual void Set_Recipe(Recipe recipe)
     {
-        _doing = recipe;
+        doing = recipe;
     }
     public virtual void Update()
     {
@@ -76,12 +76,9 @@ public class Machine : Drag_and_Drop, IODevice
         if (!working && _doing != null && _doing.accept(inpBuf))
         {
             working = true;
-            _doing.consume(ref inpBuf);
+            doing.consume(ref inpBuf);
 
-            StartCoroutine(_doing.doCraft(this));
-        }
-        else if (working){
-            
+            StartCoroutine(doing.doCraft(this));
         }
     }
 
