@@ -90,4 +90,14 @@ public class Recipe
 
     }
 
+
+    public static List<ItemStack> getAllInvolvedItems(string recipeName){
+        List<ItemStack> ret = new();
+
+        ret.AddRange(Globals.allRecipes[recipeName].inputs);
+        ret.AddRange(Globals.allRecipes[recipeName].outputs);
+
+        return ret;
+    }
+
 }
