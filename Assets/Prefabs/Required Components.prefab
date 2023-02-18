@@ -5724,7 +5724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3edf9ba1b4bedc54aa5b68c58fc8d487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCam: {fileID: 971984400}
+  mainCam: {fileID: 0}
 --- !u!4 &5901291332658712544 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5233668638576196946, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
@@ -5951,6 +5951,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthbar: {fileID: 4106343038760553346}
   player: {fileID: 3988546489362990530}
+  playerDamageComp: {fileID: 0}
+  lerpDur: 0
+  lastStoredHealthPercent: 0
 --- !u!224 &2135087392217124129 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5419280741266296004, guid: ff36f6fe46b74524a911fdcda32467ed, type: 3}
