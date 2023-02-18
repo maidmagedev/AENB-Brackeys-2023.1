@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Furnace : Machine
 {
 
     [SerializeField] private GameObject FurnaceUI;
     [SerializeField] private BaseInventory furnace_inventory;
 
+
+    
     public Furnace() {
         inpBuf = new(2);
         outBuf = new(1);
@@ -21,6 +22,8 @@ public class Furnace : Machine
     {
         // automatically searches for the items needed to complete the given recipe and consumes them and goes into the output buffer
         doing = new Recipe(Globals.allRecipes["ironOreToBar"]);
+
+        GetComponentInChildren<FurnaceInventory>().inventory = inpBuf;
     }
     
 
