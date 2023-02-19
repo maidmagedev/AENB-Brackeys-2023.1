@@ -130,5 +130,6 @@ public enum ItemType
     BELT,
     SPITTER,
     ASSEMBLER,
-    PISTOL
+    PISTOL,
+    QUEST
 }
