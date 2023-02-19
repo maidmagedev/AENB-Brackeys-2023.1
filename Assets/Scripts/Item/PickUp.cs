@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
-    private ItemStack item;
+    public ItemStack item;
 
     [SerializeField] private ItemType item_type;
 
@@ -16,6 +16,12 @@ public class PickUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Init(item_type, num);
+    }
+
+    public void Init(ItemType item_type, int num){
+        this.item_type = item_type;
+        this.num = num;
         item = new ItemStack(item_type, num);
         _inventory = FindObjectOfType<PlayerInventory>();
     }

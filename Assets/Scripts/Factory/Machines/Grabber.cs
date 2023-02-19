@@ -48,6 +48,9 @@ public class Grabber : Machine, IODevice
             case Orientation.DU:
                 arm.transform.eulerAngles = new Vector3(0, 0, 270);
                 break;
+            case Orientation.RL:
+                arm.transform.eulerAngles = new Vector3(0, 0, 0);
+                break;
         }
 
         //initialArmAngle = arm.transform.eulerAngles.z;
@@ -136,5 +139,26 @@ public class Grabber : Machine, IODevice
     public override ItemCollection getOutputBuffer()
     {
         return IOBuf;
+    }
+
+
+    public override void RotationToOrientation(Vector3 rotation)
+    {
+        switch(rotation.z % 360){
+            case 0:
+                orientation = Orientation.RL;
+            break;
+            case 90:
+                orientation = Orientation.UD;
+            break;
+            case 180:
+                orientation = Orientation.LR;
+            break;
+            case 270:
+                orientation = Orientation.DU;
+            break;
+        }
+
+        transform.eulerAngles = new Vector3(0,0,0);
     }
 }
