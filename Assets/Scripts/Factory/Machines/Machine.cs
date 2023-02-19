@@ -140,5 +140,6 @@ public enum MachineType
     GRABBER,
     BELT,
     MINER,
-    SPITTER
+    SPITTER,
+    ROCKET
 }

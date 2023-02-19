@@ -38,7 +38,8 @@ public static class Globals
         {"Shotgun", new RecipeBase(new ItemStack[]{new(ItemType.IRON, 3), new(ItemType.GOLD, 1)}, new ItemStack[] {new (ItemType.SHOTGUN, 1)}, new MachineType[]{MachineType.ASSEMBLER, MachineType.INVENTORY},10 ) },
         {"Grabber", new RecipeBase(new ItemStack[]{new(ItemType.IRON, 1)}, new ItemStack[] {new (ItemType.GRABBER, 1)}, new MachineType[]{MachineType.ASSEMBLER, MachineType.INVENTORY},3 ) },
         {"Spitter", new RecipeBase(new ItemStack[]{new(ItemType.IRON, 2)}, new ItemStack[] {new (ItemType.SPITTER, 1)}, new MachineType[]{MachineType.ASSEMBLER, MachineType.INVENTORY},5 ) },
-        {"Belt", new RecipeBase(new ItemStack[]{new(ItemType.GOLD, 1)}, new ItemStack[] {new (ItemType.BELT, 1)}, new MachineType[]{MachineType.ASSEMBLER, MachineType.INVENTORY},5 ) }
+        {"Belt", new RecipeBase(new ItemStack[]{new(ItemType.GOLD, 1)}, new ItemStack[] {new (ItemType.BELT, 1)}, new MachineType[]{MachineType.ASSEMBLER, MachineType.INVENTORY},5 ) },
+        {"Rocket", new RecipeBase(new ItemStack[] {new (ItemType.IRON, 50), new (ItemType.GOLD, 50), new (ItemType.COAL, 50), new(ItemType.QUEST, 1)}, new ItemStack[] {new (ItemType.SHOTGUN, 1)}, new MachineType[]{MachineType.ROCKET, MachineType.INVENTORY}, 1)}
     };
 
     
