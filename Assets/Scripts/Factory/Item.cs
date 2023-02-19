@@ -101,6 +101,9 @@ public class Item_Data
             case ItemType.PISTOL:
                 GameObject.FindObjectOfType<Pistol>().GetComponent<Pistol>().GetInput();
             break;
+            case ItemType.QUEST:
+                Debug.Log("shhhhh... im abusing the logic.... no one needs to know... - spencer :)");
+                break;
             default:
                 throw new NotImplementedException("New gun type detected. see Item.cs for firing behavior.");
         }

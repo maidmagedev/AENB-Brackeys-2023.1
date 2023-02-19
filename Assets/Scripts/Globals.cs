@@ -22,7 +22,7 @@ public static class Globals
         { ItemType.SPITTER,     new Item_Data(ItemType.SPITTER, 5, Resources.Load<Sprite>("Machine/spitter"), Resources.Load<GameObject>("Machine/Spitter"), UseBehavior.PLACE)},
         {ItemType.ASSEMBLER,    new Item_Data(ItemType.ASSEMBLER, 5, Resources.Load<Sprite>("Machine/assembler-1"), Resources.Load<GameObject>("Machine/Assembler"), UseBehavior.PLACE)},
         { ItemType.PISTOL,      new Item_Data(ItemType.PISTOL, 1, Resources.Load<Sprite>("Items/item_pistol"), Resources.Load<GameObject>("Items/Pistol"), UseBehavior.SHOOT)},
-        { ItemType.QUEST,       new Item_Data(ItemType.QUEST, 1, Resources.Load<Sprite>("Items/item_quest"), Resources.Load<GameObject>("Item/Quest"), UseBehavior.DROP)}
+        { ItemType.QUEST,       new Item_Data(ItemType.QUEST, 1, Resources.Load<Sprite>("Items/item_quest"), Resources.Load<GameObject>("Item/Quest"), UseBehavior.SHOOT)}
     };
     
     public static Dictionary<string, RecipeBase> allRecipes = new()
