@@ -34,12 +34,14 @@ public class PauseMenu : MonoBehaviour
                 menuState = MenuState.primary;
                 pauseParent.SetActive(true);
                 pauseMain.SetActive(true);
+                Time.timeScale = 0;
                 break;
             case MenuState.primary:
                 // Changing to alloff state.
                 menuState = MenuState.alloff;
                 pauseParent.SetActive(false);
                 pauseMain.SetActive(false);
+                Time.timeScale = 1;
                 break;
             case MenuState.settings:
                 // Changing to Primary State.

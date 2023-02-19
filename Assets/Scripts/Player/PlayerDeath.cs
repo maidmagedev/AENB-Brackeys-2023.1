@@ -21,9 +21,11 @@ public class PlayerDeath : MonoBehaviour, IKillable
     private float deathTimer = 6f;
 
 
+    private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         damageComp = GetComponent<DamageableComponent>();
 
         dmgLight = GetComponent<Light2D>();
@@ -60,6 +62,7 @@ public class PlayerDeath : MonoBehaviour, IKillable
 
     public void Die()
     {
+        rb.velocity = Vector2.zero;
         PlayerDead = true;
         GetComponent<TopDownMovementComponent>().enabled = false;
         // Death Screen Logic
