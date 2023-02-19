@@ -1047,7 +1047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 1788224940037377189}
-  player: {fileID: 0}
+  player: {fileID: 4663527942861532066}
 --- !u!1 &4028983202142749466
 GameObject:
   m_ObjectHideFlags: 0
@@ -1252,6 +1252,7 @@ MonoBehaviour:
   footPrint: {x: 2, y: 2}
   type: 2
   working: 0
+  orientation: 0
 --- !u!61 &1718571500
 BoxCollider2D:
   m_ObjectHideFlags: 0
