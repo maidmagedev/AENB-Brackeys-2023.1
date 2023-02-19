@@ -51,7 +51,7 @@ public class EnemySpawner : MonoBehaviour
             }
             
             // should probably spawn at random(ish) coordinates 
-            Instantiate(randomEnemy, new Vector3(0, 15, 0), Quaternion.identity);
+            Instantiate(randomEnemy, getSpawnLocation(), Quaternion.identity);
             EnemyTypeCounts[randomEnemy.name] += 1;
         }
         reset_EnemyTypeCounts();
@@ -72,9 +72,10 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-   /* private Vector3 getSpawnLocation()
+    private Vector3 getSpawnLocation()
     {
-        GameObject;
-        Vector3 location = new Vector3();
-    }*/
+        GameObject player = GameObject.Find("Player");
+        Vector3 location = new Vector3(player.transform.position.x, player.transform.position.y + 15, 0);
+        return location;
+    }
 }
