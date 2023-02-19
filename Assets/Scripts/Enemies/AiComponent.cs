@@ -55,11 +55,14 @@ public class AiComponent : MonoBehaviour
         GameObject newTarget = possible_targets[0];
         foreach (GameObject g in possible_targets)
         {
-            float distance = Vector3.Distance(g.transform.position, transform.position);
-            if (distance < minDist)
+            if (g != null)
             {
-                minDist = distance;
-                newTarget = g;
+                float distance = Vector3.Distance(g.transform.position, transform.position);
+                if (distance < minDist)
+                {
+                    minDist = distance;
+                    newTarget = g;
+                }
             }
         }
         target = newTarget;

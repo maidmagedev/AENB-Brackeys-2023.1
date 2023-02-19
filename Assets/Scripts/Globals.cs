@@ -18,9 +18,9 @@ public static class Globals
         { ItemType.MINER,       new Item_Data(ItemType.MINER, 5, Resources.Load<Sprite>("Machine/mining_unit"), Resources.Load<GameObject>("Machine/Miner"), UseBehavior.PLACE)},
         { ItemType.FURNACE,     new Item_Data(ItemType.FURNACE, 5, Resources.Load<Sprite>("Machine/furnace"), Resources.Load<GameObject>("Machine/Furnace"), UseBehavior.PLACE)},
         { ItemType.GRABBER,     new Item_Data(ItemType.GRABBER, 20, Resources.Load<Sprite>("Machine/grabber_base"), Resources.Load<GameObject>("Machine/Grabber"), UseBehavior.PLACE)},
-        { ItemType.BELT,        new Item_Data(ItemType.BELT, 20, Resources.Load<Sprite>("Machine/belt/belt_0"), Resources.Load<GameObject>("Machine/Belt"), UseBehavior.PLACE)},
+        { ItemType.BELT,        new Item_Data(ItemType.BELT, 20, Resources.Load<Sprite>("Machine/belt-1"), Resources.Load<GameObject>("Machine/Belt"), UseBehavior.PLACE)},
         { ItemType.SPITTER,     new Item_Data(ItemType.SPITTER, 5, Resources.Load<Sprite>("Machine/spitter"), Resources.Load<GameObject>("Machine/Spitter"), UseBehavior.PLACE)},
-        {ItemType.ASSEMBLER,    new Item_Data(ItemType.ASSEMBLER, 5, Resources.Load<Sprite>("Machine/assembler/assembler_0"), Resources.Load<GameObject>("Machine/Assembler"), UseBehavior.PLACE)}
+        {ItemType.ASSEMBLER,    new Item_Data(ItemType.ASSEMBLER, 5, Resources.Load<Sprite>("Machine/assembler-1"), Resources.Load<GameObject>("Machine/Assembler"), UseBehavior.PLACE)}
     };
     
     public static Dictionary<string, RecipeBase> allRecipes = new()
@@ -33,7 +33,10 @@ public static class Globals
         {"Miner_Machine", new RecipeBase(new ItemStack[]{new (ItemType.IRON, 3), new(ItemType.COAL, 3), new (ItemType.GOLD, 1)}, new ItemStack[] {new(ItemType.MINER, 1)}, new MachineType[]{MachineType.ASSEMBLER, MachineType.INVENTORY},5)},
         {"Furnace_Machine", new RecipeBase(new ItemStack[]{ new(ItemType.STONE, 3) }, new ItemStack[] {new(ItemType.FURNACE, 1)}, new MachineType[]{MachineType.ASSEMBLER, MachineType.INVENTORY},5)},
         {"Famas", new RecipeBase(new ItemStack[]{new(ItemType.IRON, 3)}, new ItemStack[] {new (ItemType.FAMAS, 1)}, new MachineType[]{MachineType.ASSEMBLER, MachineType.INVENTORY},5 ) },
-        {"Shotgun", new RecipeBase(new ItemStack[]{new(ItemType.IRON, 3), new(ItemType.GOLD, 1)}, new ItemStack[] {new (ItemType.SHOTGUN, 1)}, new MachineType[]{MachineType.ASSEMBLER, MachineType.INVENTORY},10 ) }
+        {"Shotgun", new RecipeBase(new ItemStack[]{new(ItemType.IRON, 3), new(ItemType.GOLD, 1)}, new ItemStack[] {new (ItemType.SHOTGUN, 1)}, new MachineType[]{MachineType.ASSEMBLER, MachineType.INVENTORY},10 ) },
+        {"Grabber", new RecipeBase(new ItemStack[]{new(ItemType.IRON, 1)}, new ItemStack[] {new (ItemType.GRABBER, 1)}, new MachineType[]{MachineType.ASSEMBLER, MachineType.INVENTORY},3 ) },
+        {"Spitter", new RecipeBase(new ItemStack[]{new(ItemType.IRON, 2)}, new ItemStack[] {new (ItemType.SPITTER, 1)}, new MachineType[]{MachineType.ASSEMBLER, MachineType.INVENTORY},5 ) },
+        {"Belt", new RecipeBase(new ItemStack[]{new(ItemType.GOLD, 1)}, new ItemStack[] {new (ItemType.BELT, 1)}, new MachineType[]{MachineType.ASSEMBLER, MachineType.INVENTORY},5 ) }
     };
 
     
