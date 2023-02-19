@@ -71,4 +71,10 @@ public class EnemySpawner : MonoBehaviour
             EnemyTypeCounts[g.name] = 0;
         }
     }
+
+   /* private Vector3 getSpawnLocation()
+    {
+        GameObject;
+        Vector3 location = new Vector3();
+    }*/
 }

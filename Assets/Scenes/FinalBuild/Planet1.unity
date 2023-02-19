@@ -77296,7 +77296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1902224353, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
       propertyPath: nightTime
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1381385560910444128, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
       propertyPath: day_tracks.Array.size
@@ -78737,7 +78737,7 @@ MonoBehaviour:
   - {fileID: 5910624753749706619, guid: f00888619990ce843878f0bfaa4159f1, type: 3}
   EnemyTypeLimits: 0a00000003000000
   waveTime: 10
-  numEnemiesPerWave: 10
+  numEnemiesPerWave: 13
   Enemies_Planet1:
   - {fileID: 3641972800047052817, guid: cd93169c400d1a04f92acee377704659, type: 3}
   - {fileID: 5910624753749706619, guid: f00888619990ce843878f0bfaa4159f1, type: 3}
