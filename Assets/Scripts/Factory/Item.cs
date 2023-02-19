@@ -82,10 +82,12 @@ public class Item_Data
     }
 
     public void Drop(PlayerInventory host, ItemStack stack){
-        host.Remove(0, stack);
+        if(!GameObject.FindObjectOfType<PlayerInventoryUI>().GetComponent<PlayerInventoryUI>().inventoryActive){
+            host.Remove(0, stack);
 
-        var n = GameObject.Instantiate(g, GameObject.FindWithTag("Player").transform.position + new Vector3(0,2,0), Quaternion.identity);
-        n.GetComponent<PickUp>().num = stack.quantity;
+            var n = GameObject.Instantiate(g, GameObject.FindWithTag("Player").transform.position + new Vector3(0,2,0), Quaternion.identity);
+            n.GetComponent<PickUp>().num = stack.quantity;
+        }
     }
 
     public void Shoot(PlayerInventory ignored, ItemStack stack){

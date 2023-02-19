@@ -18,7 +18,7 @@ public class PlayerInventoryUI : MonoBehaviour
 
     public GameObject[] hotbarItems; // must be of size 4.
 
-    private bool inventoryActive = false;
+    public bool inventoryActive = false;
     //private bool midTransition = false;
     private bool secondaryActive = false; // if the secondary menu is active, this could be a furnace, assembler, or crafting menu.
     public SecondaryMenu secondaryMenu = SecondaryMenu.Furnace;
