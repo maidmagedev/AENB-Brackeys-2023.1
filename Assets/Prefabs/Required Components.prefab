@@ -2035,7 +2035,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1536486208
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2550,7 +2550,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2051950555
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2585,7 +2585,7 @@ GameObject:
   - component: {fileID: 2063692663}
   - component: {fileID: 2063692664}
   m_Layer: 0
-  m_Name: Rifle
+  m_Name: Rifle (UNUSED)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3167,7 +3167,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3698,6 +3698,7 @@ MonoBehaviour:
   - {fileID: 5209340160499733855}
   - {fileID: 8055527571655187575}
   - {fileID: 3881653334365681721}
+  inventoryActive: 0
   secondaryMenu: 0
 --- !u!1 &5103151849301299784
 GameObject:
@@ -4786,7 +4787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5955534502619282199
 Transform:
   m_ObjectHideFlags: 0
@@ -5056,8 +5057,8 @@ RectTransform:
   m_Father: {fileID: 3534797668357092545}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 12.2106, y: 3.5247}
   m_SizeDelta: {x: 44.4211, y: 7.0494}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5371,6 +5372,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 148132397933554702, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 992826827353779547, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2063929300759416015, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
       propertyPath: m_Name
       value: famas_warning_supressor
@@ -5636,9 +5645,25 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2063929300759416015, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
   m_PrefabInstance: {fileID: 1820616255365280434}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &914931895399304963 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1582554988375850417, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
+  m_PrefabInstance: {fileID: 1820616255365280434}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3988546489362990530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd8b221e25d57704baa36436eaa67b5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &1118078247138510645 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1639335464992322951, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
+  m_PrefabInstance: {fileID: 1820616255365280434}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1966495749543239356 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 148132397933554702, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
   m_PrefabInstance: {fileID: 1820616255365280434}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &3502244577846178829 stripped
@@ -5876,6 +5901,8 @@ MonoBehaviour:
   famasObj: {fileID: 423527571570851453}
   shotgun: {fileID: 1369866931}
   shotgunObj: {fileID: 406105739560136964}
+  pistol: {fileID: 914931895399304963}
+  pistolObj: {fileID: 1966495749543239356}
 --- !u!114 &8261446213611798930
 MonoBehaviour:
   m_ObjectHideFlags: 0
