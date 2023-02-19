@@ -22,10 +22,11 @@ public class Pistol : Gun
     {
         mayshoot = false;
 
-        //audioSource.PlayOneShot(fireSound, volume);
         
         yield return new WaitForSeconds(0.04f);
         Instantiate(projectile_prefab, bulletOrigins[0].position, bulletOrigins[0].rotation);
+        audioSource.PlayOneShot(fireSound, volume);
+
         
         
         

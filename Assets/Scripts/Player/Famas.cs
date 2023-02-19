@@ -21,7 +21,7 @@ public class Famas : Gun
     {
         mayshoot = false;
 
-        //audioSource.PlayOneShot(fireSound, volume);
+        audioSource.PlayOneShot(fireSound, volume);
         // Burst Fire
         
         for (int i = 0; i < burstCount; i++) {

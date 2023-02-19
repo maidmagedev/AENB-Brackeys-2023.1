@@ -20,9 +20,9 @@ public abstract class Gun : MonoBehaviour
     public bool mayshoot{get =>_mayshoot; set =>_mayshoot = value;}
 
     [Header("Sound")]
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip fireSound;
-    [SerializeField] private float volume = 10f;
+    [SerializeField] public AudioSource audioSource;
+    [SerializeField] public AudioClip fireSound;
+    [SerializeField] public float volume = 10f;
 
     [Header("Components, References")]
     [SerializeField] public GameObject projectile_prefab; // could make this a Resources.Load() call

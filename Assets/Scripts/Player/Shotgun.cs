@@ -21,9 +21,9 @@ public class Shotgun : Gun
     {
         mayshoot = false;
 
-        //audioSource.PlayOneShot(fireSound, volume);
         
         yield return new WaitForSeconds(0.04f);
+        audioSource.PlayOneShot(fireSound, volume);
         foreach (Transform t in bulletOrigins) {
             Instantiate(projectile_prefab, t.position, t.rotation);
         }
