@@ -40,7 +40,7 @@ public class EnemySpawner : MonoBehaviour
             int j = 0;
             while ( (EnemyTypeCounts[randomEnemy.name] >= EnemyTypeLimits[EnemyTypes.IndexOf(randomEnemy)]) && (j < Enemies_Planet1.Count * 2) )
             {
-                print(EnemyTypeCounts[randomEnemy.name] + " spawn limit reached");
+                print(randomEnemy.name + " spawned "+ EnemyTypeCounts[randomEnemy.name] + " spawn limit reached");
                 randomEnemy = Enemies_Planet1[Random.Range(0, Enemies_Planet1.Count - 1)];
                 j++;
             }
