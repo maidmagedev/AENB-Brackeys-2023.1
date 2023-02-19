@@ -28,11 +28,4 @@ public class Crosshair_Canvas : MonoBehaviour
     }
 
     // hides the crosshair and re-enables the cursor
-    public void SetCrosshairVisibility(bool enabled)
-    {
-        /*enableCrosshair = enabled;
-        Cursor.visible = !enabled;
-        image.enabled = enabled;*/
-    }
-
 }

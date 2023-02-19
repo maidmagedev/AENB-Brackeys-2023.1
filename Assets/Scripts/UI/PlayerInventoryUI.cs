@@ -76,9 +76,7 @@ public class PlayerInventoryUI : MonoBehaviour
         //midTransition = true;
         if (inventoryActive) {
             invenAnimator.SetTrigger("InventoryToHotbar");
-            crosshairCanv.SetCrosshairVisibility(true);
         } else {
-            crosshairCanv.SetCrosshairVisibility(false);
             invenAnimator.SetTrigger("HotbarToInventory");
         }
         inventoryActive = !inventoryActive;

@@ -43,7 +43,6 @@ public class Assembler : Machine, IKillable
         if (col.CompareTag("Player"))
         {
             GetComponentInChildren<Canvas>().enabled = true;
-            FindObjectOfType<Crosshair_Canvas>().SetCrosshairVisibility(false);
         }
     }
 
@@ -52,7 +51,6 @@ public class Assembler : Machine, IKillable
         if (other.CompareTag("Player"))
         {
             GetComponentInChildren<Canvas>().enabled = false;
-            FindObjectOfType<Crosshair_Canvas>().SetCrosshairVisibility(true);
         }
     }
 
