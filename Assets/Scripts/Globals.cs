@@ -27,7 +27,7 @@ public static class Globals
         {"Miner_Machine", new RecipeBase(new ItemStack[]{new (ItemType.IRON, 3), new(ItemType.COAL, 3), new (ItemType.GOLD, 1)}, new ItemStack[] {new(ItemType.MINER, 1)}, new MachineType[]{MachineType.ASSEMBLER, MachineType.INVENTORY},5)},
         {"Furnace_Machine", new RecipeBase(new ItemStack[]{ new(ItemType.STONE, 3) }, new ItemStack[] {new(ItemType.FURNACE, 1)}, new MachineType[]{MachineType.ASSEMBLER, MachineType.INVENTORY},5)},
         {"Famas", new RecipeBase(new ItemStack[]{new(ItemType.IRON, 3)}, new ItemStack[] {new (ItemType.FAMAS, 1)}, new MachineType[]{MachineType.ASSEMBLER, MachineType.INVENTORY},5 ) },
-        {"Shotgun", new RecipeBase(new ItemStack[]{new(ItemType.IRON, 3), new(ItemType.FAMAS, 1)}, new ItemStack[] {new (ItemType.SHOTGUN, 1)}, new MachineType[]{MachineType.ASSEMBLER, MachineType.INVENTORY},10 ) }
+        {"Shotgun", new RecipeBase(new ItemStack[]{new(ItemType.IRON, 3), new(ItemType.GOLD, 1)}, new ItemStack[] {new (ItemType.SHOTGUN, 1)}, new MachineType[]{MachineType.ASSEMBLER, MachineType.INVENTORY},10 ) }
     };
 
     
