@@ -20,7 +20,8 @@ public static class Globals
         { ItemType.GRABBER,     new Item_Data(ItemType.GRABBER, 20, Resources.Load<Sprite>("Machine/grabber_combined"), Resources.Load<GameObject>("Machine/Grabber"), UseBehavior.PLACE)},
         { ItemType.BELT,        new Item_Data(ItemType.BELT, 20, Resources.Load<Sprite>("Machine/belt-1"), Resources.Load<GameObject>("Machine/Belt"), UseBehavior.PLACE)},
         { ItemType.SPITTER,     new Item_Data(ItemType.SPITTER, 5, Resources.Load<Sprite>("Machine/spitter"), Resources.Load<GameObject>("Machine/Spitter"), UseBehavior.PLACE)},
-        {ItemType.ASSEMBLER,    new Item_Data(ItemType.ASSEMBLER, 5, Resources.Load<Sprite>("Machine/assembler-1"), Resources.Load<GameObject>("Machine/Assembler"), UseBehavior.PLACE)}
+        {ItemType.ASSEMBLER,    new Item_Data(ItemType.ASSEMBLER, 5, Resources.Load<Sprite>("Machine/assembler-1"), Resources.Load<GameObject>("Machine/Assembler"), UseBehavior.PLACE)},
+        { ItemType.PISTOL,      new Item_Data(ItemType.PISTOL, 1, Resources.Load<Sprite>("Items/item_pistol"), Resources.Load<GameObject>("Items/Pistol"), UseBehavior.SHOOT)}
     };
     
     public static Dictionary<string, RecipeBase> allRecipes = new()

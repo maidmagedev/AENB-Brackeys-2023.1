@@ -98,6 +98,9 @@ public class Item_Data
             case ItemType.SHOTGUN:
                 GameObject.FindObjectOfType<Shotgun>().GetComponent<Shotgun>().GetInput();
             break;
+            case ItemType.PISTOL:
+                GameObject.FindObjectOfType<Pistol>().GetComponent<Pistol>().GetInput();
+            break;
             default:
                 throw new NotImplementedException("New gun type detected. see Item.cs for firing behavior.");
         }
@@ -126,5 +129,6 @@ public enum ItemType
     GRABBER,
     BELT,
     SPITTER,
-    ASSEMBLER
+    ASSEMBLER,
+    PISTOL
 }
