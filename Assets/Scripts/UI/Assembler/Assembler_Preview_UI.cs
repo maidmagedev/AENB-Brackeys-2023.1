@@ -110,7 +110,7 @@ public class Assembler_Preview_UI : MonoBehaviour
         foreach (Image image in slots)
         {
             Color temp = image.color;
-            temp.a = 0.2f;
+            temp.a = 0.5f;
             image.color = temp;
         }
     }
