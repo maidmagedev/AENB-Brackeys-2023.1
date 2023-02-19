@@ -7,7 +7,6 @@ using UnityEngine;
 [RequireComponent(typeof(Miner_Inventory))]
 public class Mining_Machine : Machine, IKillable
 {
-    public GameObject iron_ore;
     public Mining_Machine()
     {
         inpBuf = null;
@@ -25,6 +24,10 @@ public class Mining_Machine : Machine, IKillable
         doing = new Recipe(Globals.allRecipes["ironOreMiner"]);
     }
 
+    public void setDoing(string recipe)
+    {
+        doing = new Recipe(Globals.allRecipes[recipe]);
+    }
     public override ItemCollection getInputBuffer()
     {
         return inpBuf;

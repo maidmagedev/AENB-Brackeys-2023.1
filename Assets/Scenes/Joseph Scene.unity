@@ -305,6 +305,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 491832726, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+      propertyPath: mainCam
+      value: 
+      objectReference: {fileID: 1998427222}
+    - target: {fileID: 4221974215615515365, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+      propertyPath: cursorTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: 1da538d1028a9f04e9a472b41ad2640f, type: 3}
     - target: {fileID: 5103151849301299784, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
       propertyPath: m_Name
       value: Required Components
@@ -351,6 +359,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5103151849301299787, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8204187175869379143, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -17061,11 +17073,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51f72322f3abcd14883287956f843533, type: 3}
---- !u!1 &1978177869 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8095758123771347782, guid: d7886b70f3582344e853c6f081120e78, type: 3}
-  m_PrefabInstance: {fileID: 8095758124462993742}
-  m_PrefabAsset: {fileID: 0}
 --- !u!20 &1998427222 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 971984400, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
@@ -17438,10 +17445,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 829066214769385851, guid: d7886b70f3582344e853c6f081120e78, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1978177869}
     - target: {fileID: 3409587211589386128, guid: d7886b70f3582344e853c6f081120e78, type: 3}
       propertyPath: m_Camera
       value: 
@@ -17494,5 +17497,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Miner
       objectReference: {fileID: 0}
+    - target: {fileID: 9136464513054033075, guid: d7886b70f3582344e853c6f081120e78, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1998427222}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7886b70f3582344e853c6f081120e78, type: 3}
