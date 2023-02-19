@@ -17,6 +17,8 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] GameObject famasObj;
     [SerializeField] Shotgun shotgun;
     [SerializeField] GameObject shotgunObj;
+    [SerializeField] Pistol pistol;
+    [SerializeField] GameObject pistolObj;
 
     private void Start() {
         selectedItemSlot = 0;
@@ -65,6 +67,7 @@ public class PlayerActions : MonoBehaviour
     private void DisableItemObjects() {
         famasObj.SetActive(false);
         shotgunObj.SetActive(false);
+        pistolObj.SetActive(false);
     }
 
     private void EnableHands(bool on) {
@@ -92,6 +95,9 @@ public class PlayerActions : MonoBehaviour
                     break;
                 case ItemType.SHOTGUN:
                     shotgunObj.SetActive(true);
+                    break;
+                case ItemType.PISTOL:
+                    pistolObj.SetActive(true);
                     break;
                 default:
                     EnableHands(true);
