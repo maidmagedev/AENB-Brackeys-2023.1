@@ -519,7 +519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1902224353, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
       propertyPath: dayTime
-      value: 120
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1902224353, guid: cfed840ad1e0f464b9d8b23dfcbe4918, type: 3}
       propertyPath: nightTime
@@ -1765,13 +1765,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyTypes:
   - {fileID: 3641972800047052817, guid: cd93169c400d1a04f92acee377704659, type: 3}
-  - {fileID: 6605405331208229351, guid: 173b69341142c3740936d4406f89add5, type: 3}
-  EnemyTypeLimits: 1400000003000000
+  - {fileID: 5910624753749706619, guid: f00888619990ce843878f0bfaa4159f1, type: 3}
+  EnemyTypeLimits: 0a00000003000000
   waveTime: 10
-  numEnemiesPerWave: 25
+  numEnemiesPerWave: 13
   Enemies_Planet1:
   - {fileID: 3641972800047052817, guid: cd93169c400d1a04f92acee377704659, type: 3}
-  - {fileID: 6605405331208229351, guid: 173b69341142c3740936d4406f89add5, type: 3}
+  - {fileID: 5910624753749706619, guid: f00888619990ce843878f0bfaa4159f1, type: 3}
   Enemies_Planet2: []
 --- !u!4 &1116509846
 Transform:

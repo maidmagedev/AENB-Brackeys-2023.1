@@ -36,9 +36,8 @@ public class EnemySpawner : MonoBehaviour
         // Use a switch statement based off the current scene to decide whether to use Enemies_Planet1 or Enemies_Planet2...
         for (int i = 0; i < numEnemiesPerWave; i++)
         {
-            GameObject randomEnemy = Enemies_Planet1[Random.Range(0, Enemies_Planet1.Count - 1)];
-            int j = 0;
-            while ( (EnemyTypeCounts[randomEnemy.name] >= EnemyTypeLimits[EnemyTypes.IndexOf(randomEnemy)]) && (j < Enemies_Planet1.Count * 2) )
+            GameObject randomEnemy = Enemies_Planet1[Random.Range(0, 1)];
+            if ( (EnemyTypeCounts[randomEnemy.name] >= EnemyTypeLimits[EnemyTypes.IndexOf(randomEnemy)]))
             {
                 print(randomEnemy.name + " spawned "+ EnemyTypeCounts[randomEnemy.name] + " spawn limit reached");
                 if (randomEnemy = Enemies_Planet1[0])
@@ -49,7 +48,6 @@ public class EnemySpawner : MonoBehaviour
                 {
                     randomEnemy = Enemies_Planet1[0];
                 }
-                j++;
             }
             
             // should probably spawn at random(ish) coordinates 
