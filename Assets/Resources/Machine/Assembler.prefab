@@ -1321,6 +1321,7 @@ MonoBehaviour:
   footPrint: {x: 3, y: 3}
   type: 1
   working: 0
+  orientation: 0
 --- !u!61 &7971119329357373448
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1359,8 +1360,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fa0352a4d56abd42ad2fc69deb72448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Size: {x: 2.2068415, y: 2.1567886, z: 4}
-  m_Center: {x: -0.010673046, y: 0.1514517, z: 0}
+  m_Size: {x: 4.3323746, y: 4.5480137, z: 4}
+  m_Center: {x: -0.056933403, y: 0.11386776, z: 0}
   m_Area: 1
   m_AffectedAgents: ffffffff
 --- !u!114 &1237039046
