@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Rocket_Machine : Machine
 {
@@ -10,7 +11,7 @@ public class Rocket_Machine : Machine
         set{
             base.doing = value;
             // replace this with call to cutscene or something
-            doing.onComplete = ()=>{print("rocket complete!!!");};
+            doing.onComplete = ()=>{SceneManager.LoadScene(3);};
         }
     }
     

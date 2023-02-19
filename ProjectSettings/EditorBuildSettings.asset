@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FinalBuild/Tutorial.unity
     guid: 7c9eef97bd4761e43a1d55a5188dbc6b
+  - enabled: 1
+    path: Assets/Scenes/FinalBuild/CUTSCENE.unity
+    guid: d5e7e17dea4bfe94ba607ed20521b97a
   m_configObjects: {}
