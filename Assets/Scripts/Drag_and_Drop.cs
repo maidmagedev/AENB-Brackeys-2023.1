@@ -6,13 +6,9 @@ using UnityEngine;
 public class Drag_and_Drop : LockedToGrid
 {
 
-    private void OnMouseDrag()
+    private void Update()
     {
         position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
-    protected void OnMouseUp()
-    {
-        position = transform.position;
-    }
 }

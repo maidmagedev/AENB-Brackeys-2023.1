@@ -30,6 +30,9 @@ public class PlayerActions : MonoBehaviour
         if (ItemInSlotExists(selectedItemSlot) && Input.GetKeyDown(KeyCode.Mouse0)) {
             Globals.item_definitions[selectedItem].useBehavior(playerInv, playerInv[0][selectedItemSlot]);
         }
+        if (Globals.item_definitions[selectedItem].placing == true && Globals.item_definitions[selectedItem].canRotate && Input.GetKeyDown(KeyCode.Mouse1)){
+            Globals.item_definitions[selectedItem].inWorldPreview.transform.Rotate(new Vector3(0,0,90), Space.Self);
+        }
     }
 
     private void HotbarSelect() {
@@ -49,6 +52,8 @@ public class PlayerActions : MonoBehaviour
             Debug.Log("Item 4");
         }
         if (oldSlot != selectedItemSlot) {
+            Globals.item_definitions[selectedItem].placing = false;
+            Destroy(Globals.item_definitions[selectedItem].inWorldPreview);
             invenUI.EnableHotbarSlot(selectedItemSlot, oldSlot);
             UpdateSelectedItem();
         }

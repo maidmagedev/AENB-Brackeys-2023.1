@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class ResourceDeposit : Drag_and_Drop, IKillable
+public class ResourceDeposit : LockedToGrid, IKillable
 {
     [SerializeField] private GameObject pickUp;
     private Light2D dmgLight;

@@ -47,8 +47,37 @@ public class Item_Data
     }
 
 
-    public void Place(PlayerInventory host, ItemStack stack){
+    public bool placing = false;
+    GameObject preview = GameObject.Instantiate(Resources.Load<GameObject>("MachinePreview"));
 
+    public GameObject inWorldPreview;
+
+    public bool canRotate;
+
+    public void Place(PlayerInventory host, ItemStack stack){
+        if (!placing){
+            inWorldPreview = GameObject.Instantiate(preview, new Vector3(0,0,0), Quaternion.identity);
+            inWorldPreview.GetComponent<SpriteRenderer>().sprite = Globals.item_definitions[stack.of].sprite;
+
+
+            if (stack.of == ItemType.FURNACE || stack.of == ItemType.MINER){
+                canRotate = false;
+            }
+            else{
+                canRotate = true;
+            }
+        }
+        else{
+            //confirm place
+
+            Vector3 position = inWorldPreview.transform.position;
+            Quaternion rotation = inWorldPreview.transform.rotation;
+            GameObject.Destroy(inWorldPreview);
+            GameObject.Instantiate(Globals.item_definitions[stack.of].g, position, rotation);
+            host.Remove(0, new ItemStack(stack.of, 1));
+        }
+
+        placing = !placing;
     }
 
     public void Drop(PlayerInventory host, ItemStack stack){
@@ -90,5 +119,9 @@ public enum ItemType
     FAMAS,
     SHOTGUN,
     MINER,
-    FURNACE
+    FURNACE,
+    GRABBER,
+    BELT,
+    SPITTER,
+    ASSEMBLER
 }

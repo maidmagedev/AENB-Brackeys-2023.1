@@ -19,6 +19,8 @@ public class Machine : LockedToGrid, IODevice
 
     public bool working = false;
 
+    public Orientation orientation;
+
     Dictionary<Vector2Int, TileData> myPositions = new();
 
     public Action child_start;
@@ -54,6 +56,7 @@ public class Machine : LockedToGrid, IODevice
             }
         }
 
+        RotationToOrientation(transform.eulerAngles);
     }
 
     public void Delete(){
@@ -91,6 +94,12 @@ public class Machine : LockedToGrid, IODevice
     {
         return outBuf;
     }
+
+    public virtual void RotationToOrientation(Vector3 rotation){
+
+    }
+
+
 }
 
 public enum MachineType

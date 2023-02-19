@@ -7,8 +7,6 @@ public class Grabber : Machine, IODevice
 {
     private ItemCollection IOBuf = new(1);
 
-    public Orientation orientation;
-
     [SerializeField] private GameObject arm;
     [SerializeField] private SpriteRenderer item; 
 

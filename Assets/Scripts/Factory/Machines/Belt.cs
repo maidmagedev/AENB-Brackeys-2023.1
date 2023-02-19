@@ -7,8 +7,6 @@ public class Belt : Machine, IODevice
 {
     private ItemCollection IOBuf = new(4);
 
-    public Orientation orientation;
-
     float delay = .5f;
 
     public Belt(){
