@@ -23,6 +23,8 @@ public class PickUp : MonoBehaviour
         this.item_type = item_type;
         this.num = num;
         item = new ItemStack(item_type, num);
+
+        gameObject.transform.localScale = new Vector3(1 / GetComponent<SpriteRenderer>().sprite.bounds.size.x, 1 / GetComponent<SpriteRenderer>().sprite.bounds.size.y);
         _inventory = FindObjectOfType<PlayerInventory>();
     }
     

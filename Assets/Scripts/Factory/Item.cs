@@ -48,7 +48,7 @@ public class Item_Data
 
 
     public bool placing = false;
-    GameObject preview = GameObject.Instantiate(Resources.Load<GameObject>("MachinePreview"));
+    
 
     public GameObject inWorldPreview;
 
@@ -56,6 +56,7 @@ public class Item_Data
 
     public void Place(PlayerInventory host, ItemStack stack){
         if (!placing){
+            GameObject preview = GameObject.Instantiate(Resources.Load<GameObject>("MachinePreview"));
             inWorldPreview = GameObject.Instantiate(preview, new Vector3(0,0,0), Quaternion.identity);
             inWorldPreview.GetComponent<SpriteRenderer>().sprite = Globals.item_definitions[stack.of].sprite;
 

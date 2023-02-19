@@ -28,6 +28,8 @@ public class PlayerActions : MonoBehaviour
         
         // Action Handling based on Selected Item
         if (ItemInSlotExists(selectedItemSlot) && Input.GetKeyDown(KeyCode.Mouse0)) {
+
+            //print("11111");
             Globals.item_definitions[selectedItem].useBehavior(playerInv, playerInv[0][selectedItemSlot]);
         }
         if (Globals.item_definitions[selectedItem].placing == true && Globals.item_definitions[selectedItem].canRotate && Input.GetKeyDown(KeyCode.Mouse1)){
