@@ -17,7 +17,7 @@ public static class Globals
         { ItemType.SHOTGUN,     new Item_Data(ItemType.SHOTGUN, 1, Resources.Load<Sprite>("Items/item_shotgun"), Resources.Load<GameObject>("Items/Shotgun"), UseBehavior.SHOOT) },
         { ItemType.MINER,       new Item_Data(ItemType.MINER, 5, Resources.Load<Sprite>("Machine/mining_unit"), Resources.Load<GameObject>("Machine/Miner"), UseBehavior.PLACE)},
         { ItemType.FURNACE,     new Item_Data(ItemType.FURNACE, 5, Resources.Load<Sprite>("Machine/furnace"), Resources.Load<GameObject>("Machine/Furnace"), UseBehavior.PLACE)},
-        { ItemType.GRABBER,     new Item_Data(ItemType.GRABBER, 20, Resources.Load<Sprite>("Machine/grabber_base"), Resources.Load<GameObject>("Machine/Grabber"), UseBehavior.PLACE)},
+        { ItemType.GRABBER,     new Item_Data(ItemType.GRABBER, 20, Resources.Load<Sprite>("Machine/grabber_combined"), Resources.Load<GameObject>("Machine/Grabber"), UseBehavior.PLACE)},
         { ItemType.BELT,        new Item_Data(ItemType.BELT, 20, Resources.Load<Sprite>("Machine/belt-1"), Resources.Load<GameObject>("Machine/Belt"), UseBehavior.PLACE)},
         { ItemType.SPITTER,     new Item_Data(ItemType.SPITTER, 5, Resources.Load<Sprite>("Machine/spitter"), Resources.Load<GameObject>("Machine/Spitter"), UseBehavior.PLACE)},
         {ItemType.ASSEMBLER,    new Item_Data(ItemType.ASSEMBLER, 5, Resources.Load<Sprite>("Machine/assembler-1"), Resources.Load<GameObject>("Machine/Assembler"), UseBehavior.PLACE)}
