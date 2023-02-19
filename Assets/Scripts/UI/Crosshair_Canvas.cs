@@ -10,6 +10,8 @@ public class Crosshair_Canvas : MonoBehaviour
 
     [SerializeField] Image image;
 
+    [SerializeField] private Texture2D cursorTexture;
+
 
     // Update is called once per frame
     void Update()
@@ -21,15 +23,16 @@ public class Crosshair_Canvas : MonoBehaviour
     }
     private void Awake()
     {
-        Cursor.visible = false;
+        Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
+        //Cursor.visible = false;
     }
 
     // hides the crosshair and re-enables the cursor
     public void SetCrosshairVisibility(bool enabled)
     {
-        enableCrosshair = enabled;
+        /*enableCrosshair = enabled;
         Cursor.visible = !enabled;
-        image.enabled = enabled;
+        image.enabled = enabled;*/
     }
 
 }

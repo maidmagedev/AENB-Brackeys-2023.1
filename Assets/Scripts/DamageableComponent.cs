@@ -53,5 +53,6 @@ public class DamageableComponent : MonoBehaviour
     {
         return (float)currentHealth/maxHealth;
     }
+    
 
 }
