@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Joseph Scene.unity
     guid: 1ed2acd7b27f33544bdf03752e57a026
+  - enabled: 1
+    path: Assets/Scenes/Planet 1 Ideas.unity
+    guid: 98309350ab267f24d83d6abfebd6b2c0
   m_configObjects: {}

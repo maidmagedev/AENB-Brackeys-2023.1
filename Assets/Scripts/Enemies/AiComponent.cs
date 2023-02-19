@@ -51,8 +51,17 @@ public class AiComponent : MonoBehaviour
 
     private void chooseTarget()
     {
-        float minDist = Vector3.Distance(possible_targets[0].transform.position, transform.position);
-        GameObject newTarget = possible_targets[0];
+        float minDist;
+        GameObject newTarget = null;
+        if (possible_targets[0] != null)
+        {
+            minDist = Vector3.Distance(possible_targets[0].transform.position, transform.position);
+            newTarget = possible_targets[0];
+        }
+        else
+        {
+            minDist = float.PositiveInfinity;
+        }
         foreach (GameObject g in possible_targets)
         {
             if (g != null)
