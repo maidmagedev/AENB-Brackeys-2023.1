@@ -46,6 +46,9 @@ public class Belt : Machine, IODevice
             case Orientation.RL:
                 transform.eulerAngles = new Vector3(0, 0, 90);
                 break;
+            case Orientation.DU:
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                break;
         }
     }
 
@@ -79,9 +82,6 @@ public class Belt : Machine, IODevice
                     StartCoroutine(doCooldown(()=>advanceBelt()));
                 }
 
-                
-
-                
             }
             else{
                 working = true;
@@ -124,5 +124,26 @@ public class Belt : Machine, IODevice
     public override ItemCollection getOutputBuffer()
     {
         return IOBuf;
+    }
+
+
+    public override void RotationToOrientation(Vector3 rotation)
+    {
+        switch(rotation.z % 360){
+            case 90:
+                orientation = Orientation.RL;
+            break;
+            case 180:
+                orientation = Orientation.UD;
+            break;
+            case 270:
+                orientation = Orientation.LR;
+            break;
+            case 0:
+                orientation = Orientation.DU;
+            break;
+        }
+
+        transform.eulerAngles = new Vector3(0,0,0);
     }
 }

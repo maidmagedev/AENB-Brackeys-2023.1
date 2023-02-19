@@ -25,10 +25,21 @@ public class Machine : LockedToGrid, IODevice
 
     public Action child_start;
     public Action child_update;
+
+    private Dictionary<MachineType, ItemType> machineItemMapping = new(){
+        {MachineType.ASSEMBLER, ItemType.ASSEMBLER},
+        {MachineType.BELT, ItemType.BELT},
+        {MachineType.GRABBER, ItemType.GRABBER},
+        {MachineType.SPITTER, ItemType.SPITTER},
+        {MachineType.FURNACE, ItemType.FURNACE},
+        {MachineType.MINER, ItemType.MINER}
+        
+    };
     
 
     public virtual void Start()
     {
+        RotationToOrientation(transform.eulerAngles);
         if (child_start != null){
             child_start.Invoke();
         }
@@ -52,11 +63,30 @@ public class Machine : LockedToGrid, IODevice
             for (int y = bottom; y<= top; y++){
                 var varPos = new Vector2Int(x,y);
                 myPositions.Add(varPos, new TileData(varPos, this));
-                TileManager.tileData.Add(varPos, new TileData(varPos, this));
+                
+                TileData tryOut = null;
+                TileManager.tileData.TryGetValue(varPos, out tryOut);
+
+                if (tryOut != null){
+
+                    Destroy(this.gameObject);
+
+                    var pickup = Instantiate(Resources.Load<GameObject>("Items/GenericPickup"), transform.position + new Vector3(0,2,0), Quaternion.identity);
+                    pickup.GetComponent<SpriteRenderer>().sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
+
+                    pickup.GetComponent<PickUp>().Init(machineItemMapping[type], 1);
+                    
+                    return;
+                }
             }
         }
 
-        RotationToOrientation(transform.eulerAngles);
+        foreach (var key in myPositions.Keys)
+        {
+            TileManager.tileData.Add(key, new TileData(key, this));
+        }
+        
+
     }
 
     public void Delete(){
