@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
-using UnityEditor.U2D;
 using UnityEngine;
 
 public class Item_Data

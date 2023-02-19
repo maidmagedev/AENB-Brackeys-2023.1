@@ -8,7 +8,7 @@ public class MainMenuButtons : MonoBehaviour
 
     public void StartButtonOnClick()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void TutorialButtonOnClick()
