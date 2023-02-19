@@ -5,16 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Planet 1 Ideas.unity
-    guid: 98309350ab267f24d83d6abfebd6b2c0
-  - enabled: 0
-    path: Assets/Scenes/Joseph Scene.unity
-    guid: 1ed2acd7b27f33544bdf03752e57a026
   - enabled: 1
     path: Assets/Scenes/FinalBuild/Main Menu.unity
     guid: e7cdf307253125144b330464cdc85e71
   - enabled: 1
     path: Assets/Scenes/FinalBuild/Planet1.unity
     guid: b76c2a0a13e2ea349923f42e0ba68f1b
+  - enabled: 1
+    path: Assets/Scenes/FinalBuild/Tutorial.unity
+    guid: 7c9eef97bd4761e43a1d55a5188dbc6b
   m_configObjects: {}

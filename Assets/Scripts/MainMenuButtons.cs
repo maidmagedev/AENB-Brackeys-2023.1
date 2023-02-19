@@ -13,6 +13,6 @@ public class MainMenuButtons : MonoBehaviour
 
     public void TutorialButtonOnClick()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 }
