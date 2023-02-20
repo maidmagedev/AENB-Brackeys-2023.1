@@ -69,7 +69,7 @@ public class SpiderEnemy : MonoBehaviour, IKillable
     {
         if (collision.gameObject.TryGetComponent<DamageableComponent>(out DamageableComponent target))
         {
-            print("dealing damage");
+            //print("dealing damage");
             target.TakeDamage(damagePerHit);
         }
     }

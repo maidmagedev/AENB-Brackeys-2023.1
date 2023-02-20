@@ -76,12 +76,12 @@ public class EnemySpawner : MonoBehaviour
 
     private GameObject generateRandomEnemy()
     {
-        GameObject randomEnemy = Enemies_Planet1[Random.Range(0, Enemies_Planet1.Count - 1)];
+        GameObject randomEnemy = Enemies_Planet1[Random.Range(0, Enemies_Planet1.Count)];
         int j = 0;
         while ((EnemyTypeCounts[randomEnemy.name] >= EnemyTypeLimits[EnemyTypes.IndexOf(randomEnemy)]) && (j < Enemies_Planet1.Count * 2))
         {
             print(randomEnemy.name + " spawned " + EnemyTypeCounts[randomEnemy.name] + " spawn limit reached");
-            randomEnemy = Enemies_Planet1[Random.Range(0, Enemies_Planet1.Count - 1)];
+            randomEnemy = Enemies_Planet1[Random.Range(0, Enemies_Planet1.Count)];
             j++;
         }
         return randomEnemy;
