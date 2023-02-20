@@ -36,30 +36,31 @@ public class EnemySpawner : MonoBehaviour
         // Use a switch statement based off the current scene to decide whether to use Enemies_Planet1 or Enemies_Planet2...
         for (int i = 0; i < numEnemiesPerWave; i++)
         {
-            GameObject randomEnemy = Enemies_Planet1[Random.Range(0, 1)];
-            if ( (EnemyTypeCounts[randomEnemy.name] >= EnemyTypeLimits[EnemyTypes.IndexOf(randomEnemy)]))
+            GameObject randomEnemy = Enemies_Planet1[Random.Range(0, Enemies_Planet1.Count - 1)];
+            int j = 0;
+            while ((EnemyTypeCounts[randomEnemy.name] >= EnemyTypeLimits[EnemyTypes.IndexOf(randomEnemy)]) && (j < Enemies_Planet1.Count * 2))
             {
                 print(randomEnemy.name + " spawned "+ EnemyTypeCounts[randomEnemy.name] + " spawn limit reached");
-                if (randomEnemy = Enemies_Planet1[0])
-                {
-                    randomEnemy = Enemies_Planet1[1];
-                }
-                else
-                {
-                    randomEnemy = Enemies_Planet1[0];
-                }
+                randomEnemy = Enemies_Planet1[Random.Range(0, Enemies_Planet1.Count - 1)];
+                j++;
             }
             
-            // should probably spawn at random(ish) coordinates 
-            Instantiate(randomEnemy, getSpawnLocation(), Quaternion.identity);
+            Instantiate(randomEnemy, new Vector3(-4, 26, 0), Quaternion.identity);
+            Instantiate(randomEnemy, new Vector3(83, -46, 0), Quaternion.identity);
+            Instantiate(randomEnemy, new Vector3(-11, -101, 0), Quaternion.identity);
+            Instantiate(randomEnemy, new Vector3(-84, -45, 0), Quaternion.identity);
             EnemyTypeCounts[randomEnemy.name] += 1;
         }
-        reset_EnemyTypeCounts();
+        
         print("spawned enemies");
         yield return new WaitForSeconds(waveTime);
         if (!FindObjectOfType<DayNightCycle>().getIsDay())
         {
             StartCoroutine(spawnEnemies());
+        }
+        else
+        {
+            reset_EnemyTypeCounts();
         }
         //StartCoroutine(spawnEnemies());
     }

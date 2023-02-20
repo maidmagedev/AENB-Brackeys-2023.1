@@ -35,10 +35,6 @@ public class PlayerDeath : MonoBehaviour, IKillable
     // Update is called once per frame
     void Update()
     {
-        // press "o" to die
-        if (Input.GetKeyDown(KeyCode.O)) {
-            Die();
-        }
 
         if (PlayerDead)
         {
