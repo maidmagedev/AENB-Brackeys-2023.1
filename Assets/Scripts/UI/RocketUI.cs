@@ -24,6 +24,7 @@ public class RocketUI : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             canvas.enabled = true;
+            FindObjectOfType<PlayerInventoryUI>().SetInventoryView(true);
         }
     }
 
@@ -32,6 +33,7 @@ public class RocketUI : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             canvas.enabled = false;
+            FindObjectOfType<PlayerInventoryUI>().SetInventoryView(false);
         }
     }
 }

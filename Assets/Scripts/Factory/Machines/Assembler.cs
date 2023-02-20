@@ -43,6 +43,7 @@ public class Assembler : Machine, IKillable
         if (col.CompareTag("Player"))
         {
             GetComponentInChildren<Canvas>().enabled = true;
+            FindObjectOfType<PlayerInventoryUI>().SetInventoryView(true);
         }
     }
 
@@ -51,6 +52,7 @@ public class Assembler : Machine, IKillable
         if (other.CompareTag("Player"))
         {
             GetComponentInChildren<Canvas>().enabled = false;
+            FindObjectOfType<PlayerInventoryUI>().SetInventoryView(false);
         }
     }
 

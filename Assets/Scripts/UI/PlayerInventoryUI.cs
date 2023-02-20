@@ -84,6 +84,20 @@ public class PlayerInventoryUI : MonoBehaviour
         //midTransition = false;
     }
 
+    public void SetInventoryView(bool enabled)
+    {
+        if (enabled)
+        {
+            invenAnimator.SetTrigger("HotbarToInventory");
+            inventoryActive = true;
+        }
+        else
+        {
+            invenAnimator.SetTrigger("InventoryToHotbar");
+            inventoryActive = false;
+        }
+    }
+
     public IEnumerator ToggleFurnaceView() {
         //midTransition = true;
         if (secondaryActive) {
