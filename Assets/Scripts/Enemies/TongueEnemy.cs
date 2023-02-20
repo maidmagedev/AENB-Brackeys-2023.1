@@ -51,7 +51,7 @@ public class TongueEnemy : MonoBehaviour, IKillable
         FlipSprite();
         if (navMeshobj.remainingDistance <= 3  && navMeshobj.remainingDistance > 0 && mayAttack)
         {
-            Debug.Log("IN ATTACK RANGE");
+            //Debug.Log("IN ATTACK RANGE");
             //print("attacking");
             GetComponent<TongueAnimations>().SetAttackAnimationState(true);
             mayAttack = false;
