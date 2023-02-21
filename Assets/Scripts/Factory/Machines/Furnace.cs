@@ -48,6 +48,7 @@ public class Furnace : Machine, IKillable
     {
         if (col.CompareTag("Player"))
         {
+            // press "E" to do this...
             GetComponentInChildren<Canvas>().enabled = true;
             FindObjectOfType<PlayerInventoryUI>().SetInventoryView(true);
         }
@@ -69,6 +70,6 @@ public class Furnace : Machine, IKillable
 
     public void NotifyDamage()
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 }

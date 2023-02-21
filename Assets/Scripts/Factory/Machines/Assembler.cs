@@ -42,6 +42,7 @@ public class Assembler : Machine, IKillable
     {
         if (col.CompareTag("Player"))
         {
+            // press "E" to do this...
             GetComponentInChildren<Canvas>().enabled = true;
             FindObjectOfType<PlayerInventoryUI>().SetInventoryView(true);
         }
@@ -63,6 +64,6 @@ public class Assembler : Machine, IKillable
 
     public void NotifyDamage()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 }

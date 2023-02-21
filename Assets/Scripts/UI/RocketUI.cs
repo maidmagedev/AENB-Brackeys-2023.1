@@ -23,6 +23,7 @@ public class RocketUI : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
+            // press "E" to do this...
             canvas.enabled = true;
             FindObjectOfType<PlayerInventoryUI>().SetInventoryView(true);
         }
