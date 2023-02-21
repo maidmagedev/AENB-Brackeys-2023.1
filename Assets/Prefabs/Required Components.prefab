@@ -158,6 +158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 23504870}
   - component: {fileID: 23504871}
+  - component: {fileID: 23504872}
   m_Layer: 0
   m_Name: Cone Light
   m_TagString: Untagged
@@ -259,6 +260,21 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &23504872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23504869}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3edf9ba1b4bedc54aa5b68c58fc8d487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCam: {fileID: 971984400}
+  flipEnabled: 1
+  flipMode: 1
 --- !u!1 &100567991
 GameObject:
   m_ObjectHideFlags: 0
@@ -1850,14 +1866,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1033921050}
   - component: {fileID: 1033921049}
-  - component: {fileID: 1033921048}
   m_Layer: 0
   m_Name: Cone Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1033921050
 Transform:
   m_ObjectHideFlags: 0
@@ -1870,8 +1885,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3988546489362990542}
-  m_RootOrder: 6
+  m_Father: {fileID: 346861129915687288}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 96.712}
 --- !u!114 &1033921049
 MonoBehaviour:
@@ -1952,20 +1967,6 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!114 &1033921048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1033921047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3edf9ba1b4bedc54aa5b68c58fc8d487, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCam: {fileID: 971984400}
-  flipEnabled: 0
 --- !u!1 &1043793397
 GameObject:
   m_ObjectHideFlags: 0
@@ -3195,6 +3196,54 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &558258495399901064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 346861129915687288}
+  - component: {fileID: 5276200377902485369}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &346861129915687288
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558258495399901064}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1033921050}
+  m_Father: {fileID: 3988546489362990542}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5276200377902485369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558258495399901064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3edf9ba1b4bedc54aa5b68c58fc8d487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCam: {fileID: 971984400}
+  flipEnabled: 1
+  flipMode: 0
 --- !u!1 &1351167350258762551
 GameObject:
   m_ObjectHideFlags: 0
@@ -3249,7 +3298,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &438493718228971396
 Transform:
   m_ObjectHideFlags: 0
@@ -4098,7 +4147,7 @@ MonoBehaviour:
   pauseKey: 27
   inventoryKey: 105
   interactKey: 101
-  masterVolume: 1
+  masterVolume: 0.5
   slider: {fileID: 3137667187415748136}
   mainAudio: {fileID: 1760330210384736839}
 --- !u!1 &5103151848321911067
@@ -5631,7 +5680,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -5860,10 +5909,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 148132397933554702, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 453921490604599991, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -6453,6 +6498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCam: {fileID: 971984400}
   flipEnabled: 1
+  flipMode: 0
 --- !u!4 &5901291332658712544 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5233668638576196946, guid: d0e5a89315e76894299e96ca5f073add, type: 3}
