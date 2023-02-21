@@ -91,7 +91,7 @@ public class TongueEnemy : MonoBehaviour, IKillable
 
     public void Die() {
         //FindObjectOfType<UIScore>().score += 10;
-        Destroy(this.gameObject);  
+        Destroy(this.transform.parent.gameObject);  
     }
     public void NotifyDamage()
     {
