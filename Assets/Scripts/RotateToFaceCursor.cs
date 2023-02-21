@@ -6,6 +6,7 @@ public class RotateToFaceCursor : MonoBehaviour
 {
     [SerializeField] Camera mainCam;
     private Vector3 mousePos;
+    [SerializeField] bool flipEnabled = true;
 
     // Start is called before the first frame update
     void Start()
@@ -29,18 +30,20 @@ public class RotateToFaceCursor : MonoBehaviour
         
         // uncomment this to rotate sprite based off mouse position
         transform.eulerAngles = new Vector3(0, 0, angle);
-        
-        if (Mathf.Abs(angle) > 150)
-        {
-            // facing left
-            gameObject.transform.localScale = new Vector2(1f, -1f);
-            //print("facing left");
-        }
-        else if (Mathf.Abs(angle) < 40)
-        {
-            // facing right
-            gameObject.transform.localScale = new Vector2(-1f, 1f);
-            //print("facing right");
+        if (flipEnabled) {
+            print(angle);
+            if (Mathf.Abs(angle) > 100)
+            {
+                // facing left
+                gameObject.transform.localScale = new Vector2(1f, -1f);
+                //print("facing left");
+            }
+            else if (Mathf.Abs(angle) > -100)
+            {
+                // facing right
+                gameObject.transform.localScale = new Vector2(-1f, 1f);
+                //print("facing right");
+            }
         }
     }
 }

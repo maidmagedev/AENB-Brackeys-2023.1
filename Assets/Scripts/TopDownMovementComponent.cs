@@ -84,13 +84,13 @@ public class TopDownMovementComponent : MonoBehaviour
         // uncomment this to rotate sprite based off mouse position
         //transform.eulerAngles = new Vector3(0, 0, angle);
 
-        if (Mathf.Abs(angle) > 150)
+        if (Mathf.Abs(angle) > 100)
         {
             // facing left
             gameObject.transform.localScale = new Vector2(-1f, gameObject.transform.localScale.y);
             //print("facing left");
         }
-        else if (Mathf.Abs(angle) < 40)
+        else if (Mathf.Abs(angle) > - 100) // was < 40
         {
             // facing right
             gameObject.transform.localScale = new Vector2(1f, gameObject.transform.localScale.y);
