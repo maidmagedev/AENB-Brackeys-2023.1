@@ -40,7 +40,7 @@ public class DayNightCycle : MonoBehaviour
         else
         {
             workingTime = nightTime;
-            globalLight.intensity = 0.5f;
+            globalLight.intensity = 0.0f;
             print("begin spawning enemies");
             StartCoroutine(FindObjectOfType<EnemySpawner>().spawnEnemies());
             FindObjectOfType<BackgroundMusic>().Play_night_track();
