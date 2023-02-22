@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // It might be important to note that PlayerLight is not directly attached to the player.
 // This script mainly handles animations.
@@ -13,6 +14,7 @@ public class PlayerLight : MonoBehaviour
     [SerializeField] float regenPerSecond = 1f;
     public bool flashLightOn = false;
     private bool doingManagement = false;
+    [SerializeField] Image meterUI;
 
     private enum AnimationStates { Inactive, StartUp, Oscillating, ShutDown, FlickeringDead }
     private void updateAnimationState(AnimationStates newvalue)
@@ -68,6 +70,7 @@ public class PlayerLight : MonoBehaviour
         if (!doingManagement) {
             StartCoroutine(ManageEnergy());
         }
+
         priority.Sort(sorter);
 
         updateAnimationState(priority[0]);
@@ -109,6 +112,9 @@ public class PlayerLight : MonoBehaviour
             if (energy < maxEnergy) {
                 energy += regenPerSecond;
             }
+        }
+        if (meterUI != null) {
+            meterUI.fillAmount = energy / maxEnergy;
         }
         yield return new WaitForSeconds(1f);
         doingManagement = false;
