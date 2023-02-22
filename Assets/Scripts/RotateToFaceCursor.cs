@@ -31,7 +31,7 @@ public class RotateToFaceCursor : MonoBehaviour
         // uncomment this to rotate sprite based off mouse position
         transform.eulerAngles = new Vector3(0, 0, angle);
         if (flipEnabled) {
-            print(angle);
+            //print(angle);
             if (Mathf.Abs(angle) > 100)
             {
                 // facing left

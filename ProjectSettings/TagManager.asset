@@ -6,6 +6,7 @@ TagManager:
   tags:
   - InvItemSlot
   - Machine
+  - Enemy
   layers:
   - Default
   - TransparentFX

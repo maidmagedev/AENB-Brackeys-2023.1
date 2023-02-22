@@ -35,6 +35,20 @@ public class DayNightCycle : MonoBehaviour
             workingTime = dayTime;
             globalLight.intensity = 1.0f;
             print("stop spawning enemies");
+            // Kill any remaining enemies at start of day--NOTE this is not very scalable or efficient I will rework this later when I have time
+            GameObject[] all_enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject enemy in all_enemies)
+            {
+                print("killing enemies during day time");
+                if (enemy.TryGetComponent<SpiderEnemy>(out SpiderEnemy spider))
+                {
+                    spider.Die();
+                }
+                else
+                {
+                    Destroy(enemy);
+                }
+            }
             FindObjectOfType<BackgroundMusic>().Play_day_track();
         }
         else
