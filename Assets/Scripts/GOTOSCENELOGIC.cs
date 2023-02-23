@@ -16,6 +16,7 @@ public class GOTOSCENELOGIC : MonoBehaviour
         
     }
 
+    // THIS IS USED BY ANIMATION EVENTS, WHICH DOES NOT COUNT AS A CALL REFERENCE.
     void mainMenu () {
         SceneManager.LoadScene(0);
     }
