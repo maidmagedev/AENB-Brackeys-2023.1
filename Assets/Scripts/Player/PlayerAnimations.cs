@@ -5,7 +5,7 @@ using UnityEngine;
 // Based on the PlayerAnimations.cs script from the Unity Script Components
 public class PlayerAnimations : MonoBehaviour
 {
-    private enum AnimationStates { Idle, Walk, Death }
+    private enum AnimationStates { Idle, Walk, Death, Roll }
     private void updateAnimationState(AnimationStates newvalue)
     {
         myAnim.CrossFade(StateMapping[newvalue], 0, 0);  // crossfade implementation
@@ -16,7 +16,8 @@ public class PlayerAnimations : MonoBehaviour
     {
         [AnimationStates.Idle] = "Idle",
         [AnimationStates.Walk] = "Walk",
-        [AnimationStates.Death] = "Death"
+        [AnimationStates.Death] = "Death",
+        [AnimationStates.Roll] = "Roll"
     };
 
     //actions that should not interrupt each other should have the same priority, overrides higher, ignores lower.
@@ -25,7 +26,8 @@ public class PlayerAnimations : MonoBehaviour
     {
         [AnimationStates.Idle] = 0,
         [AnimationStates.Walk] = 1,
-        [AnimationStates.Death] = 2
+        [AnimationStates.Roll] = 2,
+        [AnimationStates.Death] = 3
     };
 
     Rigidbody2D rb;
@@ -61,6 +63,16 @@ public class PlayerAnimations : MonoBehaviour
         priority.Sort(sorter);
 
         updateAnimationState(priority[0]);
+    }
+
+    public IEnumerator addRoll() {
+        priority.Add(AnimationStates.Roll);
+        yield return new WaitForSeconds(0.667f);
+        priority.Remove(AnimationStates.Roll);
+    }
+
+    public void addDie() {
+        priority.Add(AnimationStates.Death);
     }
 
 }

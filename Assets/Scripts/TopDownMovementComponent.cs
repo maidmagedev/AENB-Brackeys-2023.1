@@ -72,6 +72,20 @@ public class TopDownMovementComponent : MonoBehaviour
         rb.velocity = new Vector2(horizontalInput * movementSpeed, verticalInput * movementSpeed);
     }
 
+    // Used by Animation Events.
+    public void moveScripted(float dirX, float dirY)
+    {
+        // Directly sets the player's velocity based on input
+        rb.velocity = new Vector2(dirX * movementSpeed, dirY * movementSpeed);
+    }
+
+    // Used by Animation Events.
+    public void moveScripted(float dirX, float dirY, float ms)
+    {
+        // Directly sets the player's velocity based on input
+        rb.velocity = new Vector2(dirX * ms, dirY * ms);
+    }
+
     private void moveAddForce()
     {
         // movement with this method feels a little worse, but it avoids setting velocity directly

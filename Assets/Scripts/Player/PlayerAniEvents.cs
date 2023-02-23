@@ -18,4 +18,9 @@ public class PlayerAniEvents : MonoBehaviour
     void SetPlayerMovement(float ms) {
         topDownMovementComponent.movementSpeed = ms;
     }
+
+    void ForcedPlayerMove(float dirX) {
+        Debug.Log("forced move");
+        topDownMovementComponent.moveScripted(dirX, 0, 12);
+    } 
 }

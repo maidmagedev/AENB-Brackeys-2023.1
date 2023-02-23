@@ -10,6 +10,8 @@ public class PlayerActions : MonoBehaviour
 
     [SerializeField] PlayerInventory playerInv;
     [SerializeField] PlayerInventoryUI invenUI;
+    [SerializeField] PlayerAnimations playerAnims;
+    [SerializeField] TopDownMovementComponent topDownMovementComponent;
     [SerializeField] GameObject[] hands;
 
     [Header("Weapons")]
@@ -37,6 +39,18 @@ public class PlayerActions : MonoBehaviour
         if (Globals.item_definitions[selectedItem].placing == true && Globals.item_definitions[selectedItem].canRotate && Input.GetKeyDown(KeyCode.Mouse1)){
             Globals.item_definitions[selectedItem].inWorldPreview.transform.Rotate(new Vector3(0,0,90), Space.Self);
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift)) {
+            Debug.Log("DashRoll");
+            StartCoroutine(playerAnims.addRoll());
+            //StartCoroutine(dashMovement());
+        }
+    }
+
+    private IEnumerator dashMovement() {
+        topDownMovementComponent.DisableMovement();
+        yield return new WaitForSeconds(0.667f);
+        topDownMovementComponent.EnableMovement();
     }
 
     private void HotbarSelect() {
