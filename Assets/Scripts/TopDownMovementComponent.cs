@@ -12,7 +12,7 @@ public class TopDownMovementComponent : MonoBehaviour
     float verticalInput;
     float moveLimiter = 0.7f;
     private float angle = 0f;
-    [SerializeField] private float movementSpeed = 8f;
+    [SerializeField] public float movementSpeed = 8f;
     private bool MovementDisabled = false;
     // Start is called before the first frame update
     void Start()
@@ -58,6 +58,12 @@ public class TopDownMovementComponent : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
         MovementDisabled = true;
+    }
+
+    public void EnableMovement()
+    {
+       // rb.velocity = Vector2.zero;
+        MovementDisabled = false;
     }
 
     private void move()
