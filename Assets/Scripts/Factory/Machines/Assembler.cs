@@ -6,6 +6,7 @@ public class Assembler : Machine, IKillable
 {
 
     private AssemblerInventory myInventory;
+    [SerializeField] private Canvas interact_canvas;
 
     public new Recipe doing{
         get {return base.doing;} 
@@ -37,25 +38,7 @@ public class Assembler : Machine, IKillable
     {
         doing = recipe;
     }
-    
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.CompareTag("Player"))
-        {
-            // press "E" to do this...
-            GetComponentInChildren<Canvas>().enabled = true;
-            FindObjectOfType<PlayerInventoryUI>().SetInventoryView(true);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            GetComponentInChildren<Canvas>().enabled = false;
-            FindObjectOfType<PlayerInventoryUI>().SetInventoryView(false);
-        }
-    }
+   
 
     public void Die()
     {

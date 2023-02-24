@@ -44,12 +44,12 @@ public class PlayerInventoryUI : MonoBehaviour
                 ToggleSecondaries();
             }
             StartCoroutine(ToggleInventoryView());
-        } else if (Input.GetKeyDown(settings.interactKey)) {
+        } /*else if (Input.GetKeyDown(settings.interactKey)) {    // I commented this out so pressing "E" can be used somewhere else --Joseph
             if (!inventoryActive) {
                 StartCoroutine(ToggleInventoryView());
             }
             ToggleSecondaries();
-        }
+        }*/
         
     }
 
