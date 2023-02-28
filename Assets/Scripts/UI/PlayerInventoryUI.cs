@@ -86,6 +86,7 @@ public class PlayerInventoryUI : MonoBehaviour
 
     public void SetInventoryView(bool enabled)
     {
+        print("setting inventory view to " + enabled);
         if (enabled)
         {
             invenAnimator.SetTrigger("HotbarToInventory");
