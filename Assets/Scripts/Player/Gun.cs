@@ -30,7 +30,7 @@ public abstract class Gun : MonoBehaviour
 
     [Header("Animations")]
     [SerializeField] Animator animator;
-    public enum AnimationStates { Static, Fire, Reload }
+    public enum AnimationStates { Static, Fire, Reload, Equip }
     public int firingLayer = 0;
     private void updateAnimationState(AnimationStates newvalue)
     {
@@ -42,7 +42,8 @@ public abstract class Gun : MonoBehaviour
     {
         [AnimationStates.Static] = "Static",
         [AnimationStates.Fire] = "Fire",
-        [AnimationStates.Reload] = "Reload"
+        [AnimationStates.Reload] = "Reload",
+        [AnimationStates.Equip] = "Equip"
     };
 
     //actions that should not interrupt each other should have the same priority, overrides higher, ignores lower.
@@ -51,7 +52,8 @@ public abstract class Gun : MonoBehaviour
     {
         [AnimationStates.Static] = 0,
         [AnimationStates.Fire] = 1,
-        [AnimationStates.Reload] = 2
+        [AnimationStates.Reload] = 2,
+        [AnimationStates.Equip] = 3
     };
 
     public List<AnimationStates> priority = new List<AnimationStates>(new AnimationStates[] { AnimationStates.Static });

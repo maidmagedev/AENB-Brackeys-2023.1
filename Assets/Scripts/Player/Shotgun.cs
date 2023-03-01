@@ -59,4 +59,12 @@ public class Shotgun : Gun
         mayshoot = true;
         clip = 2;
     }
+
+    public IEnumerator Equip() {
+        mayshoot = false;
+        priority.Add(AnimationStates.Equip);
+        yield return new WaitForSeconds(1.067f);
+        priority.Remove(AnimationStates.Equip);
+        mayshoot = true;
+    }
 }

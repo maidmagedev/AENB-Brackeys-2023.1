@@ -105,13 +105,16 @@ public class PlayerActions : MonoBehaviour
             selectedItem = GetItemTypeFromSlotNum(selectedItemSlot);
             switch(selectedItem) {
                 case ItemType.FAMAS:  
-                    famasObj.SetActive(true);               
+                    famasObj.SetActive(true); 
+                    StartCoroutine(famas.Equip());              
                     break;
                 case ItemType.SHOTGUN:
                     shotgunObj.SetActive(true);
+                    StartCoroutine(shotgun.Equip());
                     break;
                 case ItemType.PISTOL:
                     pistolObj.SetActive(true);
+                    StartCoroutine(pistol.Equip());
                     break;
                 default:
                     EnableHands(true);

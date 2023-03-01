@@ -61,4 +61,12 @@ public class Pistol : Gun
         mayshoot = true;
         clip = 12;
     }
+
+    public IEnumerator Equip() {
+        mayshoot = false;
+        priority.Add(AnimationStates.Equip);
+        yield return new WaitForSeconds(0.850f);
+        priority.Remove(AnimationStates.Equip);
+        mayshoot = true;
+    }
 }

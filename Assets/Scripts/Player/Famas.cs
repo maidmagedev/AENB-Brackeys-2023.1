@@ -47,4 +47,12 @@ public class Famas : Gun
 
     }
     
+
+    public IEnumerator Equip() {
+        mayshoot = false;
+        priority.Add(AnimationStates.Equip);
+        yield return new WaitForSeconds(0.833f);
+        priority.Remove(AnimationStates.Equip);
+        mayshoot = true;
+    }
 }
