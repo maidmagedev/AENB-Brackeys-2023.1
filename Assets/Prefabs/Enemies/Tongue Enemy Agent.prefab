@@ -166,7 +166,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4550112752892079490}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -8.675001, y: 0, z: 9.340003}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -212,7 +212,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -32462601
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: c78b7fe5ecb8c1d4eaba75383a6061f5, type: 3}
   m_Color: {r: 1, g: 0.04887746, b: 0, a: 1}
@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 5910624752918903766}
   - component: {fileID: 5910624752918903757}
   - component: {fileID: 5910624752918903756}
+  - component: {fileID: 1046807042}
   m_Layer: 0
   m_Name: Tongue Spider
   m_TagString: Enemy
@@ -301,7 +302,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1842031369
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -1840294031, guid: fc44dde36f2393d49a5cf0e661bd8233, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -372,6 +373,27 @@ MonoBehaviour:
   navMeshobj: {fileID: 5910624753749706617}
   damageLight: {fileID: 5910624754091677638}
   spriteScale: 1
+--- !u!50 &1046807042
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5910624752918903763}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!1 &5910624753749706619
 GameObject:
   m_ObjectHideFlags: 0
