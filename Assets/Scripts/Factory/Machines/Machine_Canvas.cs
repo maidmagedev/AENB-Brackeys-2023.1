@@ -35,7 +35,7 @@ public class Machine_Canvas : MonoBehaviour
         }
     }
 
-    public void toggle_mainCanvas()
+    private void toggle_mainCanvas()
     {
         canvases = GetComponentsInChildren<Canvas>();
         // interact canvas

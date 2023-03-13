@@ -38,7 +38,7 @@ public class PlayerInventoryUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(settings.inventoryKey)) {
+        if (Input.GetKeyDown(settings.interactKey)) {
             if (secondaryActive) {
                 // guaranteed to disable secondaries due to logic chain
                 ToggleSecondaries();
