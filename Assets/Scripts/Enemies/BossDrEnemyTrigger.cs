@@ -24,9 +24,9 @@ public class BossDrEnemyTrigger : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         isInCollider = true;
         if (rotate) {
-            rotateCoroutine = mainEnemyScript.RotateToPoint(other.transform);
-            StopCoroutine(rotateCoroutine);
-            StartCoroutine(rotateCoroutine);        
+            //rotateCoroutine = mainEnemyScript.RotateToPoint(other.transform);
+            //StopCoroutine(rotateCoroutine);
+            //StartCoroutine(rotateCoroutine);        
         }
         print("ENTERED SNIPER TRIGGER");
         if (textScroller != null) {
@@ -42,18 +42,22 @@ public class BossDrEnemyTrigger : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other) {
         if (rotate) {
-            //rotateCoroutine = mainEnemyScript.RotateToPoint(other.transform);
-            //StopCoroutine(rotateCoroutine);
-            //StartCoroutine(rotateCoroutine);
+            rotateCoroutine = mainEnemyScript.RotateToPoint(other.transform);
+            StopCoroutine(rotateCoroutine);
+            StartCoroutine(rotateCoroutine);
         }
         //print("stay");
         
-        
-        if (fireOnStay && canFire && aimedIn) {
-            print("Fire");
-            StartCoroutine(FireCooldown());
+        if (other.transform.CompareTag("Player")) {
+            if (fireOnStay && canFire && aimedIn) {
+                print("Fire");
+                StartCoroutine(FireCooldown(fireCooldown));
+                StartCoroutine(mainEnemyScript.FireGun(other));
+            } 
+        } else if (canFire) {
+            StartCoroutine(FireCooldown(2f));
             StartCoroutine(mainEnemyScript.FireGun(other));
-        } 
+        }
     }
 
     void OnTriggerExit2D(Collider2D other) {
@@ -76,9 +80,9 @@ public class BossDrEnemyTrigger : MonoBehaviour
         }
     }
 
-    private IEnumerator FireCooldown() {
+    private IEnumerator FireCooldown(float time) {
         canFire = false;
-        yield return new WaitForSeconds(fireCooldown);
+        yield return new WaitForSeconds(time);
         canFire = true;
         
         

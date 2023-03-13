@@ -5,6 +5,8 @@ using UnityEngine;
 public class FollowObj : MonoBehaviour
 {
     [SerializeField] GameObject objectToFollow;
+    public bool updatePosition = true;
+    public bool updateAngle;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,7 +15,12 @@ public class FollowObj : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        this.transform.position = objectToFollow.transform.position;
+    {   
+        if (updatePosition) {
+            this.transform.position = objectToFollow.transform.position;
+        }
+        if (updateAngle) {
+            this.transform.eulerAngles = objectToFollow.transform.eulerAngles;
+        }
     }
 }
