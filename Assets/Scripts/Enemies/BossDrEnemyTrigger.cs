@@ -7,6 +7,7 @@ public class BossDrEnemyTrigger : MonoBehaviour
     public bool fireOnStay = false;
     public bool rotate;
     [SerializeField] BossDrEnemy mainEnemyScript;
+    [SerializeField] TextScroller textScroller;
     private IEnumerator rotateCoroutine;
     bool did = false;
     bool isInCollider = false;
@@ -27,6 +28,9 @@ public class BossDrEnemyTrigger : MonoBehaviour
             rotateCoroutine = mainEnemyScript.RotateToPoint(other.transform);
         }
         print("ENTERED SNIPER TRIGGER");
+        if (textScroller != null) {
+            mainEnemyScript.randomText(textScroller);
+        }
    
         if (fireOnStay) {
             StartCoroutine(TrackStayTime());
@@ -77,5 +81,7 @@ public class BossDrEnemyTrigger : MonoBehaviour
         
         
     }
+
+    
     
 }

@@ -33,6 +33,8 @@ public class BossDrEnemy : MonoBehaviour, IKillable
     [SerializeField] public AudioSource audioSource;
     [SerializeField] public AudioClip fireSound;
     [SerializeField] public AudioClip boltSound;
+    [SerializeField] public List<AudioClip> vocalCries;
+    [SerializeField] public AudioClip deathSound;
     [SerializeField] public float volume = 10f;
     
     public enum AnimationStates { Static, Fire, Reload, Equip, Bolt, ZeroMove, Scanning }
@@ -135,6 +137,7 @@ public class BossDrEnemy : MonoBehaviour, IKillable
     }
 
     public void Die() {
+        audioSource.PlayOneShot(deathSound, volume * 0.1f);
         //FindObjectOfType<UIScore>().score += 10;
         StartCoroutine(DieAnim());
     }
@@ -148,6 +151,7 @@ public class BossDrEnemy : MonoBehaviour, IKillable
     public void NotifyDamage()
     {
         StartCoroutine(DamageLightToggle());
+        randomVocalCry();
     }
 
     IEnumerator DamageLightToggle()
@@ -212,6 +216,21 @@ public class BossDrEnemy : MonoBehaviour, IKillable
             priority.Remove(AnimationStates.Bolt);
             audioSource.PlayOneShot(boltSound, volume);
         }
+    }
+
+    public void randomText(TextScroller textScroller) {
+        string text = "";
+        string[] options = {"DIE!", "LEAVE.", "SCUM!", "PERISH!"};
+
+        int pick = Random.Range(0, options.Length);
+        text = options[pick];
+        randomVocalCry();
+        textScroller.DisplayText(text);
+    }
+
+    public void randomVocalCry() {
+        int pick = Random.Range(0, vocalCries.Count);
+        audioSource.PlayOneShot(vocalCries[pick], volume * 0.08f);
     }
 
 }
