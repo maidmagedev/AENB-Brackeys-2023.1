@@ -59,6 +59,10 @@ public class SpiderEnemy : MonoBehaviour, IKillable
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // prevents infighting.
+        if (collision.transform.CompareTag("Enemy")) {
+            return;
+        }
         if (collision.gameObject.TryGetComponent<DamageableComponent>(out DamageableComponent target))
         {
             target.TakeDamage(damagePerHit);
@@ -67,6 +71,10 @@ public class SpiderEnemy : MonoBehaviour, IKillable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // prevents infighting.
+        if (collision.transform.CompareTag("Enemy")) {
+            return;
+        }
         if (collision.gameObject.TryGetComponent<DamageableComponent>(out DamageableComponent target))
         {
             //print("dealing damage");
