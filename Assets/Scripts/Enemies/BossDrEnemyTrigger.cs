@@ -26,11 +26,13 @@ public class BossDrEnemyTrigger : MonoBehaviour
             //StopCoroutine(rotateCoroutine);
             rotateCoroutine = mainEnemyScript.RotateToPoint(other.transform);
         }
-        //print("ENTERED SNIPER TRIGGER");
+        print("ENTERED SNIPER TRIGGER");
    
         if (fireOnStay) {
             StartCoroutine(TrackStayTime());
         }
+
+        mainEnemyScript.priority.Add(BossDrEnemy.AnimationStates.ZeroMove);
     }
 
     void OnTriggerStay2D(Collider2D other) {
@@ -51,6 +53,7 @@ public class BossDrEnemyTrigger : MonoBehaviour
     void OnTriggerExit2D(Collider2D other) {
         isInCollider = false;
         StopCoroutine(TrackStayTime());
+        mainEnemyScript.priority.Remove(BossDrEnemy.AnimationStates.ZeroMove);
     }
 
 
@@ -65,7 +68,6 @@ public class BossDrEnemyTrigger : MonoBehaviour
             currentTime += Time.deltaTime;
             yield return null;
         }
-
     }
 
     private IEnumerator FireCooldown() {

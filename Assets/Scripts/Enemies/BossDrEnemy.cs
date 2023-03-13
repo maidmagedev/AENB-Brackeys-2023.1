@@ -33,7 +33,9 @@ public class BossDrEnemy : MonoBehaviour, IKillable
     [SerializeField] public AudioClip boltSound;
     [SerializeField] public float volume = 10f;
     
-    public enum AnimationStates { Static, Fire, Reload, Equip, Bolt }
+    public enum AnimationStates { Static, Fire, Reload, Equip, Bolt, ZeroMove }
+
+    public enum CurrentState { Tracking, Scanning }
     private void updateAnimationState(AnimationStates newvalue)
     {
         gunAnim.CrossFade(StateMapping[newvalue], 0, 0);  // crossfade implementation
@@ -46,7 +48,8 @@ public class BossDrEnemy : MonoBehaviour, IKillable
         [AnimationStates.Fire] = "Fire",
         [AnimationStates.Reload] = "Reload",
         [AnimationStates.Equip] = "Equip",
-        [AnimationStates.Bolt] = "Extra" 
+        [AnimationStates.Bolt] = "Bolt",
+        [AnimationStates.ZeroMove] = "ZeroMove" 
     };
 
     //actions that should not interrupt each other should have the same priority, overrides higher, ignores lower.
@@ -54,10 +57,11 @@ public class BossDrEnemy : MonoBehaviour, IKillable
     static private DictWithKeySet<AnimationStates, int> priorityMapping = new DictWithKeySet<AnimationStates, int>
     {
         [AnimationStates.Static] = 0,
-        [AnimationStates.Fire] = 1,
-        [AnimationStates.Reload] = 2,
-        [AnimationStates.Equip] = 3,
-        [AnimationStates.Bolt] = 4
+        [AnimationStates.Fire] = 2,
+        [AnimationStates.Reload] = 3,
+        [AnimationStates.Equip] = 4,
+        [AnimationStates.Bolt] = 5,
+        [AnimationStates.ZeroMove] = 1
     };
 
     public List<AnimationStates> priority = new List<AnimationStates>(new AnimationStates[] { AnimationStates.Static });
@@ -169,11 +173,11 @@ public class BossDrEnemy : MonoBehaviour, IKillable
     private void FlipGun() {
         if (gunObj.transform.eulerAngles.z > 90 && gunObj.transform.eulerAngles.z < 270 || gunObj.transform.eulerAngles.z < -90f &&  gunObj.transform.eulerAngles.z > -270f) {
             //print("LEFT");
-            gunObj.transform.localScale = new Vector3(1f, -1f, 1f);
+            gunObj.transform.localScale = new Vector3(-1f, -1f, 1f);
             bossSprite.flipX = true;
         } else {
             //print("RIGHT");
-            gunObj.transform.localScale = new Vector3(1f, 1f, 1f);
+            gunObj.transform.localScale = new Vector3(-1f, 1f, 1f);
             bossSprite.flipX = false;
         }
     }
