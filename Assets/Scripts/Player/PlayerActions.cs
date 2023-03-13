@@ -58,6 +58,19 @@ public class PlayerActions : MonoBehaviour
     private void HotbarSelect() {
         // Item Selection
         int oldSlot = selectedItemSlot;
+        // Scroll through the hotbar
+        if (Input.mouseScrollDelta.y > 0) {
+            selectedItemSlot++;
+            if (selectedItemSlot > 3) {
+                selectedItemSlot = 0;
+            }
+        } else if (Input.mouseScrollDelta.y < 0) {
+            selectedItemSlot--;
+            if (selectedItemSlot < 0) {
+                selectedItemSlot = 3;
+            }
+        }
+        // manually select button
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
             selectedItemSlot = 0;
             Debug.Log("Item 1");
