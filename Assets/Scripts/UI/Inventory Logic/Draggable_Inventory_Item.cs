@@ -47,7 +47,13 @@ public class Draggable_Inventory_Item : DraggableUI, IEndDragHandler
             {
                 ItemStack movedItem = InventoryObj.inventory[currentIndexData.invInd][currentIndexData.indInInv];
                 InventoryObj.inventory[currentIndexData.invInd].Remove(movedItem);
+
+                ItemStack targetSlotItem = targetInventory.inventory[invSlot.data.indexInGrid.Item1][invSlot.data.indexInGrid.Item2];
                 targetInventory.inventory[invSlot.data.indexInGrid.Item1][invSlot.data.indexInGrid.Item2] = movedItem;
+
+                if (targetSlotItem != null){
+                    InventoryObj.inventory[currentIndexData.invInd][currentIndexData.indInInv] = targetSlotItem;
+                }
             }
             
             
