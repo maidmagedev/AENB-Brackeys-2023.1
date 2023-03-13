@@ -91,7 +91,7 @@ public class BossDrEnemy : MonoBehaviour, IKillable
         //print(mayAttack);
         //FlipSprite();
         if (targetList.Count == 0) {
-            currState = CurrentState.Scanning;
+            //currState = CurrentState.Scanning;
         }
         if (currState == CurrentState.Scanning) {
             priority.Add(AnimationStates.Scanning);
