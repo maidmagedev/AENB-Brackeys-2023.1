@@ -16,6 +16,8 @@ public class BossDrEnemy : MonoBehaviour, IKillable
 
     private bool mayAttack = true;
     private bool currentlyAttacking = false;
+    public CurrentState currState = CurrentState.Scanning;
+    [SerializeField] List<GameObject> targetList;
 
     [Header("References")]
     DamageableComponent damageableComponent;
@@ -33,7 +35,7 @@ public class BossDrEnemy : MonoBehaviour, IKillable
     [SerializeField] public AudioClip boltSound;
     [SerializeField] public float volume = 10f;
     
-    public enum AnimationStates { Static, Fire, Reload, Equip, Bolt, ZeroMove }
+    public enum AnimationStates { Static, Fire, Reload, Equip, Bolt, ZeroMove, Scanning }
 
     public enum CurrentState { Tracking, Scanning }
     private void updateAnimationState(AnimationStates newvalue)
@@ -49,7 +51,8 @@ public class BossDrEnemy : MonoBehaviour, IKillable
         [AnimationStates.Reload] = "Reload",
         [AnimationStates.Equip] = "Equip",
         [AnimationStates.Bolt] = "Bolt",
-        [AnimationStates.ZeroMove] = "ZeroMove" 
+        [AnimationStates.ZeroMove] = "ZeroMove",
+        [AnimationStates.Scanning] = "Scanning"
     };
 
     //actions that should not interrupt each other should have the same priority, overrides higher, ignores lower.
@@ -57,11 +60,12 @@ public class BossDrEnemy : MonoBehaviour, IKillable
     static private DictWithKeySet<AnimationStates, int> priorityMapping = new DictWithKeySet<AnimationStates, int>
     {
         [AnimationStates.Static] = 0,
-        [AnimationStates.Fire] = 2,
-        [AnimationStates.Reload] = 3,
-        [AnimationStates.Equip] = 4,
-        [AnimationStates.Bolt] = 5,
-        [AnimationStates.ZeroMove] = 1
+        [AnimationStates.Fire] = 20,
+        [AnimationStates.Reload] = 30,
+        [AnimationStates.Equip] = 40,
+        [AnimationStates.Bolt] = 50,
+        [AnimationStates.ZeroMove] = 5,
+        [AnimationStates.Scanning] = 1
     };
 
     public List<AnimationStates> priority = new List<AnimationStates>(new AnimationStates[] { AnimationStates.Static });
@@ -86,6 +90,14 @@ public class BossDrEnemy : MonoBehaviour, IKillable
         //print(navMeshobj.remainingDistance);
         //print(mayAttack);
         //FlipSprite();
+        if (targetList.Count == 0) {
+            currState = CurrentState.Scanning;
+        }
+        if (currState == CurrentState.Scanning) {
+            priority.Add(AnimationStates.Scanning);
+        } else {
+            priority.Remove(AnimationStates.Scanning);
+        }
         FlipGun();
         priority.Sort(sorter);
         updateAnimationState(priority[0]);
@@ -147,6 +159,7 @@ public class BossDrEnemy : MonoBehaviour, IKillable
 
     // used to send the gun to a position
     public IEnumerator RotateToPoint(Transform point) {
+        currState = CurrentState.Tracking;
         Vector2 direction = point.position - transform.position;
         float angle = Vector2.SignedAngle(Vector2.right, direction);
         gunObj.transform.eulerAngles = new Vector3(gunObj.transform.eulerAngles.x, gunObj.transform.eulerAngles.y, angle);
