@@ -47,11 +47,11 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
-    private IEnumerator dashMovement() {
+    /*private IEnumerator dashMovement() {
         topDownMovementComponent.DisableMovement();
         yield return new WaitForSeconds(0.667f);
         topDownMovementComponent.EnableMovement();
-    }
+    }*/
 
     private void HotbarSelect() {
         // Item Selection

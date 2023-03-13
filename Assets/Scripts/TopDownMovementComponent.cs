@@ -8,12 +8,12 @@ using UnityEngine;
 public class TopDownMovementComponent : MonoBehaviour
 {
     Rigidbody2D rb;
-    float horizontalInput;
-    float verticalInput;
-    float moveLimiter = 0.7f;
+
+    public Vector2 movementDirection;
+
     private float angle = 0f;
     [SerializeField] public float movementSpeed = 8f;
-    private bool MovementDisabled = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,48 +28,20 @@ public class TopDownMovementComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Getting the Player's input
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
-
-        // Player Death
-        if (MovementDisabled)
-        {
-            rb.velocity = Vector2.zero;
-            return;
-        }
-
-        if (horizontalInput != 0 && verticalInput != 0)
-        {
-            // limit movement speed diagonally, so you move at 70% speed
-            horizontalInput *= moveLimiter;
-            verticalInput *= moveLimiter;
-        }
         move();
         RotateSprite();
+        resetDirection();
     }
 
-    private void FixedUpdate()
-    {
-        //moveAddForce();
-    }
-
-    public void DisableMovement()
-    {
-        rb.velocity = Vector2.zero;
-        MovementDisabled = true;
-    }
-
-    public void EnableMovement()
-    {
-       // rb.velocity = Vector2.zero;
-        MovementDisabled = false;
+    private void resetDirection(){
+        movementDirection = Vector2.zero;
     }
 
     private void move()
     {
+        Vector2 normalDir = movementDirection.normalized;
         // Directly sets the player's velocity based on input
-        rb.velocity = new Vector2(horizontalInput * movementSpeed, verticalInput * movementSpeed);
+        rb.velocity = new Vector2(normalDir.x * movementSpeed, normalDir.y * movementSpeed);
     }
 
     // Used by Animation Events.
@@ -85,13 +57,6 @@ public class TopDownMovementComponent : MonoBehaviour
         // Directly sets the player's velocity based on input
         rb.velocity = new Vector2(dirX * ms, dirY * ms);
     }
-
-    private void moveAddForce()
-    {
-        // movement with this method feels a little worse, but it avoids setting velocity directly
-        rb.AddForce(new Vector2(horizontalInput * 80, verticalInput * 80));
-    }
-
 
     // Rotates the sprite based off mouse position--currently flips left or right only
     private void RotateSprite()
