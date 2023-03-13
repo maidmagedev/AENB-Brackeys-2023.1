@@ -36,6 +36,8 @@ public class BossDrEnemy : MonoBehaviour, IKillable
     [SerializeField] public List<AudioClip> vocalCries;
     [SerializeField] public AudioClip deathSound;
     [SerializeField] public float volume = 10f;
+    [SerializeField] float vocalCryCD = 2f;
+    private bool vocalCryOnCooldown = false;
     
     public enum AnimationStates { Static, Fire, Reload, Equip, Bolt, ZeroMove, Scanning }
 
@@ -151,7 +153,7 @@ public class BossDrEnemy : MonoBehaviour, IKillable
     public void NotifyDamage()
     {
         StartCoroutine(DamageLightToggle());
-        randomVocalCry();
+        randomVocalCry(true);
     }
 
     IEnumerator DamageLightToggle()
@@ -164,11 +166,45 @@ public class BossDrEnemy : MonoBehaviour, IKillable
     // used to send the gun to a position
     public IEnumerator RotateToPoint(Transform point) {
         currState = CurrentState.Tracking;
+        /*
+        currState = CurrentState.Tracking;
         Vector2 direction = point.position - transform.position;
         float angle = Vector2.SignedAngle(Vector2.right, direction);
         gunObj.transform.eulerAngles = new Vector3(gunObj.transform.eulerAngles.x, gunObj.transform.eulerAngles.y, angle);
         
         yield return null;
+        */
+        if (gunObj.transform.eulerAngles.z > 360) {
+            print("reducing");
+            gunObj.transform.eulerAngles = new Vector3(gunObj.transform.eulerAngles.x, gunObj.transform.eulerAngles.y, gunObj.transform.eulerAngles.z - 360);
+        }
+        print("RTP START");
+        float totalTime = 0.5f;
+        float current = 0f;
+        float startAngle = gunObj.transform.eulerAngles.z;
+        float endAngle;
+
+        Vector2 direction = point.position - transform.position;
+        endAngle = Vector2.SignedAngle(Vector2.right, direction); // default end angle
+        
+
+        if (Mathf.Abs(endAngle + 360) - startAngle < Mathf.Abs(endAngle - startAngle)) {
+            print("adding");
+            endAngle += 360;
+        } else {
+            print ("NO ... [" + ((endAngle + 360) - startAngle) + "][" + (endAngle - startAngle) + "]");
+        }
+        print("start: " + startAngle + " end: " + endAngle);
+        while(current <= totalTime) {
+            // sets to position
+           
+            float angle = Mathf.Lerp(startAngle, endAngle, current / totalTime);
+            //print("angle:" + angle);
+            gunObj.transform.eulerAngles = new Vector3(gunObj.transform.eulerAngles.x, gunObj.transform.eulerAngles.y, angle);
+            current += 0.01f;
+            yield return new WaitForSeconds(0.01f);
+        }
+
         /*
         float totalTime = 0.5f;
         float current = 0f;
@@ -219,18 +255,31 @@ public class BossDrEnemy : MonoBehaviour, IKillable
     }
 
     public void randomText(TextScroller textScroller) {
+        if (vocalCryOnCooldown) {
+            return;
+        } 
         string text = "";
         string[] options = {"DIE!", "LEAVE.", "SCUM!", "PERISH!"};
 
         int pick = Random.Range(0, options.Length);
         text = options[pick];
-        randomVocalCry();
+        randomVocalCry(false);
         textScroller.DisplayText(text);
+        StartCoroutine(TextAndScreamCD());
     }
 
-    public void randomVocalCry() {
+    public void randomVocalCry(bool overrideCD) {
+        if (!overrideCD && vocalCryOnCooldown) {
+            return;
+        }
         int pick = Random.Range(0, vocalCries.Count);
         audioSource.PlayOneShot(vocalCries[pick], volume * 0.08f);
+    }
+
+    IEnumerator TextAndScreamCD() {
+        vocalCryOnCooldown = true;
+        yield return new WaitForSeconds(vocalCryCD);
+        vocalCryOnCooldown = false;
     }
 
 }

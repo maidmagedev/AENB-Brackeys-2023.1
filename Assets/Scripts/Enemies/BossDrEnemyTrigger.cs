@@ -24,8 +24,9 @@ public class BossDrEnemyTrigger : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         isInCollider = true;
         if (rotate) {
-            //StopCoroutine(rotateCoroutine);
             rotateCoroutine = mainEnemyScript.RotateToPoint(other.transform);
+            StopCoroutine(rotateCoroutine);
+            StartCoroutine(rotateCoroutine);        
         }
         print("ENTERED SNIPER TRIGGER");
         if (textScroller != null) {
@@ -41,8 +42,9 @@ public class BossDrEnemyTrigger : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other) {
         if (rotate) {
-            rotateCoroutine = mainEnemyScript.RotateToPoint(other.transform);
-            StartCoroutine(rotateCoroutine);
+            //rotateCoroutine = mainEnemyScript.RotateToPoint(other.transform);
+            //StopCoroutine(rotateCoroutine);
+            //StartCoroutine(rotateCoroutine);
         }
         //print("stay");
         
