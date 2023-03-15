@@ -17,7 +17,7 @@ public class BossDrEnemy : MonoBehaviour, IKillable
     private bool mayAttack = true;
     private bool currentlyAttacking = false;
     public CurrentState currState = CurrentState.Tracking;
-    [SerializeField] List<GameObject> targetList;
+    public List<GameObject> targetList;
 
     [Header("Bullet")]
     [SerializeField] GameObject projectile_prefab;
@@ -219,6 +219,7 @@ public class BossDrEnemy : MonoBehaviour, IKillable
     }
 
     public IEnumerator FireGun(Collider2D other) {
+        print("recieved fire call");
         if ((other.gameObject.TryGetComponent<DamageableComponent>(out DamageableComponent target))) 
         {
             

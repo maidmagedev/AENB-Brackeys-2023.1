@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6433442667631564810}
   m_Layer: 0
   m_Name: SniperBullet
-  m_TagString: Untagged
+  m_TagString: DamageHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,9 +101,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damagePerHit: 500
+  damageToPlayer: 0
   lifeTime: 3
   moveSpeed: 5
   destroyOnHit: 1
+  damagePlayer: 0
 --- !u!61 &7563673191918959591
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -17,59 +17,82 @@ public class BossDrEnemyTrigger : MonoBehaviour
     public bool canFire = true;
     public bool aimedIn = false;
     
+    public GameObject currentTarget;
 
     void Start() {
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
-        isInCollider = true;
-        if (rotate) {
-            //rotateCoroutine = mainEnemyScript.RotateToPoint(other.transform);
-            //StopCoroutine(rotateCoroutine);
-            //StartCoroutine(rotateCoroutine);        
+    void Update() {
+        if (currentTarget == null) {
+            mainEnemyScript.priority.Remove(BossDrEnemy.AnimationStates.ZeroMove);
+        } else {
+            mainEnemyScript.priority.Add(BossDrEnemy.AnimationStates.ZeroMove);
+
         }
-        print("ENTERED SNIPER TRIGGER");
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("DamageHitbox")) {
+            return;
+        }
+        isInCollider = true;
+        
+        //print("ENTERED SNIPER TRIGGER");
         if (textScroller != null) {
             mainEnemyScript.randomText(textScroller);
         }
-   
+
+        if (currentTarget == null) {
+            currentTarget = other.gameObject;
+        }
+
         if (fireOnStay) {
             StartCoroutine(TrackStayTime());
         }
-
-        mainEnemyScript.priority.Add(BossDrEnemy.AnimationStates.ZeroMove);
     }
 
     void OnTriggerStay2D(Collider2D other) {
+        if (other.CompareTag("DamageHitbox")) {
+            return;
+        }
+        if (currentTarget == null) {
+            currentTarget = other.gameObject;
+        }
+
         if (rotate) {
-            rotateCoroutine = mainEnemyScript.RotateToPoint(other.transform);
+            rotateCoroutine = mainEnemyScript.RotateToPoint(currentTarget.transform);
             StopCoroutine(rotateCoroutine);
             StartCoroutine(rotateCoroutine);
         }
         //print("stay");
         
-        if (other.transform.CompareTag("Player")) {
+        if (currentTarget.transform.CompareTag("Player")) {
             if (fireOnStay && canFire && aimedIn) {
-                print("Fire");
+                // attack the player
+                print("Fire at Player");
                 StartCoroutine(FireCooldown(fireCooldown));
-                StartCoroutine(mainEnemyScript.FireGun(other));
+                StartCoroutine(mainEnemyScript.FireGun(currentTarget.GetComponent<BoxCollider2D>()));
             } 
         } else if (canFire) {
+            print("Fire else");
             StartCoroutine(FireCooldown(2f));
-            StartCoroutine(mainEnemyScript.FireGun(other));
+            StartCoroutine(mainEnemyScript.FireGun(currentTarget.GetComponent<BoxCollider2D>()));
         }
     }
 
     void OnTriggerExit2D(Collider2D other) {
+        if (other.CompareTag("DamageHitbox")) {
+            return;
+        }
         isInCollider = false;
         StopCoroutine(TrackStayTime());
-        mainEnemyScript.priority.Remove(BossDrEnemy.AnimationStates.ZeroMove);
+        
     }
 
 
     private IEnumerator TrackStayTime() {
         float currentTime = 0;
-        while (isInCollider) {
+        while (isInCollider && currentTarget != null) {
             if (currentTime > timeTillFire) {
                 aimedIn = true;
             } else {
