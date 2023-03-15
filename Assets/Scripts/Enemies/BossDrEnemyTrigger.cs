@@ -12,8 +12,8 @@ public class BossDrEnemyTrigger : MonoBehaviour
     bool did = false;
     bool isInCollider = false;
     float stayTime = 0;
-    float timeTillFire = 1f;
-    float fireCooldown = 5f;
+    float timeTillFire = 0.5f;
+    float fireCooldown = 2f;
     public bool canFire = true;
     public bool aimedIn = false;
     

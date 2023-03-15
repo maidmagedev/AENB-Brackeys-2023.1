@@ -19,9 +19,11 @@ public class BossDrEnemy : MonoBehaviour, IKillable
     public CurrentState currState = CurrentState.Tracking;
     [SerializeField] List<GameObject> targetList;
 
+    [Header("Bullet")]
+    [SerializeField] GameObject projectile_prefab;
+    [SerializeField] Transform bulletOrigin;
+
     [Header("References")]
-    DamageableComponent damageableComponent;
-    BoxCollider2D boxCollider;
     [SerializeField] GameObject gunObj;
     [SerializeField] private NavMeshAgent navMeshobj;
     [SerializeField] private GameObject damageLight;
@@ -29,6 +31,8 @@ public class BossDrEnemy : MonoBehaviour, IKillable
     [SerializeField] Animator gunAnim;
     [SerializeField] Animator lightAnim;
     [SerializeField] SpriteRenderer bossSprite;
+    DamageableComponent damageableComponent;
+    BoxCollider2D boxCollider;
 
     [Header("Sound")]
     [SerializeField] public AudioSource audioSource;
@@ -220,8 +224,9 @@ public class BossDrEnemy : MonoBehaviour, IKillable
             
             priority.Add(AnimationStates.Fire);
             yield return new WaitForSeconds(0.07f);
-            target.TakeDamage(50);
-            //Instantiate(projectile_prefab, bulletOrigins[0].position, bulletOrigins[0].rotation);
+            
+            //target.TakeDamage(50);
+            Instantiate(projectile_prefab, bulletOrigin.position, bulletOrigin.rotation);
             audioSource.PlayOneShot(fireSound, volume);
             yield return new WaitForSeconds(0.747f);
             priority.Remove(AnimationStates.Fire);
