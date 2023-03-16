@@ -85,6 +85,10 @@ public class BossDrEnemy : MonoBehaviour, IKillable
     // Start is called before the first frame update
     void Start()
     {
+        if (audioSource == null) {
+            audioSource = FindObjectOfType<AudioSource>();
+        }
+
         sorter = Comparer<AnimationStates>.Create((a, b) => priorityMapping[b] - priorityMapping[a]);
 
         //bodyAnim.SetTrigger("Walk");

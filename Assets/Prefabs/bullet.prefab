@@ -104,7 +104,7 @@ MonoBehaviour:
   damageToPlayer: 0
   lifeTime: 3
   moveSpeed: 2
-  destroyOnHit: 1
+  destroyOnHit: 0
   damagePlayer: 0
 --- !u!61 &7563673191918959591
 BoxCollider2D:
