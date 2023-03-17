@@ -7,6 +7,7 @@ public class FollowObj : MonoBehaviour
     [SerializeField] GameObject objectToFollow;
     public bool updatePosition = true;
     public bool updateAngle;
+    public bool matchXOnly; // used by grenade
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,9 @@ public class FollowObj : MonoBehaviour
         }
         if (updateAngle) {
             this.transform.eulerAngles = objectToFollow.transform.eulerAngles;
+        }
+        if (matchXOnly) {
+            this.transform.position = new Vector3(objectToFollow.transform.position.x, this.transform.position.y, this.transform.position.z);
         }
     }
 }
