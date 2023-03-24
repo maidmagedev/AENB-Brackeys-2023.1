@@ -17,7 +17,7 @@ using UnityEngine.EventSystems;
 
 public abstract class Visible_InventorySlot : MonoBehaviour
 {
-    [Header("Drag a prefab that extends the DraggableInventoryItem class")]
+    //[Header("Drag a prefab that extends the DraggableInventoryItem class")]
     protected GameObject draggablePrefab;
     
     [Header("No need to set these up in the editor")]

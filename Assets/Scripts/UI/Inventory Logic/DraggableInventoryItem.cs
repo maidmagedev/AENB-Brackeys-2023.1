@@ -16,6 +16,7 @@ public class DraggableInventoryItem : MonoBehaviour, IDragHandler, IEndDragHandl
     
     
     public ItemStack item;
+    [Header("No need to set this in the editor")]
     public Visible_InventorySlot currSlot; // could make these setters and getters instead of being public
 
     private Image image;
@@ -102,14 +103,29 @@ public class DraggableInventoryItem : MonoBehaviour, IDragHandler, IEndDragHandl
         }
         else
         {
-            print("released outside any inventories");
-            // there are two options here so we need to pick one:
+            //print("released an item outside any inventories");
+            var screenToWorldPosition = new Vector3();
+            
+            if (item.Get_isMachine())
+            {
+                print("released a machine outside of any inventories");
+                // place machine
+                screenToWorldPosition = Camera.main.ScreenToWorldPoint(transform.position);
+                Instantiate(Resources.Load<GameObject>("Machine/" + item.typeOf), 
+                    new Vector3(screenToWorldPosition.x, screenToWorldPosition.y, 0),
+                    Quaternion.identity);
+                
+                // should only remove one instead of entire stack
+                currSlot.getInven().Remove(currSlot.getIndex());
+                Destroy(gameObject);
+                return;
+            }
             
             // reset position
             //transform.position = currSlot.transform.position;
             
             // drop stack
-            var screenToWorldPosition = Camera.main.ScreenToWorldPoint(transform.position);
+            screenToWorldPosition = Camera.main.ScreenToWorldPoint(transform.position);
             GameObject pickup = Instantiate(Resources.Load<GameObject>("Items/GenericPickup"), 
                 new Vector3(screenToWorldPosition.x, screenToWorldPosition.y, 0),
                 Quaternion.identity);
@@ -117,8 +133,6 @@ public class DraggableInventoryItem : MonoBehaviour, IDragHandler, IEndDragHandl
             currSlot.getInven().Remove(currSlot.getIndex());
             Destroy(gameObject);
         }
-        /*int player_inventory_layer = LayerMask.NameToLayer("Player Inventory");
-        Collider2D col = Physics2D.OverlapCircle(transform.position, 5, player_inventory_layer);*/
         
     }
     

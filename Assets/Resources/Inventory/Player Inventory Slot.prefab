@@ -138,5 +138,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18af5c4379e84f34c893a347c3ca5dc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  draggablePrefab: {fileID: 3747689950364160132, guid: 29b18a3515c79b344bae7a64393342c8, type: 3}
   draggableItem_reference: {fileID: 0}
-  inven: {fileID: 0}

@@ -10,7 +10,6 @@ public class Player_InventorySlot : Visible_InventorySlot
     {
         containedStack = stack;
         draggableItem_reference.item = stack;
-        // update visual to show quantity change
         draggableItem_reference.stackCount.text = containedStack.quantity.ToString();
     }
     
@@ -22,7 +21,6 @@ public class Player_InventorySlot : Visible_InventorySlot
             draggableItem_reference = Instantiate(draggablePrefab, this.transform.position, Quaternion.identity, this.transform.parent).GetComponent<DraggableInventoryItem>();
             draggableItem_reference.item = containedStack;
             draggableItem_reference.currSlot = gameObject.GetComponent<Visible_InventorySlot>();
-            // update visual to show quantity
             draggableItem_reference.stackCount.text = containedStack.quantity.ToString();
         }
         else

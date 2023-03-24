@@ -44,9 +44,5 @@ public class Machine_InventorySlot : Visible_InventorySlot
             // It is assumed the draggableItem_reference GameObject has/will be destroyed inside its own script
         }
     }
-
-    public void setVisibility(bool visible)
-    {
-        draggableItem_reference.enabled = visible;
-    }
+    
 }

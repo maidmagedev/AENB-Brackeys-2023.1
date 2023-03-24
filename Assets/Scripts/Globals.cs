@@ -45,6 +45,4 @@ public static class Globals
     };
     
     
-
-    
 }

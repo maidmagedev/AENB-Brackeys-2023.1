@@ -494,7 +494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1142298342
 RectTransform:
   m_ObjectHideFlags: 0
@@ -593,7 +593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slots: []
-  _furnace: {fileID: 0}
+  _furnace: {fileID: 5875165169682124800}
 --- !u!1 &1214320174
 GameObject:
   m_ObjectHideFlags: 0
@@ -1404,7 +1404,7 @@ GameObject:
   - component: {fileID: 378382680969148207}
   - component: {fileID: 1788828271}
   m_Layer: 0
-  m_Name: Furnace
+  m_Name: FURNACE
   m_TagString: Machine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
