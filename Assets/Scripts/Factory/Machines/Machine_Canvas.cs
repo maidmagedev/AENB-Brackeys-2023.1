@@ -6,6 +6,7 @@ public class Machine_Canvas : MonoBehaviour
 {
     private bool player_inRange = false;
     private Canvas[] canvases;
+    [SerializeField] private GameObject InventoryHolder;
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
@@ -32,6 +33,7 @@ public class Machine_Canvas : MonoBehaviour
             }
             // leave inventory view
             FindObjectOfType<PlayerInventoryUI>().SetInventoryView(false);
+            InventoryHolder.SetActive(false);
         }
     }
 
@@ -43,17 +45,9 @@ public class Machine_Canvas : MonoBehaviour
         // main canvas
         canvases[1].enabled = !canvases[1].enabled;
         // enter inventory view
-        if (canvases[1].enabled)
-        {
-            FindObjectOfType<PlayerInventoryUI>().SetInventoryView(true);
-        }
-        else
-        {
-            FindObjectOfType<PlayerInventoryUI>().SetInventoryView(false);
-        }
-        
-        // if main canvas is enabled then we should enable slot colliders
-        
+        FindObjectOfType<PlayerInventoryUI>().SetInventoryView(canvases[1].enabled);
+        InventoryHolder.SetActive(canvases[1].enabled);
+
     }
 
     private void Update()
