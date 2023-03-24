@@ -24,10 +24,10 @@ public class NavMeshManager : MonoBehaviour
 
     public void Bake()
     {
-        for (int i = 0; i < _surfaces.Length; i++)
+        /*for (int i = 0; i < _surfaces.Length; i++)
         {
             _surfaces[i].BuildNavMesh();
-        }
+        }*/
     }
     
 }

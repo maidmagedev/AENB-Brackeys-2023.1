@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FurnaceInventory : BaseInventory
 {
-    public FurnaceInventory() {
+   /* public FurnaceInventory() {
         inventory_grid = new Dictionary<(int, int), InventoryElement>()
         {
             {(0,1), new ItemSlot(new Vector3(-6.2f, 5.8f, 0))},    // Input  Buffer - Input Item
@@ -16,5 +16,5 @@ public class FurnaceInventory : BaseInventory
 
         inventory.Add(new ItemCollection(2));
         inventory.Add(new ItemCollection(1));
-    }
+    }*/
 }

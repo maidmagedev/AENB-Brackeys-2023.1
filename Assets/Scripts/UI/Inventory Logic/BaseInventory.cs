@@ -1,173 +1,215 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System.Linq;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
+
+// How to use this class:
+// Set up the inventory slots using the InventorySlot.cs script as a guide
+// From there, simply call the public Add() method whenever you want to add to the inventory
+
+// This inventory performs 4 main features:
+// 1. Stores as many stacks as allowed by the number of slots
+// 2. Automatically combines like-stacks if there is room
+// 3. Updates each slot's sprite whenever the relevant stack is changed
+// 4. Allows the user to remove/add itemStacks by index
 
 public class BaseInventory : MonoBehaviour
 {
-    public List<ItemCollection> inventory = new();
-    public Dictionary<(int invInd, int indInInv), InventoryElement> inventory_grid;
+    [SerializeField] protected List<Visible_InventorySlot> slots;
+    
+    protected int numStacks = 0;
 
+    public virtual List<ItemStack> getItems()
+    {
+        List<ItemStack> ret = new();
+        foreach (Visible_InventorySlot slot in slots)
+        {
+            if (slot.containedStack != null)
+            {
+                ret.Add(slot.containedStack);
+            }
+        }
+        return ret;
+    }
+    
+    // Attempts to Add the given ItemStack with prioritization on combining like items
+    // Returns a bool indicating whether the add operation was successful or not
+    public bool Add(ItemStack givenStack)
+    {
+        // catching potential null references and out-of-bounds exceptions
+        if (slots == null || slots.Count == 0)
+        {
+            print("Slot null reference--aborting add operation");
+            return false;
+        }
+        
+        foreach (Visible_InventorySlot slot in slots)
+        {
+            ItemStack stack = slot.containedStack;
+            
+            // if like stack found that is not full, combine stacks
+            if ( (stack != null) && (stack.typeOf == givenStack.typeOf) && (stack.quantity < stack.max))
+            {
+                // combine stacks
+                stack.quantity += givenStack.quantity;
+                
+                // if combined quantity is over max, calculate difference and perform various operations
+                if (stack.quantity > stack.max)
+                {
+                    int difference = stack.quantity - stack.max;
+                    stack.quantity -= difference;
+                    slot.UpdateSlot(stack);
+                    
+                    // attempt to add remaining difference to a new slot
+                    bool succesfulAdd = this.Add(new ItemStack(stack.typeOf, difference));
+                    if (!succesfulAdd)
+                    { 
+                        // spawn a pickup near the PLAYER if there was no room
+                        Vector3 playerPos = GameObject.FindWithTag("Player").transform.position;
+                        GameObject pickUp = Instantiate(Resources.Load("Items/GenericPickup"), new Vector3(playerPos.x, 
+                            playerPos.y + 2, 0), Quaternion.identity).GameObject();
+                        pickUp.GetComponent<PickUp>().setItem(stack.typeOf, difference);
+                    }
+                    return true;         
+                }
+                // else simply update the slot with the combined quantity
+                slot.UpdateSlot(stack);
+                return true;
+            }
+        }
+        
+        // if there is no room abort add operation
+        if (slots.Count <= numStacks)
+        {
+            print("Inventory full, cannot add");
+            return false;
+        }
+
+        // Given there is room, iterate through the slots until an empty one is found
+        foreach (Visible_InventorySlot slot in slots)
+        {
+            // if empty slot is found, add
+            if (slot.containedStack == null)
+            {
+                slot.SetStack(givenStack);
+                numStacks++;
+                return true;
+            }
+        }
+        
+        // if this is reached there may be a bug
+        print("potential fail in Add() in BaseInventory.cs");
+        return false;
+    }
+
+    // Attempts to Add at the given index
+    // Returns a bool indicating whether the addAt operation was successful or not
+    public virtual bool AddAt(ItemStack givenStack, int toIndex, Visible_InventorySlot fromSlot = null)
+    {
+        Visible_InventorySlot insertLocation = slots[toIndex];
+        
+        // If there is no stack at the given index, add
+        if (insertLocation.containedStack == null)
+        {
+            slots[toIndex].SetStack(givenStack);
+            return true;
+        }
+        // if like stack found 
+        if ((insertLocation.containedStack.typeOf == givenStack.typeOf) && (insertLocation.containedStack.quantity < givenStack.max)/*&& (insertLocation.containedStack.quantity + givenStack.quantity <= givenStack.max)*/)
+        {
+            // combining stack quantities
+            // important to use slots[index] as opposed to insertLocation here to make sure the original slot is updated
+            slots[toIndex].containedStack.quantity += givenStack.quantity;
+
+            // if the combined quantity is over max, calculate difference and update the slot
+            if (slots[toIndex].containedStack.quantity > givenStack.max)
+            {
+                int difference = slots[toIndex].containedStack.quantity - givenStack.max;
+                slots[toIndex].containedStack.quantity -= difference;
+                slots[toIndex].UpdateSlot(slots[toIndex].containedStack);
+                
+                
+                // if no fromSlot is null, spawn the remaining difference as a pickup near the PLAYER
+                if (fromSlot == null)
+                {
+                    Vector3 playerPos = GameObject.FindWithTag("Player").transform.position;
+                    GameObject pickUp = Instantiate(Resources.Load("Items/GenericPickup"), new Vector3(playerPos.x, 
+                        playerPos.y + 2, 0), Quaternion.identity).GameObject();
+                    pickUp.GetComponent<PickUp>().setItem(givenStack.typeOf, difference);
+                    return true;
+                }
+
+                // if fromSlot is not null, set the quantity of givenStack at the from slot to the remaining difference
+                if (fromSlot.inven.slots[fromSlot.GetIndex()].containedStack == null)
+                {
+                    print("from slot contained stack is null");
+                    fromSlot.inven.AddAt(new ItemStack(givenStack.typeOf, difference), fromSlot.GetIndex());
+                    return true;
+                }
+                
+                // this does the same as above but assumes the contained stack is not null
+                // As of right now, this path should never occur since draggableInventoryItem removes the fromSlot
+                fromSlot.inven.slots[fromSlot.GetIndex()].containedStack.quantity = difference;
+                fromSlot.inven.slots[fromSlot.GetIndex()].UpdateSlot(fromSlot.inven.slots[fromSlot.GetIndex()].containedStack);
+                return true;
+            }
+            // else if combined quantity is not over max, simply update the slot
+            else
+            {
+                slots[toIndex].UpdateSlot(slots[toIndex].containedStack);
+                return true;
+            }
+            
+        }
+        // otherwise abort add operation
+        print("Add at index " + toIndex + " aborted");
+        return false;
+    }
+    public virtual DraggableInventoryItem Remove(int index)
+    {
+        if (slots == null || slots.Count == 0)
+        {
+            print("inventory or slot null reference--cancelling remove operation");
+            return null;
+        }
+
+        DraggableInventoryItem removedItem = slots[index].draggableItem_reference;
+        slots[index].SetStack(null);
+        numStacks--;
+        print("inventory at index " + index + " is set to null");
+        return removedItem;
+    }
+    
+
+    public int getSlotIndex(string name)
+    {
+        for (int i = 0; i < slots.Count; i++)
+        {
+            if (slots[i].name == name)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+    public void printContents()
+    {
+        print("Contents:");
+        foreach (Visible_InventorySlot slot in this.slots)
+        {
+            if (slot.containedStack == null)
+            {
+                continue;
+            }
+            print(slot.containedStack.typeOf + ": " + slot.containedStack.quantity);
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
-        // instantiating the empty inventory grid
-        if (inventory_grid != null)
-        {
-            foreach (var itemIndex in inventory_grid.Keys)
-            {
-                InventoryElement item = inventory_grid[itemIndex];
-                GameObject prefab = Resources.Load<GameObject>(item.prefab_path);
-                GameObject clone = Instantiate(prefab, this.transform, false);
-//                print(clone.name);
-                clone.transform.localPosition = item.initialPosition;
-                clone.transform.localScale = item.initialScale;
-
-                item.data.slot_obj(clone).index(itemIndex);
-            }
-    
-        
-        }
-        
-    }
-
-    public ItemCollection this[int i]{
-        get { return inventory[i];}
-        set {
-            //print("here");
-            inventory[i] = value;
-            inventory[i].AddListener(evt=>handleInvUpdate(i, evt));
-        }
-    }
-
-
-    public void setInventoryListener(int invInd){
-        inventory[invInd].AddListener(evt=>handleInvUpdate(invInd, evt));
-    }
-
-    private void handleInvUpdate(int invIndex, ItemColChangeEvent evt){
-        //print(gameObject.name + " " + evt.changeType + " " + invIndex + " " + evt.affectedindices[0]);
-        switch(evt.changeType){
-            case ChangeType.REMOVE:
-                evt.affectedindices.ForEach(i=>updateIcon((invIndex,i)));
-            break;
-            case ChangeType.ADD:
-                evt.affectedindices.ForEach(i=>updateIcon((invIndex,i)));
-            break;
-            case ChangeType.SWAP:
-                evt.affectedindices.ForEach(i=>updateIcon((invIndex,i)));
-            break;
-            default:
-                throw new System.NotImplementedException("Update baseInventory with new ChangeTypes!");
-        }
-    }
-
-    public void swapItem((int, int) from, (int, int) to){
-        var temp = inventory[from.Item1][from.Item2];
-
-        inventory[from.Item1][from.Item2] = inventory[to.Item1][to.Item2];
-
-        inventory[to.Item1][to.Item2] = temp;
+        slots = GetComponentsInChildren<Visible_InventorySlot>().ToList();
     }
     
-    public void Add(int invInd, ItemStack input, bool needsNew = false)
-    {
-        var result = inventory[invInd].Add(input, needsNew);
-    }
-    
-
-    public void Remove(int invInd, ItemStack o){
-        inventory[invInd].Remove(o);
-    }
-
-    int counter = 0;
-
-    // I made this return the GameObject so I could use it in updateIcon
-    private GameObject instantiate_icon((int,int) indexData)
-    {
-        Draggable_Inventory_Item prefab = Resources.Load<Draggable_Inventory_Item>("InventoryItem");
-        Draggable_Inventory_Item clone = Instantiate(prefab, this.transform, false);
-        clone.Init(this, indexData);
-        clone.transform.localPosition = inventory_grid[indexData].initialPosition;
-        clone.transform.localScale = new Vector3(0.125f, 0.125f, 0);
-        clone.GetComponent<Image>().sprite = Globals.item_definitions[inventory[indexData.Item1][indexData.Item2].of].sprite;
-
-        clone.gameObject.name = counter.ToString();
-        counter++;
-        inventory_grid[indexData].data.item_obj(clone);
-        return clone.gameObject;
-    }
-
-    private void updateIcon((int, int) indexData)
-    {
-        GameObject destroyedObj = null;
-        // if there is an item already here, destroy icon on the grid
-        if (inventory_grid != null){
-            if (inventory_grid[indexData].data.item_object != null){
-                //print("destroying " + inventory_grid[indexData].data.item_object.gameObject.name);
-                destroyedObj = inventory_grid[indexData].data.item_object.gameObject;
-                Destroy(inventory_grid[indexData].data.item_object.gameObject);
-            }
-
-        
-            // if the icon has been destroyed, instantiate a new icon
-            if (inventory[indexData.Item1][indexData.Item2] != null){
-                GameObject icon_object = instantiate_icon(indexData);
-                // incrementing stack count UI
-                TextMeshProUGUI stack_count = icon_object.GetComponentInChildren<TextMeshProUGUI>();
-                int count = inventory[indexData.Item1][indexData.Item2].quantity;
-                stack_count.text = count.ToString();
-            }
-        
-        }
-    }
-
-
-
-    public void updateProgressBar(float percent){
-        inventory_grid[(-1, 0)].data.slot_object.GetComponent<Image>().fillAmount = percent;
-    }
-}
-
-public class InventoryElement
-{
-    public Vector3 initialPosition;
-    public string prefab_path;
-
-    public Vector3 initialScale =new Vector3(0.125f, .125f, 0);
-
-    public InventorySlotData data = InventorySlotData.Builder();
-
-}
-
-public class InventorySlotData {
-    public Draggable_Inventory_Item item_object;
-    public GameObject slot_object;
-
-    public (int, int) indexInGrid;
-
-    private InventorySlotData(){
-    }
-
-    public static InventorySlotData Builder(){
-        return new();
-    }
-
-    public InventorySlotData item_obj(Draggable_Inventory_Item obj){
-        this.item_object = obj;
-        return this;
-    }
-
-    public InventorySlotData slot_obj(GameObject obj){
-        this.slot_object = obj;
-        return this;
-    }
-
-    public InventorySlotData index((int, int) ind){
-        this.indexInGrid = ind;
-        return this;
-    }
 }

@@ -24,9 +24,9 @@ public class Rocket_Machine : Machine
     }
     private void Rocket_Start()
     {
-        doing = new Recipe(Globals.allRecipes["Rocket"]);
+        //doing = new Recipe(Globals.allRecipes["Rocket"]);
         myInventory = GetComponentInChildren<Rocket_Inventory>();
-        myInventory[0] = inpBuf;
+        //myInventory[0] = inpBuf;
         //myInventory[1] = outBuf;
     }
 }

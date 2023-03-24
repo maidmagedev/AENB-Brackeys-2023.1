@@ -5,26 +5,27 @@ using UnityEngine;
 public static class Globals
 {
 
-    public static Dictionary<ItemType, Item_Data> item_definitions = new()
+    public static Dictionary<ItemType, (ItemType type, int max, Sprite sprite, GameObject pickUp)> item_definitions = new()
     {
-        { ItemType.STONE,       new Item_Data(ItemType.STONE, 250, Resources.Load<Sprite>("Items/item_stone"), Resources.Load<GameObject>("Items/Stone"), UseBehavior.DROP)},
-        { ItemType.ORE_IRON,    new Item_Data(ItemType.ORE_IRON, 250, Resources.Load<Sprite>("Items/item_iron_ore"), Resources.Load<GameObject>("Items/Iron Ore"), UseBehavior.DROP) },
-        { ItemType.COAL,        new Item_Data(ItemType.COAL, 250, Resources.Load<Sprite>("Items/item_coal"), Resources.Load<GameObject>("Items/Coal"), UseBehavior.DROP)},
-        { ItemType.ORE_GOLD,    new Item_Data(ItemType.ORE_GOLD, 250, Resources.Load<Sprite>("Items/item_gold_ore"), Resources.Load<GameObject>("Items/Gold Ore"), UseBehavior.DROP) },
-        { ItemType.IRON,        new Item_Data(ItemType.IRON, 250, Resources.Load<Sprite>("Items/item_iron_bar"), Resources.Load<GameObject>("Items/Iron Bar"), UseBehavior.DROP) },
-        { ItemType.GOLD,        new Item_Data(ItemType.GOLD, 250, Resources.Load<Sprite>("Items/item_gold_bar"), Resources.Load<GameObject>("Items/Gold Bar"), UseBehavior.DROP) },
-        { ItemType.FAMAS,       new Item_Data(ItemType.FAMAS, 1, Resources.Load<Sprite>("Items/item_famas"), Resources.Load<GameObject>("Items/Famas"), UseBehavior.SHOOT) },
-        { ItemType.SHOTGUN,     new Item_Data(ItemType.SHOTGUN, 1, Resources.Load<Sprite>("Items/item_shotgun"), Resources.Load<GameObject>("Items/Shotgun"), UseBehavior.SHOOT) },
-        { ItemType.MINER,       new Item_Data(ItemType.MINER, 5, Resources.Load<Sprite>("Machine/mining_unit"), Resources.Load<GameObject>("Machine/Miner"), UseBehavior.PLACE)},
-        { ItemType.FURNACE,     new Item_Data(ItemType.FURNACE, 5, Resources.Load<Sprite>("Machine/furnace"), Resources.Load<GameObject>("Machine/Furnace"), UseBehavior.PLACE)},
-        { ItemType.GRABBER,     new Item_Data(ItemType.GRABBER, 20, Resources.Load<Sprite>("Machine/grabber_combined"), Resources.Load<GameObject>("Machine/Grabber"), UseBehavior.PLACE)},
-        { ItemType.BELT,        new Item_Data(ItemType.BELT, 20, Resources.Load<Sprite>("Machine/belt-1"), Resources.Load<GameObject>("Machine/Belt"), UseBehavior.PLACE)},
-        { ItemType.SPITTER,     new Item_Data(ItemType.SPITTER, 5, Resources.Load<Sprite>("Machine/spitter"), Resources.Load<GameObject>("Machine/Spitter"), UseBehavior.PLACE)},
-        {ItemType.ASSEMBLER,    new Item_Data(ItemType.ASSEMBLER, 5, Resources.Load<Sprite>("Machine/assembler-1"), Resources.Load<GameObject>("Machine/Assembler"), UseBehavior.PLACE)},
-        { ItemType.PISTOL,      new Item_Data(ItemType.PISTOL, 1, Resources.Load<Sprite>("Items/item_pistol"), Resources.Load<GameObject>("Items/Pistol"), UseBehavior.SHOOT)},
-        { ItemType.QUEST,       new Item_Data(ItemType.QUEST, 1, Resources.Load<Sprite>("Items/item_quest"), Resources.Load<GameObject>("Item/Quest"), UseBehavior.SHOOT)},
-        { ItemType.BOLTACTION,  new Item_Data(ItemType.BOLTACTION, 1, Resources.Load<Sprite>("Items/item_boltaction"), Resources.Load<GameObject>("Items/BoltAction"), UseBehavior.SHOOT) }
+        { ItemType.STONE,       (ItemType.STONE, 250, Resources.Load<Sprite>("Items/item_stone"), Resources.Load<GameObject>("Items/Stone"))},
+        { ItemType.ORE_IRON,    (ItemType.ORE_IRON, 250, Resources.Load<Sprite>("Items/item_iron_ore"), Resources.Load<GameObject>("Items/Iron Ore")) },
+        { ItemType.COAL,        (ItemType.COAL, 250, Resources.Load<Sprite>("Items/item_coal"), Resources.Load<GameObject>("Items/Coal"))},
+        { ItemType.ORE_GOLD,    (ItemType.ORE_GOLD, 250, Resources.Load<Sprite>("Items/item_gold_ore"), Resources.Load<GameObject>("Items/Gold Ore")) },
+        { ItemType.IRON,        (ItemType.IRON, 250, Resources.Load<Sprite>("Items/item_iron_bar"), Resources.Load<GameObject>("Items/Iron Bar")) },
+        { ItemType.GOLD,        (ItemType.GOLD, 250, Resources.Load<Sprite>("Items/item_gold_bar"), Resources.Load<GameObject>("Items/Gold Bar")) },
+        { ItemType.FAMAS,       (ItemType.FAMAS, 1, Resources.Load<Sprite>("Items/item_famas"), Resources.Load<GameObject>("Items/Famas")) },
+        { ItemType.SHOTGUN,     (ItemType.SHOTGUN, 1, Resources.Load<Sprite>("Items/item_shotgun"), Resources.Load<GameObject>("Items/Shotgun")) },
+        { ItemType.MINER,       (ItemType.MINER, 5, Resources.Load<Sprite>("Machine/mining_unit"), Resources.Load<GameObject>("Machine/Miner"))},
+        { ItemType.FURNACE,     (ItemType.FURNACE, 5, Resources.Load<Sprite>("Machine/furnace"), Resources.Load<GameObject>("Machine/Furnace"))},
+        { ItemType.GRABBER,     (ItemType.GRABBER, 20, Resources.Load<Sprite>("Machine/grabber_combined"), Resources.Load<GameObject>("Machine/Grabber"))},
+        { ItemType.BELT,        (ItemType.BELT, 20, Resources.Load<Sprite>("Machine/belt-1"), Resources.Load<GameObject>("Machine/Belt"))},
+        { ItemType.SPITTER,     (ItemType.SPITTER, 5, Resources.Load<Sprite>("Machine/spitter"), Resources.Load<GameObject>("Machine/Spitter"))},
+        {ItemType.ASSEMBLER,    (ItemType.ASSEMBLER, 5, Resources.Load<Sprite>("Machine/assembler-1"), Resources.Load<GameObject>("Machine/Assembler"))},
+        { ItemType.PISTOL,      (ItemType.PISTOL, 1, Resources.Load<Sprite>("Items/item_pistol"), Resources.Load<GameObject>("Items/Pistol"))},
+        { ItemType.QUEST,       (ItemType.QUEST, 1, Resources.Load<Sprite>("Items/item_quest"), Resources.Load<GameObject>("Item/Quest"))},
+        { ItemType.BOLTACTION,  (ItemType.BOLTACTION, 1, Resources.Load<Sprite>("Items/item_boltaction"), Resources.Load<GameObject>("Items/BoltAction")) }
     };
+    
     
     public static Dictionary<string, RecipeBase> allRecipes = new()
     {
@@ -42,6 +43,8 @@ public static class Globals
         {"Belt", new RecipeBase(new ItemStack[]{new(ItemType.GOLD, 1)}, new ItemStack[] {new (ItemType.BELT, 1)}, new MachineType[]{MachineType.ASSEMBLER, MachineType.INVENTORY},5 ) },
         {"Rocket", new RecipeBase(new ItemStack[] {new (ItemType.IRON, 50), new (ItemType.GOLD, 50), new (ItemType.COAL, 50), new(ItemType.QUEST, 1)}, new ItemStack[] {new (ItemType.SHOTGUN, 1)}, new MachineType[]{MachineType.ROCKET, MachineType.INVENTORY}, 1)}
     };
+    
+    
 
     
 }

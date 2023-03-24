@@ -91,7 +91,7 @@ public class TopDownMovementComponent : MonoBehaviour
         // movement with this method feels a little worse, but it avoids setting velocity directly
         rb.AddForce(new Vector2(horizontalInput * 80, verticalInput * 80));
     }
-
+    
 
     // Rotates the sprite based off mouse position--currently flips left or right only
     private void RotateSprite()

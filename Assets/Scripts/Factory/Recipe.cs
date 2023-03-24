@@ -17,6 +17,8 @@ public class Recipe
 
     public Action onComplete = ()=>{};
 
+    public Action onConsume = () => {};
+
     public Recipe(RecipeBase recipe) {
         baseRef = recipe;
     }
@@ -35,7 +37,7 @@ public class Recipe
             yield return null;
         }
 
-        //Debug.Log("craft completed");
+        Debug.Log("craft completed");
         inProgTime = 0;
         progress = 0;
         output(calling);
@@ -61,8 +63,7 @@ public class Recipe
             return true;
         }
         return against.TrueForAll((stack)=> {
-            ItemStack inpStack = potential.Find((st) => st != null && st.of == stack.of);
-
+            ItemStack inpStack = potential.Find((st) => st != null && st.typeOf == stack.typeOf);
             if (inpStack == null) {
                 return false;
             }
@@ -84,14 +85,20 @@ public class Recipe
         against.ForEach((stack) =>
         {
             tempIncoming.Remove(stack);
+            foreach (ItemStack item in tempIncoming)
+            {
+                if (item != null)
+                {
+                    Debug.Log(item.typeOf + " " + item.quantity);
+                }
+            }
         });
-
-
         incoming = tempIncoming;
-
+        onConsume();
     }
-
-
+    
+    
+    
     public static List<ItemStack> getAllInvolvedItems(string recipeName){
         List<ItemStack> ret = new();
 

@@ -14,7 +14,7 @@ public class Assembler_Preview_UI : MonoBehaviour
     // need a list of images so we can set the image on the slots
     [SerializeField] private List<Image> slots = new();
 
-    private List<Sprite> recipe = new();
+    private List<ItemStack> currRecipe = new();
 
     Sprite defaultSprite;
     private int recipeIndex = 0;
@@ -32,13 +32,14 @@ public class Assembler_Preview_UI : MonoBehaviour
         }
 
         // set default recipe here
-        recipe = Item_Data.toSprites(Recipe.getAllInvolvedItems(assemblerRecipes[0]));
-        for (int i = 0; i < recipe.Count; i++)
+        currRecipe = Recipe.getAllInvolvedItems(assemblerRecipes[0]);
+        for (int i = 0; i < currRecipe.Count; i++)
         {
-            if (i == recipe.Count - 1)
+            if (i == currRecipe.Count - 1)
             {
-                slots[3].sprite = recipe.Last();
-                slots[4].sprite = recipe.Last();
+                
+                slots[3].sprite = Globals.item_definitions[currRecipe.Last().typeOf].sprite;
+                slots[4].sprite = Globals.item_definitions[currRecipe.Last().typeOf].sprite;
                 slots[3].GetComponentInChildren<TextMeshProUGUI>().text =
                     Recipe.getAllInvolvedItems(assemblerRecipes[0]).Last().quantity.ToString();
                 slots[4].GetComponentInChildren<TextMeshProUGUI>().text =
@@ -46,7 +47,7 @@ public class Assembler_Preview_UI : MonoBehaviour
             }
             else
             {
-                slots[i].sprite = recipe[i];
+                slots[i].sprite = Globals.item_definitions[currRecipe[i].typeOf].sprite;
                 slots[i].GetComponentInChildren<TextMeshProUGUI>().text =
                     Recipe.getAllInvolvedItems(assemblerRecipes[0])[i].quantity.ToString();
             }
@@ -73,16 +74,16 @@ public class Assembler_Preview_UI : MonoBehaviour
             recipeIndex = assemblerRecipes.Count - 1;
         }
 
-        recipe = Item_Data.toSprites(Recipe.getAllInvolvedItems(assemblerRecipes[recipeIndex]));
-
+        currRecipe = Recipe.getAllInvolvedItems(assemblerRecipes[recipeIndex]);
+        
         slots.ForEach(image=>{image.sprite = defaultSprite; image.GetComponentInChildren<TextMeshProUGUI>().enabled = false;});
         
-        for (int i = 0; i < recipe.Count; i++)
+        for (int i = 0; i < currRecipe.Count; i++)
         {
-            if (i == recipe.Count - 1)
+            if (i == currRecipe.Count - 1)
             {
-                slots[3].sprite = recipe.Last();
-                slots[4].sprite = recipe.Last();
+                slots[3].sprite =  Globals.item_definitions[currRecipe.Last().typeOf].sprite;
+                slots[4].sprite =  Globals.item_definitions[currRecipe.Last().typeOf].sprite;
                 TextMeshProUGUI text = slots[3].GetComponentInChildren<TextMeshProUGUI>();
                 text.text = Recipe.getAllInvolvedItems(assemblerRecipes[recipeIndex]).Last().quantity.ToString();
                 text.enabled = true;
@@ -93,15 +94,14 @@ public class Assembler_Preview_UI : MonoBehaviour
             }
             else
             {
-                slots[i].sprite = recipe[i];
+                slots[i].sprite = Globals.item_definitions[currRecipe[i].typeOf].sprite;
                 TextMeshProUGUI text = slots[i].GetComponentInChildren<TextMeshProUGUI>();
                 text.enabled = true;
-                text.text =
-                    Recipe.getAllInvolvedItems(assemblerRecipes[recipeIndex])[i].quantity.ToString();
+                text.text = Recipe.getAllInvolvedItems(assemblerRecipes[recipeIndex])[i].quantity.ToString();
             }
         }
         reduceOpacity();
-        GetComponentInParent<Assembler>().Set_Recipe(new Recipe(Globals.allRecipes[assemblerRecipes[recipeIndex]]));
+        GetComponentInParent<Assembler>().Set_Recipe(new Recipe(Globals.allRecipes[assemblerRecipes[recipeIndex]]) );
 
     }
 

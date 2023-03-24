@@ -7,7 +7,7 @@ public class Settings : MonoBehaviour
 {
     [Header("Keybinds")]
     public KeyCode pauseKey = KeyCode.Escape;
-    public KeyCode inventoryKey = KeyCode.I;
+    public KeyCode inventoryKey = KeyCode.E;
     public KeyCode interactKey = KeyCode.E;
 
     [Header("Audio")]

@@ -14,16 +14,16 @@ public class Belt : Machine, IODevice
         footPrint = new(1,1);
         child_start = BeltStart;
 
-         IOBuf.AddListener(evt=>{
+         /*IOBuf.AddListener(evt=>{
             if (evt.changeType == ChangeType.ADD){
-                itemSlots[evt.affectedindices[0]].sprite = Globals.item_definitions[IOBuf[evt.affectedindices[0]].of].sprite;
+                //itemSlots[evt.affectedindices[0]].sprite = Globals.item_definitions[IOBuf[evt.affectedindices[0]].of].sprite;
             }
             else if (evt.changeType == ChangeType.REMOVE){
                 foreach(int ind in evt.affectedindices){
                     itemSlots[ind].sprite = null;
                 }
             }
-        });
+        });*/
     }
     
     Vector2Int intendPushTo;
@@ -69,7 +69,7 @@ public class Belt : Machine, IODevice
                 if (IOBuf[0] != null){
                     
                     StartCoroutine(doCooldown(()=>{
-                        //int ind = put.getInputBuffer().Reverse().FindIndex(st=>st!=null);
+                        int ind = put.getInputBuffer().Reverse().FindIndex(st=>st!=null);
                         if (put.getInputBuffer()[3] == null){
                             put.getInputBuffer()[3] = IOBuf[0];
                             IOBuf[0] = null;
@@ -107,7 +107,7 @@ public class Belt : Machine, IODevice
 
 
     public void advanceBelt(){
-        for (int i = 0; i < IOBuf.Size - 1; i++){
+        for (int i = 0; i < IOBuf.Count - 1; i++){
             if (IOBuf[i] == null && IOBuf[i+1] != null){
                 IOBuf[i] = IOBuf[i+1];
                 IOBuf[i+1] = null;

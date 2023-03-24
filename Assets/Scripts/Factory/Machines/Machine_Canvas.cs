@@ -35,6 +35,7 @@ public class Machine_Canvas : MonoBehaviour
         }
     }
 
+    // fix this later, the gameobject needs to be disabled not just the canvas
     public void toggle_mainCanvas()
     {
         canvases = GetComponentsInChildren<Canvas>();
@@ -43,14 +44,15 @@ public class Machine_Canvas : MonoBehaviour
         // main canvas
         canvases[1].enabled = !canvases[1].enabled;
         // enter inventory view
-        if (canvases[1].enabled)
+        FindObjectOfType<PlayerInventoryUI>().SetInventoryView(canvases[1].enabled);
+        /*if (canvases[1].gameObject.activeSelf)
         {
             FindObjectOfType<PlayerInventoryUI>().SetInventoryView(true);
         }
         else
         {
             FindObjectOfType<PlayerInventoryUI>().SetInventoryView(false);
-        }
+        }*/
         
     }
 

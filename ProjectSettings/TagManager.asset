@@ -7,6 +7,8 @@ TagManager:
   - InvItemSlot
   - Machine
   - Enemy
+  - Inventory
+  - ProgressBar
   layers:
   - Default
   - TransparentFX

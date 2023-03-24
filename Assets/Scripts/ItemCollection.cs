@@ -36,14 +36,16 @@ public class ItemCollection : IEnumerable<ItemStack>
 
             current.quantity = current.max;
 
-            return Add(new ItemStack(inserting.of, remaining), true).more;
+            //return Add(new ItemStack(inserting.of, remaining), true).more;
+            return null;
 
         }
     }
 
     public (ItemStack more, int insertIndex) Add(ItemStack item, bool needsNewStack = false)
     {
-        var current = new List<ItemStack>(collection).FindIndex((st) => st != null && st.of == item.of);
+        //var current = new List<ItemStack>(collection).FindIndex((st) => st != null && st.of == item.of);
+        var current = 0;
         if (!needsNewStack && current != -1 && collection[current] != null)
         {
             //Debug.Log(item.quantity);
@@ -55,7 +57,7 @@ public class ItemCollection : IEnumerable<ItemStack>
         else if (nonNullItems + 1 <= maxSlots)
         {
             nonNullItems++;
-
+            
             var insertInd = Array.FindIndex(collection, st=>st == null);
             collection[insertInd] = ItemStack.copy(item);
 
@@ -70,8 +72,8 @@ public class ItemCollection : IEnumerable<ItemStack>
 
     public (bool requestCompelete, ItemStack partial) Remove(ItemStack item, bool doPartial = false)
     {
-        var exists = new List<ItemStack>(collection).FindAll((st) => st!=null && st.of == item.of);
-
+        var exists = new List<ItemStack>(collection).FindAll((st) => st!=null && st.typeOf == item.typeOf);
+        //var exists = new List<ItemStack>();
         exists.Reverse();
 
         int quantTotal = exists.Sum(st => st.quantity);
@@ -113,12 +115,14 @@ public class ItemCollection : IEnumerable<ItemStack>
             NotifyListeners(new ItemColChangeEvent(ChangeType.REMOVE, affected));
 
             if (type){
-                return (false, new ItemStack(item.of, quantTotal));
+                //return (false, new ItemStack(item.of, quantTotal));
             }
             else{
                 return (true, item);
             }
         }
+        // this is wrong, just added to get rid of compile errors
+        return (true, null);
     }
 
     public ItemStack Extract(int amount){
@@ -128,7 +132,7 @@ public class ItemCollection : IEnumerable<ItemStack>
             return null;
         }
 
-        ItemStack ret = new ItemStack(retStack.of, amount);
+        ItemStack ret = new ItemStack(retStack.typeOf, amount);
 
         return Remove(ret, true).partial;
     }

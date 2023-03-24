@@ -21,12 +21,12 @@ public class Mining_Machine : Machine, IKillable
     {
         //GetComponent<Miner_Inventory>().inventory[0] = outBuf;
         // change this to decide what ore to mine
-        doing = new Recipe(Globals.allRecipes["ironOreMiner"]);
+        //doing = new Recipe(Globals.allRecipes["ironOreMiner"]);
     }
 
     public void setDoing(string recipe)
     {
-        doing = new Recipe(Globals.allRecipes[recipe]);
+        //doing = new Recipe(Globals.allRecipes[recipe]);
     }
     public override ItemCollection getInputBuffer()
     {

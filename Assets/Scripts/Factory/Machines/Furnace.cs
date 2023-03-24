@@ -11,8 +11,8 @@ public class Furnace : Machine, IKillable
         get {return base.doing;} 
         set{
             base.doing = value;
-            doing.onComplete = ()=>{myInventory.updateProgressBar(0);};
-            doing.onProgress = (d)=>{myInventory.updateProgressBar((float)d);};
+            //doing.onComplete = ()=>{myInventory.updateProgressBar(0);};
+            //doing.onProgress = (d)=>{myInventory.updateProgressBar((float)d);};
         }
     }
 
@@ -28,12 +28,12 @@ public class Furnace : Machine, IKillable
     private void Furnace_Start()
     {
         // automatically searches for the items needed to complete the given recipe and consumes them and goes into the output buffer
-        doing = new Recipe(Globals.allRecipes["ironOreToBar"]);
+        //doing = new Recipe(Globals.allRecipes["ironOreToBar"]);
         
         myInventory = GetComponentInChildren<FurnaceInventory>();
 
-        myInventory[0] = inpBuf;
-        myInventory[1] = outBuf;
+        //myInventory[0] = inpBuf;
+        //myInventory[1] = outBuf;
 
 
         //inpBuf.Add(new ItemStack(ItemType.ORE_IRON, 100));

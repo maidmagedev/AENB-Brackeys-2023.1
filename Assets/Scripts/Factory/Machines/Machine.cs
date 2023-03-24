@@ -74,7 +74,8 @@ public class Machine : LockedToGrid, IODevice
                     var pickup = Instantiate(Resources.Load<GameObject>("Items/GenericPickup"), transform.position + new Vector3(0,2,0), Quaternion.identity);
                     pickup.GetComponent<SpriteRenderer>().sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
 
-                    pickup.GetComponent<PickUp>().Init(machineItemMapping[type], 1);
+                    //pickup.GetComponent<PickUp>().Init(machineItemMapping[type], 1);
+                    pickup.GetComponent<PickUp>().setItem(machineItemMapping[type], 1);
                     
                     return;
                 }
@@ -110,7 +111,7 @@ public class Machine : LockedToGrid, IODevice
         {
             working = true;
             doing.consume(ref inpBuf);
-
+            
             StartCoroutine(doing.doCraft(this));
         }
     }

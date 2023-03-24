@@ -6,7 +6,7 @@ public class Rocket_Inventory : BaseInventory
 {
     public Rocket_Inventory()
     {
-        inventory_grid = new Dictionary<(int, int), InventoryElement>()
+        /*inventory_grid = new Dictionary<(int, int), InventoryElement>()
         {
             // this arrangement is based off the furnace inventory and should be changed
             {(0,0), new ItemSlot(new Vector3(-25f, -25.78f, 0))}, // Input  Buffer - 1
@@ -15,7 +15,7 @@ public class Rocket_Inventory : BaseInventory
             {(0, 3), new ItemSlot(new Vector3(24.96f, -25.81f, 0))} // Input Buffer - 4
         };
         
-        inventory.Add(new ItemCollection(12));
+        inventory.Add(new ItemCollection(12));*/
         
     }
 }

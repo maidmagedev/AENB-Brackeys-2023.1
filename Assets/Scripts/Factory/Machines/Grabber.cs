@@ -29,14 +29,14 @@ public class Grabber : Machine, IODevice
         intendTake = new Vector2Int((int)position.x, (int)position.y) + OrientationHelper.takeFromBind[orientation];
         intendPushTo = new Vector2Int((int)position.x, (int)position.y) + OrientationHelper.pushToBind[orientation];
 
-        IOBuf.AddListener((evt=>{
+        /*IOBuf.AddListener((evt=>{
             if (evt.changeType == ChangeType.ADD){
-                item.sprite = Globals.item_definitions[IOBuf[0].of].sprite;
+                //item.sprite = Globals.item_definitions[IOBuf[0].of].sprite;
             }
             else if (evt.changeType == ChangeType.REMOVE){
                 item.sprite = null;
             }
-        }));
+        }));*/
 
         switch (orientation){
             case Orientation.LR:
@@ -67,7 +67,7 @@ public class Grabber : Machine, IODevice
 
             Machine take = takingFrom != null ? takingFrom.occupiedBy : null;
 
-            if(take != null){
+            /*if(take != null){
                 var items = take.getOutputBuffer().Extract(1);
 
                 if (items != null){
@@ -78,7 +78,7 @@ public class Grabber : Machine, IODevice
                     GetComponent<Animator>().SetTrigger("receiveItem");
                     StartCoroutine(doCooldown(()=>{}));
                 }
-            }
+            }*/
         }
         else if (!working){
             TileData putTo;
@@ -87,7 +87,7 @@ public class Grabber : Machine, IODevice
 
             Machine put = putTo != null ? putTo.occupiedBy : null;
 
-            if(put != null){
+            /*if(put != null){
                 var items = put.getInputBuffer().Add(IOBuf[0]).more;
 
                 if (items != null){
@@ -95,7 +95,7 @@ public class Grabber : Machine, IODevice
                     working = true;
                     //print("work start");
                     int transferred = IOBuf[0].quantity - items.quantity;
-                    IOBuf.Remove(new ItemStack(items.of, transferred));
+                    //IOBuf.Remove(new ItemStack(items.of, transferred));
 
                     
                     StartCoroutine(doCooldown(()=>{}));
@@ -107,7 +107,7 @@ public class Grabber : Machine, IODevice
                     IOBuf.Remove(IOBuf[0]);
                     StartCoroutine(doCooldown(()=>{}));
                 }
-            }
+            }*/
         }
 
         //Find IODevice "behind", remove 1, wait (time)
