@@ -11,9 +11,36 @@ public class Furnace : Machine, IKillable
         get {return base.doing;} 
         set{
             base.doing = value;
-            //doing.onComplete = ()=>{myInventory.updateProgressBar(0);};
+            // could put my own custom logic here
+            doing.onComplete = ()=>{/*myInventory.updateProgressBar(0);*/ outPut();};
             //doing.onProgress = (d)=>{myInventory.updateProgressBar((float)d);};
+            doing.onConsume = () =>
+            {
+                // clear slot 0 and add the inputbuffer
+                var removed = myInventory.base_Remove(0);
+                if (removed != null)
+                {
+                    Destroy(removed.gameObject);
+                }
+                myInventory.base_AddAt(inpBuf[0], 0);
+                print("adding " + inpBuf[0] + " to input 0 of furnace inventory ");
+                
+                // clear slot 1 and add the inputbuffer
+                removed = myInventory.base_Remove(1);
+                if (removed != null)
+                {
+                    Destroy(removed.gameObject);
+                }
+                myInventory.base_AddAt(inpBuf[1], 1);
+                print("adding" + inpBuf[1] + " to input 1 of furnace inventory");
+            };
         }
+    }
+    
+    private void outPut()
+    {
+        myInventory.AddtoOutput(outBuf[0]);
+        outBuf[0] = null;
     }
 
     
@@ -24,45 +51,24 @@ public class Furnace : Machine, IKillable
         footPrint = new(2, 2);
         child_start = Furnace_Start;
     }
-
+    
     private void Furnace_Start()
     {
-        // automatically searches for the items needed to complete the given recipe and consumes them and goes into the output buffer
-        //doing = new Recipe(Globals.allRecipes["ironOreToBar"]);
-        
+        // default recipe
+        doing = new Recipe(Globals.allRecipes["ironOreToBar"]);
+        // setting inventory ref
         myInventory = GetComponentInChildren<FurnaceInventory>();
-
-        //myInventory[0] = inpBuf;
-        //myInventory[1] = outBuf;
-
-
-        //inpBuf.Add(new ItemStack(ItemType.ORE_IRON, 100));
     }
     
+    public override ItemCollection getOutputBuffer()
+    {
+        return outBuf;
+    }
     public override void Set_Recipe(Recipe recipe)
     {
         doing = recipe;
     }
-
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.CompareTag("Player"))
-        {
-            // press "E" to do this...
-            GetComponentInChildren<Canvas>().enabled = true;
-            FindObjectOfType<PlayerInventoryUI>().SetInventoryView(true);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            GetComponentInChildren<Canvas>().enabled = false;
-            FindObjectOfType<PlayerInventoryUI>().SetInventoryView(false);
-        }
-    }
-
+    
     public void Die()
     {
         Destroy(gameObject);
@@ -70,6 +76,42 @@ public class Furnace : Machine, IKillable
 
     public void NotifyDamage()
     {
-        //throw new NotImplementedException();
+        //throw new System.NotImplementedException();
     }
+    
+    public void set_inpBuf()
+    {
+        // Furnace Inventory is null at the start because I disabled
+        // the gameobject by default
+        if (myInventory == null)
+        {
+            myInventory = GetComponentInChildren<FurnaceInventory>();
+        }
+        var inputItems = new ItemCollection(12, myInventory.getItems());
+        inpBuf = inputItems;
+        print("setting inpbuff");
+        foreach (ItemStack VARIABLE in inputItems)
+        {
+            //print(VARIABLE.typeOf);
+        }
+    }
+    /*private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Player"))
+        {
+            // press "E" to do this...
+            GetComponentInChildren<Canvas>().enabled = true;
+            FindObjectOfType<PlayerInventoryUI>().SetInventoryView(true);
+        }
+    }*/
+
+    /*private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GetComponentInChildren<Canvas>().enabled = false;
+            FindObjectOfType<PlayerInventoryUI>().SetInventoryView(false);
+        }
+    }*/
+    
 }

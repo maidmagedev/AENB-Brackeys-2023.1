@@ -50,10 +50,10 @@ public class Furnace_Preview_UI : MonoBehaviour
         switch (recipeIndex)
         {
             case 0:
-                //GetComponentInParent<Furnace>().Set_Recipe(new Recipe(Globals.allRecipes["ironOreToBar"]));
+                GetComponentInParent<Furnace>().Set_Recipe(new Recipe(Globals.allRecipes["ironOreToBar"]));
                 break;
             case 1:
-                //GetComponentInParent<Furnace>().Set_Recipe(new Recipe(Globals.allRecipes["goldOreToBar"]));
+                GetComponentInParent<Furnace>().Set_Recipe(new Recipe(Globals.allRecipes["goldOreToBar"]));
                 break;
         }
     }

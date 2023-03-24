@@ -25,12 +25,10 @@ public class Machine_Canvas : MonoBehaviour
         {
             player_inRange = false;
 
-            // disable all canvases
+            // disable interact canvas and main canvas
             canvases = GetComponentsInChildren<Canvas>();
-            foreach (Canvas canvas in canvases)
-            {
-                canvas.enabled = false;
-            }
+            canvases[0].enabled = false;
+            canvases[1].enabled = false;
             // leave inventory view
             FindObjectOfType<PlayerInventoryUI>().SetInventoryView(false);
             InventoryHolder.SetActive(false);

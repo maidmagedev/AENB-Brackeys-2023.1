@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     public Image healthbar;
-    [SerializeField] GameObject player;
+    [SerializeField] GameObject target;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +17,6 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthbar.fillAmount = player.GetComponent<DamageableComponent>().GetHealthPercentage();
+        healthbar.fillAmount = target.GetComponent<DamageableComponent>().GetHealthPercentage();
     }
 }

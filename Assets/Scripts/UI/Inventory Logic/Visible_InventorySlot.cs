@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 
 // This is meant to be used as a base class for visible inventory slots.
 // By itself, there is not enough functionality to perform even basic operations.
+// In fact, this should really be re-factored to an interface but I digress
 
 // How to use this class:
 // Make a prefab with this script on it.

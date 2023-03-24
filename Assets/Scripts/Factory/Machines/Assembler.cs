@@ -63,10 +63,7 @@ public class Assembler : Machine, IKillable
     private void AssemblerStart()
     {
         doing = new Recipe(Globals.allRecipes["Miner_Machine"]);
-
         myInventory = GetComponentInChildren<AssemblerInventory>();
-        
-        
     }
 
     public override ItemCollection getOutputBuffer()
