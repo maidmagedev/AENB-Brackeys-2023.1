@@ -35,8 +35,7 @@ public class Machine_Canvas : MonoBehaviour
         }
     }
 
-    // fix this later, the gameobject needs to be disabled not just the canvas
-    public void toggle_mainCanvas()
+    private void toggle_mainCanvas()
     {
         canvases = GetComponentsInChildren<Canvas>();
         // interact canvas
@@ -44,15 +43,16 @@ public class Machine_Canvas : MonoBehaviour
         // main canvas
         canvases[1].enabled = !canvases[1].enabled;
         // enter inventory view
-        FindObjectOfType<PlayerInventoryUI>().SetInventoryView(canvases[1].enabled);
-        /*if (canvases[1].gameObject.activeSelf)
+        if (canvases[1].enabled)
         {
             FindObjectOfType<PlayerInventoryUI>().SetInventoryView(true);
         }
         else
         {
             FindObjectOfType<PlayerInventoryUI>().SetInventoryView(false);
-        }*/
+        }
+        
+        // if main canvas is enabled then we should enable slot colliders
         
     }
 

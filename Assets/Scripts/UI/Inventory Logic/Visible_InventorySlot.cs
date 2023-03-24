@@ -23,23 +23,20 @@ public abstract class Visible_InventorySlot : MonoBehaviour
     public DraggableInventoryItem draggableItem_reference;
     public ItemStack containedStack = null;
     protected int index = 0;
-
-    public BaseInventory inven;
-    private IEnumerator Start()
+    
+    private void Start()
     {
         draggablePrefab = Resources.Load<GameObject>("Inventory/Draggable Inventory Item");
-        yield return new WaitForSeconds(0.2f);
-        inven = GetComponentInParent<BaseInventory>();
-        index = inven.getSlotIndex(gameObject.name);
-        if (index == -1)
-        {
-            print("slot index not found, wtf");
-        }
     }
 
-    public int GetIndex()
+    public int getIndex()
     {
-        return index;
+        return GetComponentInParent<BaseInventory>().getSlotIndex(gameObject.name);;
+    }
+
+    public BaseInventory getInven()
+    {
+        return GetComponentInParent<BaseInventory>();
     }
 
     // This should always be overridden

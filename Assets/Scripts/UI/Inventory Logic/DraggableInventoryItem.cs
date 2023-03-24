@@ -71,7 +71,7 @@ public class DraggableInventoryItem : MonoBehaviour, IDragHandler, IEndDragHandl
             print("released on an inventory slot");
             
             // clear the current slot
-            currSlot.inven.Remove(currSlot.GetIndex());
+            currSlot.getInven().Remove(currSlot.getIndex());
             
             // get the new slot
             Visible_InventorySlot newSlot = touching.GetComponent<Visible_InventorySlot>();
@@ -82,7 +82,7 @@ public class DraggableInventoryItem : MonoBehaviour, IDragHandler, IEndDragHandl
             }
             
             // attempt to add to new slot
-            bool wasAdded = newSlot.inven.AddAt(item, newSlot.GetIndex(), currSlot);
+            bool wasAdded = newSlot.getInven().AddAt(item, newSlot.getIndex(), currSlot);
             
             // if the new slot cannot be added to, swap
             if (!wasAdded)
@@ -90,12 +90,12 @@ public class DraggableInventoryItem : MonoBehaviour, IDragHandler, IEndDragHandl
                 // clear the new slot
                 GameObject temp = newSlot.draggableItem_reference.gameObject; 
                 Destroy(newSlot.draggableItem_reference.gameObject);
-                newSlot.inven.Remove(newSlot.GetIndex());
+                newSlot.getInven().Remove(newSlot.getIndex());
                 
                 // add to new slot
-                newSlot.inven.AddAt(item, newSlot.GetIndex(),currSlot);
+                newSlot.getInven().AddAt(item, newSlot.getIndex(),currSlot);
                 // add to old slot
-                currSlot.inven.AddAt(temp.GetComponent<DraggableInventoryItem>().item, currSlot.GetIndex(),newSlot);
+                currSlot.getInven().AddAt(temp.GetComponent<DraggableInventoryItem>().item, currSlot.getIndex(),newSlot);
             }
             // destroy the old item instance, a new one has been created already
             Destroy(gameObject);
@@ -114,7 +114,7 @@ public class DraggableInventoryItem : MonoBehaviour, IDragHandler, IEndDragHandl
                 new Vector3(screenToWorldPosition.x, screenToWorldPosition.y, 0),
                 Quaternion.identity);
             pickup.GetComponent<PickUp>().setItem(item.typeOf, item.quantity);
-            currSlot.inven.Remove(currSlot.GetIndex());
+            currSlot.getInven().Remove(currSlot.getIndex());
             Destroy(gameObject);
         }
         /*int player_inventory_layer = LayerMask.NameToLayer("Player Inventory");

@@ -33,7 +33,11 @@ public class BaseInventory : MonoBehaviour
         }
         return ret;
     }
-    
+
+    public ref List<Visible_InventorySlot> getSlots()
+    {
+        return ref slots;
+    }
     // Attempts to Add the given ItemStack with prioritization on combining like items
     // Returns a bool indicating whether the add operation was successful or not
     public bool Add(ItemStack givenStack)
@@ -142,17 +146,17 @@ public class BaseInventory : MonoBehaviour
                 }
 
                 // if fromSlot is not null, set the quantity of givenStack at the from slot to the remaining difference
-                if (fromSlot.inven.slots[fromSlot.GetIndex()].containedStack == null)
+                if (fromSlot.getInven().slots[fromSlot.getIndex()].containedStack == null)
                 {
                     print("from slot contained stack is null");
-                    fromSlot.inven.AddAt(new ItemStack(givenStack.typeOf, difference), fromSlot.GetIndex());
+                    fromSlot.getInven().AddAt(new ItemStack(givenStack.typeOf, difference), fromSlot.getIndex());
                     return true;
                 }
                 
                 // this does the same as above but assumes the contained stack is not null
                 // As of right now, this path should never occur since draggableInventoryItem removes the fromSlot
-                fromSlot.inven.slots[fromSlot.GetIndex()].containedStack.quantity = difference;
-                fromSlot.inven.slots[fromSlot.GetIndex()].UpdateSlot(fromSlot.inven.slots[fromSlot.GetIndex()].containedStack);
+                fromSlot.getInven().slots[fromSlot.getIndex()].containedStack.quantity = difference;
+                fromSlot.getInven().slots[fromSlot.getIndex()].UpdateSlot(fromSlot.getInven().slots[fromSlot.getIndex()].containedStack);
                 return true;
             }
             // else if combined quantity is not over max, simply update the slot
