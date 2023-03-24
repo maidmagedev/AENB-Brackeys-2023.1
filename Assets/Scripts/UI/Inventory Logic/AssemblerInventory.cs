@@ -50,11 +50,12 @@ public class AssemblerInventory : BaseInventory
     public override bool AddAt(ItemStack givenStack, int toIndex, Visible_InventorySlot fromSlot = null)
     {
         Visible_InventorySlot insertLocation = slots[toIndex];
-        
+        print("adding to assembler inventory");
         // If there is no stack at the given index, add
         if (insertLocation.containedStack == null)
         {
             slots[toIndex].SetStack(givenStack);
+            _assembler.set_inpBuf();
             return true;
         }
         // if like stack found 
@@ -70,8 +71,8 @@ public class AssemblerInventory : BaseInventory
                 int difference = slots[toIndex].containedStack.quantity - givenStack.max;
                 slots[toIndex].containedStack.quantity -= difference;
                 slots[toIndex].UpdateSlot(slots[toIndex].containedStack);
-                
-                
+                _assembler.set_inpBuf();
+
                 // if no fromSlot is null, spawn the remaining difference as a pickup near the PLAYER
                 if (fromSlot == null)
                 {
@@ -100,6 +101,7 @@ public class AssemblerInventory : BaseInventory
             else
             {
                 slots[toIndex].UpdateSlot(slots[toIndex].containedStack);
+                _assembler.set_inpBuf();
                 return true;
             }
             

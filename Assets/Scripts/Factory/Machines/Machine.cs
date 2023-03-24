@@ -70,13 +70,9 @@ public class Machine : LockedToGrid, IODevice
                 if (tryOut != null){
 
                     Destroy(this.gameObject);
-
+                    print("legacy machine script is instantiating a pickup");
                     var pickup = Instantiate(Resources.Load<GameObject>("Items/GenericPickup"), transform.position + new Vector3(0,2,0), Quaternion.identity);
-                    pickup.GetComponent<SpriteRenderer>().sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
-
-                    //pickup.GetComponent<PickUp>().Init(machineItemMapping[type], 1);
                     pickup.GetComponent<PickUp>().setItem(machineItemMapping[type], 1);
-                    
                     return;
                 }
             }
