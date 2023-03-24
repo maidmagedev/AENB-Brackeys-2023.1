@@ -91,6 +91,12 @@ public class Assembler : Machine, IKillable
 
     public void set_inpBuf()
     {
+        // Assembler Inventory is null at the start because I disabled
+        // the gameobject by default
+        if (myInventory == null)
+        {
+            myInventory = GetComponentInChildren<AssemblerInventory>();
+        }
         var inputItems = new ItemCollection(12, myInventory.getItems());
         inpBuf = inputItems;
         print("setting inpbuff");
