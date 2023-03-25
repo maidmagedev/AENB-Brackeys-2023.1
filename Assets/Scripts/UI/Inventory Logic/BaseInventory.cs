@@ -171,6 +171,8 @@ public class BaseInventory : MonoBehaviour
         print("Add at index " + toIndex + " aborted");
         return false;
     }
+    
+    // Removes an entire stack
     public virtual DraggableInventoryItem Remove(int index)
     {
         if (slots == null || slots.Count == 0)
@@ -184,6 +186,31 @@ public class BaseInventory : MonoBehaviour
         numStacks--;
         print("inventory at index " + index + " is set to null");
         return removedItem;
+    }
+
+    // returns whether the given stack has anything left
+    public bool RemoveOne(int index)
+    {
+        if (slots == null || slots.Count == 0)
+        {
+            print("inventory or slot null reference--cancelling remove operation");
+            return true;
+        }
+        Visible_InventorySlot removeLocation = this.slots[index];
+        
+        // If there is no stack at the given index return false
+        if (removeLocation.containedStack == null)
+        {
+            return true;
+        }
+        int numRemaining = this.slots[index].containedStack.quantity - 1;
+        if (numRemaining <= 0)
+        {
+            this.Remove(index);
+            return false;
+        }
+        this.slots[index].UpdateSlot(new ItemStack(removeLocation.containedStack.typeOf, removeLocation.containedStack.quantity - 1));
+        return true;
     }
     
 

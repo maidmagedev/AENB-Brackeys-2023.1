@@ -116,8 +116,16 @@ public class DraggableInventoryItem : MonoBehaviour, IDragHandler, IEndDragHandl
                     Quaternion.identity);
                 
                 // should only remove one instead of entire stack
-                currSlot.getInven().Remove(currSlot.getIndex());
-                Destroy(gameObject);
+                bool itemsLeft = currSlot.getInven().RemoveOne(currSlot.getIndex());
+                if (!itemsLeft)
+                {
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    // reset position
+                    transform.position = currSlot.transform.position;
+                }
                 return;
             }
             

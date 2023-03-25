@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player_InventorySlot : Visible_InventorySlot
 {
     // This should only be called when a draggableItem_reference has already been instantiated--In other words,
-    // This method assumes the slot already contains a stack, and is simply having its quantity increased.
+    // This method assumes the slot already contains a stack, and is simply having its quantity changed
     public override void UpdateSlot(ItemStack stack)
     {
         containedStack = stack;
