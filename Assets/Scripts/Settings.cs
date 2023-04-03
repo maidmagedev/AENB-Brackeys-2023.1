@@ -9,6 +9,7 @@ public class Settings : MonoBehaviour
     public KeyCode pauseKey = KeyCode.Escape;
     public KeyCode inventoryKey = KeyCode.I;
     public KeyCode interactKey = KeyCode.E;
+    public KeyCode questJournalKey = KeyCode.J;
 
     [Header("Audio")]
     public float masterVolume = 0.5f; // percentage
