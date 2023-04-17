@@ -29,11 +29,11 @@ public static class Globals
     
     public static Dictionary<string, RecipeBase> allRecipes = new()
     {
-        { "ironOreToBar", new RecipeBase(new ItemStack[] { new(ItemType.ORE_IRON, 1), new (ItemType.COAL, 1) }, new ItemStack[] { new(ItemType.IRON, 1) }, new MachineType[] { MachineType.FURNACE }, 1.2) },
-        {"goldOreToBar", new RecipeBase(new ItemStack[] {new (ItemType.ORE_GOLD, 1), new (ItemType.COAL, 1)}, new ItemStack[] {new(ItemType.GOLD, 1)}, new MachineType[] {MachineType.FURNACE}, 1.2)},
-        {"ironOreMiner", new RecipeBase(new ItemStack[]{}, new ItemStack[]{new ItemStack(ItemType.ORE_IRON, 1)}, new MachineType[]{MachineType.MINER},10 )},
-        {"goldOreMiner", new RecipeBase(new ItemStack[]{}, new ItemStack[]{new ItemStack(ItemType.ORE_GOLD, 1)}, new MachineType[]{MachineType.MINER},10 )},
-        {"CoalMiner", new RecipeBase(new ItemStack[]{}, new ItemStack[]{new ItemStack(ItemType.COAL, 1)}, new MachineType[]{MachineType.MINER},10 )},
+        { "ironOreToBar", new RecipeBase(new ItemStack[] { new(ItemType.ORE_IRON, 1), new (ItemType.COAL, 1) }, new ItemStack[] { new(ItemType.IRON, 1) }, new MachineType[] { MachineType.FURNACE }, 3) }, 
+        {"goldOreToBar", new RecipeBase(new ItemStack[] {new (ItemType.ORE_GOLD, 1), new (ItemType.COAL, 1)}, new ItemStack[] {new(ItemType.GOLD, 1)}, new MachineType[] {MachineType.FURNACE}, 3)},
+        {"ironOreMiner", new RecipeBase(new ItemStack[]{}, new ItemStack[]{new ItemStack(ItemType.ORE_IRON, 1)}, new MachineType[]{MachineType.MINER},2 )}, // was 10
+        {"goldOreMiner", new RecipeBase(new ItemStack[]{}, new ItemStack[]{new ItemStack(ItemType.ORE_GOLD, 1)}, new MachineType[]{MachineType.MINER},2 )}, // was 10
+        {"CoalMiner", new RecipeBase(new ItemStack[]{}, new ItemStack[]{new ItemStack(ItemType.COAL, 1)}, new MachineType[]{MachineType.MINER},2 )},        // was 10
         {"Miner_Machine", new RecipeBase(new ItemStack[]{new (ItemType.IRON, 3), new(ItemType.COAL, 3), new (ItemType.GOLD, 1)}, new ItemStack[] {new(ItemType.MINER, 1)}, new MachineType[]{MachineType.ASSEMBLER, MachineType.INVENTORY},10)},
         {"Furnace_Machine", new RecipeBase(new ItemStack[]{ new(ItemType.STONE, 3) }, new ItemStack[] {new(ItemType.FURNACE, 1)}, new MachineType[]{MachineType.ASSEMBLER, MachineType.INVENTORY},5)},
         {"Famas", new RecipeBase(new ItemStack[]{new(ItemType.IRON, 3)}, new ItemStack[] {new (ItemType.FAMAS, 1)}, new MachineType[]{MachineType.ASSEMBLER, MachineType.INVENTORY},5 ) },

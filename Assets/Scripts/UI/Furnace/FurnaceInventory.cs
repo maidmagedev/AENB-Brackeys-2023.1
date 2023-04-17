@@ -2,25 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FurnaceInventory : BaseInventory
 {
+    [SerializeField] private GameObject progressBar;
     [SerializeField] private Furnace _furnace;
-   /* public FurnaceInventory() {
-        inventory_grid = new Dictionary<(int, int), InventoryElement>()
-        {
-            {(0,1), new ItemSlot(new Vector3(-6.2f, 5.8f, 0))},    // Input  Buffer - Input Item
-            {(0,0), new ItemSlot(new Vector3(26.9f, -25.75f, 0))}, // Input  Buffer - Fuel
-            {(1,0), new OutputSlot(new Vector3(26.9f, 5.8f, 0))},    // Output Buffer - Output Item
-            {(-1, 0), new FurnaceMeter(new Vector3(10.4f, 5.8f,0))}
-        };
-        
 
-        inventory.Add(new ItemCollection(2));
-        inventory.Add(new ItemCollection(1));
-    }*/
-   
-   public bool AddtoOutput(ItemStack givenStack)
+    public void updateProgressBar(float percent)
+    {
+        progressBar.GetComponent<Image>().fillAmount = percent;
+    }
+    /* public FurnaceInventory() {
+         inventory_grid = new Dictionary<(int, int), InventoryElement>()
+         {
+             {(0,1), new ItemSlot(new Vector3(-6.2f, 5.8f, 0))},    // Input  Buffer - Input Item
+             {(0,0), new ItemSlot(new Vector3(26.9f, -25.75f, 0))}, // Input  Buffer - Fuel
+             {(1,0), new OutputSlot(new Vector3(26.9f, 5.8f, 0))},    // Output Buffer - Output Item
+             {(-1, 0), new FurnaceMeter(new Vector3(10.4f, 5.8f,0))}
+         };
+
+
+         inventory.Add(new ItemCollection(2));
+         inventory.Add(new ItemCollection(1));
+     }*/
+
+    public bool AddtoOutput(ItemStack givenStack)
    {
        Visible_InventorySlot insertLocation = slots[2];
         
@@ -102,7 +109,7 @@ public class FurnaceInventory : BaseInventory
             
         }
         // otherwise abort add operation
-        print("Add at index " + toIndex + " aborted");
+        print("Furnace Add at index " + toIndex + " aborted");
         return false;
     }
    

@@ -12,27 +12,28 @@ public class Furnace : Machine, IKillable
         set{
             base.doing = value;
             // could put my own custom logic here
-            doing.onComplete = ()=>{/*myInventory.updateProgressBar(0);*/ outPut();};
-            //doing.onProgress = (d)=>{myInventory.updateProgressBar((float)d);};
+            doing.onComplete = ()=>{ myInventory.updateProgressBar(0); outPut();};
+            doing.onProgress = (d)=>{myInventory.updateProgressBar((float)d);};
             doing.onConsume = () =>
             {
-                // clear slot 0 and add the inputbuffer
+                // TODO: Update only the changed items, as opposed to clearing the entire inventory and re-instantiating
+                // clear slot 0 and add the new inputbuffer
                 var removed = myInventory.base_Remove(0);
                 if (removed != null)
                 {
                     Destroy(removed.gameObject);
                 }
                 myInventory.base_AddAt(inpBuf[0], 0);
-                print("adding " + inpBuf[0] + " to input 0 of furnace inventory ");
+                print("adding " + inpBuf[0] + " to input slot 0 of furnace inventory ");
                 
-                // clear slot 1 and add the inputbuffer
+                // clear slot 1 and add the new inputbuffer
                 removed = myInventory.base_Remove(1);
                 if (removed != null)
                 {
                     Destroy(removed.gameObject);
                 }
                 myInventory.base_AddAt(inpBuf[1], 1);
-                print("adding" + inpBuf[1] + " to input 1 of furnace inventory");
+                print("adding" + inpBuf[1] + " to input slot 1 of furnace inventory");
             };
         }
     }
