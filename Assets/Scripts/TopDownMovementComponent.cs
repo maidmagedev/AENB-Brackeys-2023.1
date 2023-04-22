@@ -35,7 +35,7 @@ public class TopDownMovementComponent : MonoBehaviour
         // Player Death
         if (MovementDisabled)
         {
-            rb.velocity = Vector2.zero;
+            //rb.velocity = Vector2.zero;
             return;
         }
 
