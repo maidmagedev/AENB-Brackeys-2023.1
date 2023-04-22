@@ -23,7 +23,8 @@ public static class Globals
         {ItemType.ASSEMBLER,    new Item_Data(ItemType.ASSEMBLER, 5, Resources.Load<Sprite>("Machine/assembler-1"), Resources.Load<GameObject>("Machine/Assembler"), UseBehavior.PLACE)},
         { ItemType.PISTOL,      new Item_Data(ItemType.PISTOL, 1, Resources.Load<Sprite>("Items/item_pistol"), Resources.Load<GameObject>("Items/Pistol"), UseBehavior.SHOOT)},
         { ItemType.QUEST,       new Item_Data(ItemType.QUEST, 1, Resources.Load<Sprite>("Items/item_quest"), Resources.Load<GameObject>("Item/Quest"), UseBehavior.SHOOT)},
-        { ItemType.BOLTACTION,  new Item_Data(ItemType.BOLTACTION, 1, Resources.Load<Sprite>("Items/item_boltaction"), Resources.Load<GameObject>("Items/BoltAction"), UseBehavior.SHOOT) }
+        { ItemType.BOLTACTION,  new Item_Data(ItemType.BOLTACTION, 1, Resources.Load<Sprite>("Items/item_boltaction"), Resources.Load<GameObject>("Items/BoltAction"), UseBehavior.SHOOT) },
+        { ItemType.ASSAULTRIFLE, new Item_Data(ItemType.ASSAULTRIFLE, 1, Resources.Load<Sprite>("Items/item_assault_rifle"), Resources.Load<GameObject>("Item/AssaultRifle"), UseBehavior.SHOOT)}
     };
     
     public static Dictionary<string, RecipeBase> allRecipes = new()

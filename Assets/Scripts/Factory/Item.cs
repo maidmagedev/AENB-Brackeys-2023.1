@@ -92,16 +92,19 @@ public class Item_Data
         switch (stack.of){
             case ItemType.FAMAS:
                 GameObject.FindObjectOfType<Famas>().GetComponent<Famas>().GetInput();
-            break;
+                break;
             case ItemType.SHOTGUN:
                 GameObject.FindObjectOfType<Shotgun>().GetComponent<Shotgun>().GetInput();
-            break;
+                break;
             case ItemType.PISTOL:
                 GameObject.FindObjectOfType<Pistol>().GetComponent<Pistol>().GetInput();
-            break;
+                break;
             case ItemType.BOLTACTION:
                 GameObject.FindObjectOfType<BoltAction>().GetComponent<BoltAction>().GetInput();
-            break;
+                break;
+            case ItemType.ASSAULTRIFLE:
+                GameObject.FindObjectOfType<AssaultRifle>().GetComponent<AssaultRifle>().GetInput();
+                break;
             case ItemType.QUEST:
                 Debug.Log("shhhhh... im abusing the logic.... no one needs to know... - spencer :)");
                 break;
@@ -136,5 +139,6 @@ public enum ItemType
     ASSEMBLER,
     PISTOL,
     QUEST,
-    BOLTACTION
+    BOLTACTION,
+    ASSAULTRIFLE
 }

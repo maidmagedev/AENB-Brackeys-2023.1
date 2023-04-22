@@ -23,6 +23,8 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] GameObject pistolObj;
     [SerializeField] BoltAction boltAction;
     [SerializeField] GameObject boltActionObj;
+    [SerializeField] AssaultRifle assaultRifle;
+    [SerializeField] GameObject assaultRifleObj;
 
     private void Start() {
         selectedItemSlot = 0;
@@ -33,7 +35,7 @@ public class PlayerActions : MonoBehaviour
         HotbarSelect();
         
         // Action Handling based on Selected Item
-        if (ItemInSlotExists(selectedItemSlot) && Input.GetKeyDown(KeyCode.Mouse0)) {
+        if (ItemInSlotExists(selectedItemSlot) && Input.GetKey(KeyCode.Mouse0)) { // If we're having issues with mouse clicks, change this to GetKeyDown.
 
             //print("11111");
             Globals.item_definitions[selectedItem].useBehavior(playerInv, playerInv[0][selectedItemSlot]);
@@ -98,6 +100,7 @@ public class PlayerActions : MonoBehaviour
         shotgunObj.SetActive(false);
         pistolObj.SetActive(false);
         boltActionObj.SetActive(false);
+        assaultRifleObj.SetActive(false);
     }
 
     private void EnableHands(bool on) {
@@ -135,6 +138,10 @@ public class PlayerActions : MonoBehaviour
                 case ItemType.BOLTACTION:
                     boltActionObj.SetActive(true);
                     StartCoroutine(boltAction.Equip());
+                    break;
+                case ItemType.ASSAULTRIFLE:
+                    assaultRifleObj.SetActive(true);
+                    StartCoroutine(assaultRifle.Equip());
                     break;
                 default:
                     EnableHands(true);
