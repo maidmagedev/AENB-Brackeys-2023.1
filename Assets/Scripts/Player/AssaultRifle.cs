@@ -61,7 +61,7 @@ public class AssaultRifle : Gun
         priority.Remove(AnimationStates.Reload);
         reloading = false;
         mayshoot = true;
-        clip = 20;
+        clip = 35;
     }
 
     public IEnumerator Equip() {
