@@ -12,6 +12,7 @@ public class StairMovement : MonoBehaviour
     [SerializeField] bool MovementDisabled = true;
     [SerializeField] bool goingDown = true;
     [SerializeField] TopDownMovementComponent playerMovement;
+    [SerializeField] bool rightIsDown;
     
     // Start is called before the first frame update
     void Start()
@@ -33,11 +34,9 @@ public class StairMovement : MonoBehaviour
         // Getting the Player's input
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-        if (horizontalInput == 0)
+        Debug.Log(horizontalInput);
+        if (horizontalInput != 0)
         {
-            return;
-        } 
-        
             if (verticalInput == 0)
             {
                 if (goingDown)
@@ -49,7 +48,9 @@ public class StairMovement : MonoBehaviour
                     verticalInput = 1;
                 }
             }
+        } 
         
+            
 
         
 

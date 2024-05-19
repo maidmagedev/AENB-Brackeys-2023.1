@@ -34,7 +34,9 @@ public class TriggerBase : MonoBehaviour
     void Start()
     {
         VerifyOrFindReferences();
-        promptTextMesh.text = interactionPromptText;
+        if (interactionPromptText != null && promptTextMesh != null) {
+            promptTextMesh.text = interactionPromptText;
+        }
     }
 
     // Finds necessary fields that may be empty/null or other references that are not able to be set up prior to runtime.
